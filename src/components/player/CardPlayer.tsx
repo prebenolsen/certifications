@@ -35,26 +35,51 @@ export function CardPlayer({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [certId, lesson.id])
 
-  // Track which card is centered in the viewport.
+  // Track which card is centered: the one whose midpoint is nearest the
+  // scroller's midpoint. Scroll-driven rather than an IntersectionObserver
+  // visibility threshold, because cards taller than the viewport can never
+  // reach a ratio like 60% visible — they'd never register as viewed.
   useEffect(() => {
     const scroller = scrollerRef.current
     if (!scroller) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            const idx = Number((entry.target as HTMLElement).dataset.index)
-            setActiveIndex(idx)
-            const card = lesson.cards[idx]
-            if (card) markCardViewed(certId, lesson.id, card.id)
-            if (idx === total - 1) markCompleted(certId, lesson.id)
-          }
+
+    const update = () => {
+      const rect = scroller.getBoundingClientRect()
+      const mid = rect.top + rect.height / 2
+      let best = 0
+      let bestDist = Infinity
+      cardRefs.current.forEach((el, i) => {
+        if (!el) return
+        const r = el.getBoundingClientRect()
+        const dist = Math.abs(r.top + r.height / 2 - mid)
+        if (dist < bestDist) {
+          bestDist = dist
+          best = i
         }
-      },
-      { root: scroller, threshold: 0.6 },
-    )
-    cardRefs.current.forEach((el) => el && observer.observe(el))
-    return () => observer.disconnect()
+      })
+      setActiveIndex(best)
+      const card = lesson.cards[best]
+      if (card) markCardViewed(certId, lesson.id, card.id)
+      if (best === total - 1) markCompleted(certId, lesson.id)
+    }
+
+    // Trailing throttle (setTimeout rather than rAF: rAF is paused in
+    // hidden/background tabs, which would freeze progress tracking there).
+    let timer: number | undefined
+    const onScroll = () => {
+      if (timer !== undefined) return
+      timer = window.setTimeout(() => {
+        timer = undefined
+        update()
+      }, 100)
+    }
+
+    update()
+    scroller.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      scroller.removeEventListener('scroll', onScroll)
+      if (timer !== undefined) window.clearTimeout(timer)
+    }
   }, [certId, lesson, total, markCardViewed, markCompleted])
 
   const scrollToIndex = useCallback((idx: number) => {

@@ -5,9 +5,13 @@ import type {
   Module,
 } from '@/types/content'
 import { dataAnalystAssociate } from './databricks/data-analyst-associate'
+import { dataEngineerAssociate } from './databricks/data-engineer-associate'
 
 /** All certifications known to the app. Add new ones here. */
-export const certifications: Certification[] = [dataAnalystAssociate]
+export const certifications: Certification[] = [
+  dataAnalystAssociate,
+  dataEngineerAssociate,
+]
 
 export function getCertification(id: string): Certification | undefined {
   return certifications.find((c) => c.id === id)

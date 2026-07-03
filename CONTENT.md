@@ -6,6 +6,81 @@ edits content.
 
 Status legend: ✅ complete · 🚧 in progress · ⬜ planned
 
+Run `npm run validate` to check this content structurally; the numbers below
+can be regenerated from its summary line.
+
+---
+
+## Certification: Databricks Certified Data Engineer Associate
+
+- **Exam:** 45 multiple-choice questions · 90 minutes · USD 200 · valid 2 years
+- **Source of truth:** `src_material/databricks/databricks-certified-data-engineer-associate`
+- **Modules:** 7 (mirroring the 7 official exam sections)
+- **Lessons authored:** 24 of 24 ✅ · **Cards:** 230 · all 5 official sample
+  questions woven in as MCQs
+
+### Module E1 — The Data Intelligence Platform 🧠 (Section 1, 6%) · ✅
+
+| Lesson | Status | Cards | Checks | Diagrams | Highlights |
+|--------|:------:|:-----:|--------|----------|------------|
+| Why the lakehouse exists | ✅ | 11 | 1 mcq, 1 flashcard | architecture (compare) | kitchen/pantry analogy; time-travel SQL; sample Q2 |
+| Picking the right compute | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | compute menu (compare) | DBU cost model; sample Q4 |
+
+### Module E2 — Ingesting Data 📥 (Section 2, 21%) · ✅
+
+| Lesson | Status | Cards | Checks | Diagrams | Highlights |
+|--------|:------:|:-----:|--------|----------|------------|
+| Batch, streaming, or incremental? | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | source→bronze (flow) | audit-log delivery contract; sample Q3 |
+| COPY INTO | ✅ | 8 | 1 mcq, 1 flashcard | — | idempotency; FORMAT/COPY_OPTIONS |
+| Auto Loader | ✅ | 11 | 1 mcq, 1 flashcard | pipeline (flow) | mail-carrier analogy; schema evolution; `_rescued_data`; availableNow |
+| Lakeflow Connect & choosing a method | ✅ | 10 | 1 mcq, 1 t/f | sources (flow) | managed vs standard connectors; JDBC/REST; nested JSON; decision guide |
+
+### Module E3 — Transforming with PySpark 🔄 (Section 3, 22%) · ✅
+
+| Lesson | Status | Cards | Checks | Diagrams | Highlights |
+|--------|:------:|:-----:|--------|----------|------------|
+| Bronze to silver | ✅ | 10 | 1 mcq, 1 flashcard | medallion (flow) | restaurant analogy; dropna/fillna/cast; constraints & expectations |
+| Joins & unions | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | inner vs left (compare) | broadcast joins; union() = UNION ALL trap |
+| Reshaping tables | ✅ | 10 | 1 mcq, 1 t/f | explode (flow) | withColumn/split/filter/explode; grain awareness |
+| Deduplication & aggregation | ✅ | 9 | 1 mcq, 1 flashcard | — | dropDuplicates keys; approx_count_distinct; summary() |
+| Gold layer objects | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | freshness vs speed (compare) | table vs view vs MV vs streaming table |
+
+### Module E4 — Orchestrating with Lakeflow Jobs 🗓️ (Section 4, 16%) · ✅
+
+| Lesson | Status | Cards | Checks | Diagrams | Highlights |
+|--------|:------:|:-----:|--------|----------|------------|
+| Jobs, tasks & the DAG | ✅ | 9 | 1 mcq, 1 flashcard | nightly job (flow) | recipe analogy; fan-out/fan-in; failure isolation |
+| Control flow | ✅ | 9 | 1 mcq, 1 t/f | resilient pipeline (flow) | retries + idempotency; if/else; run-if; for-each |
+| Triggers | ✅ | 8 | 1 mcq, 1 flashcard | time vs data-driven (compare) | cron vs file-arrival vs table-update |
+
+### Module E5 — CI/CD & Asset Bundles 🚀 (Section 5, 10%) · ✅
+
+| Lesson | Status | Cards | Checks | Diagrams | Highlights |
+|--------|:------:|:-----:|--------|----------|------------|
+| Git folders | ✅ | 8 | 1 mcq, 1 t/f | idea→merged (flow) | PRs live in the provider; branch workflow |
+| Asset Bundles | ✅ | 11 | 1 mcq, 1 flashcard | promotion path (flow) | container analogy; databricks.yml; targets/variables; CLI verbs; sample Q5 |
+
+### Module E6 — Optimization & Troubleshooting 🔬 (Sections 3 + 6) · ✅
+
+| Lesson | Status | Cards | Checks | Diagrams | Highlights |
+|--------|:------:|:-----:|--------|----------|------------|
+| Reading the Spark UI | ✅ | 9 | 1 mcq, 1 flashcard | triage (flow) | skew/shuffle/spill signatures; AQE; sample Q1 |
+| The four tuning knobs | ✅ | 10 | 1 mcq, 1 flashcard | symptom→knob (compare) | shuffle.partitions; memory; broadcast threshold; re-measure rule |
+| Monitoring jobs | ✅ | 8 | 1 mcq, 1 flashcard | failed run (flow) | run-history baselines; upstream blockers; repair runs |
+| Liquid Clustering & predictive optimization | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | — | supermarket analogy; CLUSTER BY AUTO; auto-maintenance |
+| Cluster triage | ✅ | 9 | 1 mcq, 1 flashcard | triage map (flow) | startup/capacity; library scoping; driver vs executor OOM |
+
+### Module E7 — Governance & Security 🔐 (Section 7, 15%) · ✅
+
+| Lesson | Status | Cards | Checks | Diagrams | Highlights |
+|--------|:------:|:-----:|--------|----------|------------|
+| Managed vs external tables | ✅ | 9 | 1 mcq, 1 flashcard | DROP behavior (compare) | LOCATION clause; SET MANAGED conversion |
+| GRANT, REVOKE, DENY & the hierarchy | ✅ | 10 | 1 mcq, 1 t/f | securables (layers) | keycard analogy; inheritance; groups & service principals |
+| Row filters, masks & ABAC | ✅ | 10 | 1 mcq, 1 flashcard | per-object vs ABAC (compare) | filter/mask functions; tag-driven policies |
+
+- **Future ideas:** hands-on SQL sandbox cards; Spark UI screenshot walkthroughs;
+  a mixed-section mock exam.
+
 ---
 
 ## Certification: Databricks Certified Data Analyst Associate
@@ -13,7 +88,7 @@ Status legend: ✅ complete · 🚧 in progress · ⬜ planned
 - **Exam:** 45 multiple-choice questions · 90 minutes · valid 2 years
 - **Source of truth:** `src_material/databricks/databricks-certified-data-analyst-associate`
 - **Modules:** 9 (organized for learning flow, mapped back to exam sections)
-- **Lessons authored:** 2 of 20 · **Card types in use:** 11 of 11
+- **Lessons authored:** 2 of 24 · **Card types in use:** 11 of 11
 
 ### Card-type coverage (engine)
 
