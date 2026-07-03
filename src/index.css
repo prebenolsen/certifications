@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-surface-sunken text-ink font-sans antialiased;
+  }
+
+  /* Respect users who prefer reduced motion. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Vertical, one-card-at-a-time scroller (the "TikTok" learning flow). */
+  .card-scroller {
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .card-scroller::-webkit-scrollbar {
+    display: none;
+  }
+  .card-snap {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .prose-card p {
+    @apply leading-relaxed;
+  }
+
+  .kbd {
+    @apply inline-flex items-center rounded border border-slate-300 bg-white px-1.5 py-0.5 font-mono text-xs text-ink-soft shadow-sm;
+  }
+}
