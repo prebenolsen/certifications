@@ -90,8 +90,9 @@ app stays guest-only and the "Sign in" button never appears.
 To enable accounts, follow [`supabase/supabase-readme.md`](supabase/supabase-readme.md):
 run the `.sql` files, then set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`
 (locally in `.env.local`, and as GitHub Actions repository secrets for the
-deploy). The readme also covers the required **Site URL** and **redirect URL**
-configuration for the magic link.
+deploy). The readme also covers the **redirect URL** allow-list the magic link
+needs — including how to share one Supabase project across several apps without
+changing its Site URL.
 
 > **Desktop-first, mobile-friendly.** The layout is designed for desktop but
 > reflows for phones (stacked cards, condensed header).

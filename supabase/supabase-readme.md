@@ -41,21 +41,38 @@ anon key is safe to ship in the client bundle.
 **Authentication → Providers → Email**: enable it (magic link is on by default).
 
 **Authentication → URL Configuration** — this is the part that breaks silently if
-skipped, because the magic link redirects back to your app:
+skipped, because the magic link redirects back to your app.
 
-- **Site URL:**
-  ```
-  https://prebenolsen.github.io/certifications/
-  ```
-- **Redirect URLs** (add each — include local dev):
+This app does **not** need its own **Site URL**. It always sends an explicit
+redirect (`window.location.origin + import.meta.env.BASE_URL`), so you only need
+those URLs on the **Redirect URLs** allow-list:
+
+- **Site URL:** leave whatever is already set (it's a single project-wide default
+  and only a fallback). No change required.
+- **Redirect URLs** (add these — keep any existing entries from other apps):
   ```
   https://prebenolsen.github.io/certifications/
   http://localhost:5173/
   ```
 
-> The app requests a redirect of `window.location.origin + import.meta.env.BASE_URL`,
-> i.e. `…/certifications/` in production and `http://localhost:5173/` in dev. Every
-> URL the app can redirect to must be listed here or Supabase rejects the link.
+> The redirect is `…/certifications/` in production and `http://localhost:5173/`
+> in dev. Every URL the app can redirect to must be on the allow-list or Supabase
+> rejects the link. A wildcard like `https://prebenolsen.github.io/**` also works
+> if you'd rather cover several GitHub Pages apps with one entry.
+
+### Sharing one Supabase project across apps
+
+This project is designed to coexist with other apps in the same Supabase project
+(e.g. a shared "Sandbox"):
+
+- **Tables are prefixed `certifications_`**, so they never collide with another
+  app's tables, and RLS keeps each user to their own rows.
+- **`auth.users` is shared** across the whole project — the same email is one
+  account in every app. Data stays separated by the table prefix + RLS.
+- The new-user trigger in `01_schema.sql` fires for **every** new user in the
+  project and creates an empty `certifications_profiles` row for them (harmless).
+  If you don't want it touching users who only use another app, skip that trigger
+  and create the profile from the app instead.
 
 Supabase's built-in email has low rate limits — fine for personal use. For volume,
 configure a custom SMTP provider under **Authentication → Emails**.
