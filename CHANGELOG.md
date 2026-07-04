@@ -15,7 +15,7 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
 
 ---
 
-## [Unreleased]
+## [1.0.0] — 2026-07-04
 
 ### Added
 
