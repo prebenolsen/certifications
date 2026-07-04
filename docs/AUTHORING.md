@@ -68,7 +68,10 @@ end with a `recap` (the validator warns otherwise).
 - `scenario` — a day-at-work situation; `atWork` frames the practical stakes.
 - `mistake` — a misconception stated (`myth`) then corrected (`reality`).
   Mine these from the exam's wrong answer options.
-- `flashcard` — one drillable fact. Front is a question, back is short.
+- `flashcard` — one drillable fact. Front is a question, back is short. After
+  the learner reveals the back they self-grade recall ("I knew this" / "I didn't
+  know this"); that result is tracked separately from quiz accuracy, so a
+  flashcard's job is a clean recall prompt, not a trick question.
 - `truefalse` — fast check of a single belief.
 - `mcq` — exam-style; 4 options, `optionFeedback` explaining *each* wrong
   option, `examObjective` quoting the official outline.

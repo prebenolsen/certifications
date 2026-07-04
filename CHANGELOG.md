@@ -15,6 +15,71 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- **GitHub Pages deployment** — a GitHub Actions workflow
+  (`.github/workflows/deploy.yml`) builds and publishes the site to
+  `https://prebenolsen.github.io/certifications/` on every push to `main`. Vite
+  now builds under the `/certifications/` base path with a matching router
+  basename, and a `404.html` SPA fallback keeps client-side deep links working.
+- **Optional accounts & cloud sync (Supabase)** — sign-in is a passwordless
+  email magic link. Guests keep progress in `localStorage` (default, offline,
+  per-device); signed-in users sync progress to Supabase (`certifications_`
+  tables) so it follows them across devices. First sign-in imports existing
+  guest progress. Ships guest-only when Supabase env vars are absent. SQL schema,
+  RLS policies, and setup (including Site URL / redirect URLs) live in
+  `supabase/`.
+- **Mobile-friendly layout** — the desktop-first UI now reflows for phones
+  (condensed header, stacked cards).
+
+- **Flashcard self-grading** — after revealing a flashcard's answer the learner
+  now marks "I knew this" / "I didn't know this". The result is recorded through
+  the same progress store as quiz answers (so recall competence is tracked), but
+  flashcards remain outside `INTERACTIVE_CARD_TYPES`, keeping self-reported recall
+  separate from objective quiz accuracy. The first self-grade is final.
+
+---
+
+## [0.3.0] — 2026-07-04
+
+The third certification: the advanced, production-focused **Data Engineer
+Professional** exam — a complete certification.
+
+### Added
+
+- **Databricks Certified Data Engineer Professional** — a complete new
+  certification (59 questions · 120 minutes · valid 2 years) organized as
+  **9 learning modules** mapped to the 10 official exam sections, with **31
+  fully-authored lessons** (283 cards) and **all 9 official sample questions
+  woven in as MCQs**:
+  - *Module 1 — Advanced Development in Python & SQL*: bundle-ready project
+    structure, library/dependency management, Python/Pandas/SQL UDFs, and ETL
+    testing (assertDataFrameEqual/assertSchemaEqual, DataFrame.transform).
+  - *Module 2 — Declarative Pipelines & Streaming*: declarative pipelines,
+    streaming tables vs materialized views, APPLY CHANGES CDC, Structured
+    Streaming SLA tuning (sample Q2), and pipeline configs/control flow.
+  - *Module 3 — Ingestion & Acquisition*: multi-format ingestion and
+    exactly-once append-only Delta pipelines.
+  - *Module 4 — Transformation*: window/join/aggregation transforms and bad-data
+    quarantining.
+  - *Module 5 — Data Modelling with Delta*: Delta internals & clones (sample
+    Q1, Q8), partitioning & dimensional modelling (sample Q3), and Liquid
+    Clustering over partitioning/ZORDER.
+  - *Module 6 — Optimization*: managed-table overhead, data skipping & file
+    sizing (sample Q7), Change Data Feed, and query-profile bottlenecks.
+  - *Module 7 — Sharing & Governance*: Delta Sharing (D2D/D2O), Lakehouse
+    Federation, and Unity Catalog discoverability & permission inheritance
+    (sample Q4).
+  - *Module 8 — Security & Compliance*: workspace ACLs & secrets redaction
+    (sample Q6), row filters/column masks, PII anonymization, and compliant
+    data purging.
+  - *Module 9 — Monitoring, Debugging & CI/CD*: observability (system tables,
+    event logs, profilers), SQL/job alerting, multi-task job failure semantics,
+    repairs & cost-aware scheduling (sample Q9, Q5), and Asset Bundle + Git
+    CI/CD.
+
 ## [0.2.0] — 2026-07-03
 
 A second full certification plus the platform improvements and authoring tools
@@ -103,5 +168,6 @@ fully-authored lessons for the Databricks Certified Data Analyst Associate.
 - **Documentation** — `README.md`, `CHANGELOG.md`, `CONTENT.md`, and
   `docs/ARCHITECTURE.md`.
 
+[0.3.0]: https://example.com/releases/0.3.0
 [0.2.0]: https://example.com/releases/0.2.0
 [0.1.0]: https://example.com/releases/0.1.0

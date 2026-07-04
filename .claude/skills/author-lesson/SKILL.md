@@ -36,6 +36,13 @@ Hook (`scenario`, eyebrow "Why this matters") → `analogy` → `concept`(s) →
 interleaved → an exam-style `mcq` with `examObjective` → one `flashcard` for the
 fact worth drilling → closing `recap`. Aim for ~10–15 cards ≈ 8–10 minutes.
 
+After revealing a `flashcard`'s answer the learner self-grades recall ("I knew
+this" / "I didn't know this"); that result is recorded through the same progress
+channel as quizzes but tracked *separately* from quiz accuracy (flashcards are
+not in `INTERACTIVE_CARD_TYPES`). So write flashcards as clean recall prompts of
+a single fact — never a trick question — and still include a real `mcq`/`truefalse`
+for the objective check the validator requires.
+
 Requirements the validator enforces for a `complete` lesson: has cards, unique card
 ids, at least one interactive card (`mcq`/`truefalse`), and **ends with a `recap`**.
 It warns under 6 cards. Diagram cards need either an inline `spec` (preferred:

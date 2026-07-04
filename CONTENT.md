@@ -11,6 +11,99 @@ can be regenerated from its summary line.
 
 ---
 
+## Certification: Databricks Certified Data Engineer Professional
+
+- **Exam:** 59 multiple-choice questions · 120 minutes · USD 200 · valid 2 years
+- **Source of truth:** `src_material/databricks/databricks-certified-data-engineer-professional`
+- **Modules:** 9 (learning-flow order, mapped to the 10 official exam sections)
+- **Lessons authored:** 31 of 31 ✅ · **Cards:** 283 · **all 9 official sample
+  questions woven in as MCQs**
+
+### Module P1 — Advanced Development in Python & SQL 🐍 (Section 1) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| A Python project that scales | ✅ | 9 | 1 mcq | src-layout package; wheels; `%run` ≠ modularity |
+| Installing the right libraries, the right way | ✅ | 9 | 1 mcq, 1 t/f | PyPI/wheel/source; notebook vs cluster scope; restartPython |
+| When you need a UDF | ✅ | 9 | 1 mcq | built-in > SQL > Pandas > Python UDF ladder |
+| Testing an ETL pipeline | ✅ | 10 | 1 mcq, 1 t/f | DataFrame.transform; assertDataFrameEqual/assertSchemaEqual |
+
+### Module P2 — Declarative Pipelines & Streaming 🌊 (Section 1) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Pipelines you declare, not orchestrate | ✅ | 10 | 1 mcq, 1 t/f | declarative DAG; expectations (DROP ROW / FAIL UPDATE) |
+| Streaming table or materialized view? | ✅ | 8 | 1 mcq | incremental vs maintained result; late-data trap |
+| CDC without the plumbing: APPLY CHANGES | ✅ | 8 | 1 mcq, 1 t/f | KEYS/SEQUENCE BY; SCD Type 1 vs 2 |
+| Keeping a stream under its SLA | ✅ | 9 | 1 mcq | micro-batch model; trigger interval; **sample Q2** |
+| Configs, environments & control flow | ✅ | 9 | 1 mcq, 1 t/f | if/else & for-each; high-memory; disallow retries |
+
+### Module P3 — Ingestion & Acquisition 📥 (Section 2) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Every format, one landing zone | ✅ | 9 | 1 mcq, 1 t/f | self-describing vs text; binaryFile; land as Delta |
+| One append-only table, batch or stream | ✅ | 9 | 1 mcq | checkpoints; idempotent batch (txnAppId / MERGE) |
+
+### Module P4 — Transformation, Cleansing & Quality 🔄 (Section 3) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Windows, joins & aggregations at scale | ✅ | 10 | 1 mcq, 1 t/f | ROW_NUMBER top-N; broadcast vs shuffle; skew |
+| Quarantining bad data | ✅ | 9 | 1 mcq, 1 t/f | valid/inverse split; `_rescued_data`; DROP ROW ≠ retain |
+
+### Module P5 — Data Modelling with Delta 🏗️ (Section 10) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| What the transaction log actually does | ✅ | 11 | 2 mcq | metastore vs data ops; RENAME/DROP; clones; **sample Q1, Q8** |
+| Modelling for the questions you ask | ✅ | 10 | 1 mcq, 1 t/f | partition cardinality; star schema; **sample Q3** |
+| Liquid Clustering beats partitioning | ✅ | 9 | 1 mcq | CLUSTER BY (AUTO); vs partitioning/ZORDER |
+
+### Module P6 — Cost & Performance Optimization ⚡ (Section 6) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Why managed tables cost you less | ✅ | 9 | 1 mcq, 1 t/f | predictive optimization; auto OPTIMIZE/VACUUM |
+| The files Spark never reads | ✅ | 10 | 1 mcq, 1 t/f | min/max skipping; maxPartitionBytes; deletion vectors; **sample Q7** |
+| Reading only what changed: CDF | ✅ | 8 | 1 mcq | table_changes; streaming-table limits |
+| Finding the bottleneck in a query | ✅ | 9 | 1 mcq | profile: bad skipping / wrong join / shuffle+spill |
+
+### Module P7 — Sharing, Federation & Governance 🔗 (Sections 4 + 8) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Sharing live data without copies | ✅ | 9 | 1 mcq | Delta Sharing D2D vs D2O; open protocol |
+| Querying data you never ingested | ✅ | 9 | 1 mcq, 1 t/f | Lakehouse Federation; connection + foreign catalog |
+| Making data discoverable & governed | ✅ | 9 | 1 mcq | comments/tags; **UC permission inheritance (sample Q4 theme)** |
+
+### Module P8 — Security & Compliance 🔐 (Section 7) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Least privilege, and never a plaintext password | ✅ | 8 | 1 mcq | ACL levels; secrets `[REDACTED]`; **sample Q6** |
+| Same table, different rows per user | ✅ | 9 | 1 mcq, 1 t/f | dynamic views (is_member); row filters/masks; **sample Q4** |
+| De-identifying PII the right way | ✅ | 9 | 1 mcq | hashing vs tokenization; suppression; generalization |
+| Actually deleting data on request | ✅ | 9 | 1 mcq, 1 t/f | DELETE + VACUUM; retention window; erasure ≠ hide |
+
+### Module P9 — Monitoring, Debugging & CI/CD 🔍 (Sections 5 + 9) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Seeing what your platform is doing | ✅ | 9 | 1 mcq | system tables (billing/audit); event logs; profilers |
+| Being told before users complain | ✅ | 8 | 1 mcq, 1 t/f | SQL Alerts (data quality) vs Jobs notifications (health) |
+| When a task fails at 3am | ✅ | 10 | 2 mcq, 1 t/f | partial-failure semantics; repairs; job-cluster cost; **sample Q9, Q5** |
+| Shipping with Asset Bundles & Git | ✅ | 10 | 1 mcq, 1 t/f | databricks.yml; targets; Git Folders; CI/CD |
+
+- **Sample-question coverage:** all 9 official sample questions are woven into
+  authored MCQs (Q1/Q8 → Delta internals, Q2 → streaming tuning, Q3 →
+  dimensional modelling, Q4 → dynamic views + inheritance, Q5/Q9 → jobs, Q6 →
+  secrets, Q7 → data skipping).
+- **Future ideas:** a mixed-section mock exam; Spark UI / query-profile
+  screenshot walkthroughs; hands-on SQL sandbox cards.
+
+---
+
 ## Certification: Databricks Certified Data Engineer Associate
 
 - **Exam:** 45 multiple-choice questions · 90 minutes · USD 200 · valid 2 years
@@ -100,7 +193,7 @@ can be regenerated from its summary line.
 | example | ✅ | Intro + code block + explanation |
 | scenario | ✅ | Body + "at work" framing |
 | mistake | ✅ | Myth vs reality |
-| flashcard | ✅ | Click-to-flip |
+| flashcard | ✅ | Click-to-flip; self-graded recall ("I knew this" / "I didn't"), tracked apart from quiz accuracy |
 | truefalse | ✅ | Answer + explanation |
 | mcq | ✅ | Single/multi-select, per-option feedback, exam objective |
 | summary | ✅ | Numbered key points |

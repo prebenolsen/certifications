@@ -4,16 +4,25 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from 'react'
 import { certifications } from '@/content/registry'
+import { useAuth } from '@/context/AuthContext'
+import { supabase, TABLES } from '@/lib/supabase'
 
 /**
- * Learner progress, persisted to localStorage. Intentionally simple for v1 —
- * no backend. Progress is keyed by `certId/lessonId` so lesson ids only need
- * to be unique *within* a certification (two certs can both have an
- * `auto-loader` lesson without clobbering each other).
+ * Learner progress with two interchangeable backends:
+ *
+ * - **Guest** (no signed-in user): localStorage, per-browser. This is the
+ *   default and needs no backend.
+ * - **Signed in**: rows in Supabase (`certifications_lesson_progress`), scoped
+ *   to the user, so progress follows them across devices.
+ *
+ * The public API is backend-agnostic — components (CardPlayer, useStats) don't
+ * know or care which is active. Progress is keyed by `certId/lessonId` so lesson
+ * ids only need to be unique *within* a certification.
  */
 
 export interface LessonProgress {
@@ -46,8 +55,15 @@ interface ProgressContextValue {
 
 const STORAGE_KEY = 'certifications.progress.v2'
 const LEGACY_STORAGE_KEY = 'certifications.progress.v1'
+/** Sentinel for "hydrated as guest" so the cloud writer can tell it apart. */
+const GUEST = '__guest__'
 
 const progressKey = (certId: string, lessonId: string) => `${certId}/${lessonId}`
+
+function splitKey(key: string): [certId: string, lessonId: string] {
+  const i = key.indexOf('/')
+  return [key.slice(0, i), key.slice(i + 1)]
+}
 
 const emptyLesson = (): LessonProgress => ({
   viewedCards: [],
@@ -71,7 +87,7 @@ function migrateV1(v1: ProgressState): ProgressState {
   return { lessons }
 }
 
-function loadState(): ProgressState {
+function loadLocal(): ProgressState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (raw) return JSON.parse(raw) as ProgressState
@@ -87,18 +103,144 @@ function loadState(): ProgressState {
   return { lessons: {} }
 }
 
+function saveLocal(state: ProgressState) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+  } catch {
+    // Ignore write failures (e.g. private mode quota).
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Supabase backend                                                    */
+/* ------------------------------------------------------------------ */
+
+interface ProgressRow {
+  cert_id: string
+  lesson_id: string
+  viewed_cards: string[] | null
+  answers: Record<string, boolean> | null
+  completed: boolean | null
+}
+
+async function fetchCloud(
+  userId: string,
+): Promise<{ lessons: Record<string, LessonProgress>; error: boolean }> {
+  if (!supabase) return { lessons: {}, error: true }
+  const { data, error } = await supabase
+    .from(TABLES.lessonProgress)
+    .select('cert_id,lesson_id,viewed_cards,answers,completed')
+    .eq('user_id', userId)
+  if (error || !data) return { lessons: {}, error: true }
+  const lessons: Record<string, LessonProgress> = {}
+  for (const row of data as ProgressRow[]) {
+    lessons[progressKey(row.cert_id, row.lesson_id)] = {
+      viewedCards: row.viewed_cards ?? [],
+      answers: row.answers ?? {},
+      completed: row.completed ?? false,
+    }
+  }
+  return { lessons, error: false }
+}
+
+function upsertCloud(userId: string, key: string, lp: LessonProgress) {
+  if (!supabase) return
+  const [cert_id, lesson_id] = splitKey(key)
+  void supabase.from(TABLES.lessonProgress).upsert(
+    {
+      user_id: userId,
+      cert_id,
+      lesson_id,
+      viewed_cards: lp.viewedCards,
+      answers: lp.answers,
+      completed: lp.completed,
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: 'user_id,cert_id,lesson_id' },
+  )
+}
+
+function deleteCloud(userId: string, key: string) {
+  if (!supabase) return
+  const [cert_id, lesson_id] = splitKey(key)
+  void supabase
+    .from(TABLES.lessonProgress)
+    .delete()
+    .eq('user_id', userId)
+    .eq('cert_id', cert_id)
+    .eq('lesson_id', lesson_id)
+}
+
+/* ------------------------------------------------------------------ */
+
 const ProgressContext = createContext<ProgressContextValue | null>(null)
 
 export function ProgressProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<ProgressState>(loadState)
+  const { user } = useAuth()
+  const uid = user?.id ?? null
 
+  const [state, setState] = useState<ProgressState>(loadLocal)
+
+  // The last state we've reconciled with the cloud, so the writer can upsert
+  // only what changed. Also gates writes until hydration for a user completes.
+  const syncedRef = useRef<Record<string, LessonProgress>>({})
+  const hydratedForRef = useRef<string>(GUEST)
+
+  // (Re)hydrate whenever the signed-in user changes.
   useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-    } catch {
-      // Ignore write failures (e.g. private mode quota).
+    let cancelled = false
+
+    if (!uid || !supabase) {
+      // Guest: source of truth is localStorage.
+      hydratedForRef.current = GUEST
+      syncedRef.current = {}
+      setState(loadLocal())
+      return
     }
-  }, [state])
+
+    // Signed in: mark "not ready" so the writer holds off, then load the cloud.
+    hydratedForRef.current = ''
+    ;(async () => {
+      const { lessons: cloud, error } = await fetchCloud(uid)
+      if (cancelled) return
+      // First-time sign-in on a fresh account: carry this browser's guest
+      // progress up into the cloud so nothing is lost.
+      let merged = cloud
+      const toPush: string[] = []
+      if (!error && Object.keys(cloud).length === 0) {
+        const local = loadLocal().lessons
+        merged = { ...local }
+        toPush.push(...Object.keys(local))
+      }
+      setState({ lessons: merged })
+      syncedRef.current = { ...merged }
+      hydratedForRef.current = uid
+      for (const key of toPush) upsertCloud(uid, key, merged[key])
+    })()
+
+    return () => {
+      cancelled = true
+    }
+  }, [uid])
+
+  // Persist on every change to the active backend.
+  useEffect(() => {
+    if (!uid || !supabase) {
+      saveLocal(state)
+      return
+    }
+    // Don't write back the guest snapshot while the cloud is still hydrating.
+    if (hydratedForRef.current !== uid) return
+
+    const prev = syncedRef.current
+    for (const [key, lp] of Object.entries(state.lessons)) {
+      if (prev[key] !== lp) upsertCloud(uid, key, lp)
+    }
+    for (const key of Object.keys(prev)) {
+      if (!(key in state.lessons)) deleteCloud(uid, key)
+    }
+    syncedRef.current = { ...state.lessons }
+  }, [state, uid])
 
   const getLesson = useCallback(
     (certId: string, lessonId: string) =>

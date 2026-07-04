@@ -9,6 +9,29 @@
       content="Understand — don't memorize. An interactive learning platform for the Databricks Certified Data Analyst Associate certification."
     />
     <title>Certifications · Understand, don't memorize</title>
+    <!--
+      GitHub Pages SPA support: 404.html rewrites deep links into a query string
+      that this snippet restores to a clean path before React Router boots.
+      See https://github.com/rafgraph/spa-github-pages.
+    -->
+    <script>
+      ;(function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&')
+            })
+            .join('?')
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + decoded + l.hash,
+          )
+        }
+      })(window.location)
+    </script>
   </head>
   <body>
     <div id="root"></div>

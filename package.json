@@ -1,7 +1,7 @@
 {
   "name": "certifications-learning-platform",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "description": "An understanding-first learning platform for professional certifications, starting with the Databricks Certified Data Analyst Associate.",
   "scripts": {
@@ -14,6 +14,7 @@
     "check": "npm run typecheck && npm run lint && npm run validate"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.110.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2"

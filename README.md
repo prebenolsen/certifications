@@ -8,6 +8,7 @@ Certifications currently supported:
 
 - **Databricks Certified Data Analyst Associate**
 - **Databricks Certified Data Engineer Associate**
+- **Databricks Certified Data Engineer Professional**
 
 ---
 
@@ -53,14 +54,47 @@ npm install
 npm run dev        # start the Vite dev server (default http://localhost:5173)
 npm run build      # type-check (tsc) + production build to dist/
 npm run preview    # preview the production build
-npm run lint       # eslint
 npm run typecheck  # tsc without emitting
+npm run lint       # eslint
 npm run validate   # content validator (structure + teaching-philosophy rules)
 npm run check      # typecheck + lint + validate — run before committing
 ```
 
 > Tip: a preconfigured dev server (`dev`, port 5180) lives in
 > `.claude/launch.json` for the in-editor preview.
+
+---
+
+## Deployment (GitHub Pages)
+
+The app ships as a static site to GitHub Pages at
+**https://prebenolsen.github.io/certifications/**.
+
+- **Workflow:** `.github/workflows/deploy.yml` builds and deploys on every push
+  to `main` (and via manual dispatch). Enable it once under **Settings → Pages →
+  Build and deployment → Source: GitHub Actions**.
+- **Base path:** Vite builds under `/certifications/` (project site); the router
+  basename matches automatically. Local dev stays at `/`.
+- **Deep links:** `public/404.html` + a snippet in `index.html` give the SPA
+  client-side routing on Pages (GitHub has no server-side rewrite).
+
+## Accounts & progress storage
+
+Sign-in is **optional**. By default everyone is a **Guest** and progress is saved
+in the browser's `localStorage` — no account, works offline, per-device.
+
+Signing in (passwordless email **magic link**, via Supabase) syncs progress to
+the cloud so it follows you across devices. If Supabase env vars are absent the
+app stays guest-only and the "Sign in" button never appears.
+
+To enable accounts, follow [`supabase/supabase-readme.md`](supabase/supabase-readme.md):
+run the `.sql` files, then set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`
+(locally in `.env.local`, and as GitHub Actions repository secrets for the
+deploy). The readme also covers the required **Site URL** and **redirect URL**
+configuration for the magic link.
+
+> **Desktop-first, mobile-friendly.** The layout is designed for desktop but
+> reflows for phones (stacked cards, condensed header).
 
 ---
 
@@ -81,7 +115,8 @@ for the full picture. In short:
 | Diagrams | `src/components/diagrams/**` | Data-driven `DiagramSpec` primitives + custom SVGs by id |
 | Player | `src/components/player/CardPlayer.tsx` | The vertical card-flow experience |
 | Pages / routing | `src/pages/**`, `src/App.tsx` | Home, certification, module, lesson |
-| Progress | `src/context/ProgressContext.tsx` | localStorage-backed learner progress (per certification) |
+| Progress | `src/context/ProgressContext.tsx` | Learner progress — localStorage (guest) or Supabase (signed in) |
+| Auth | `src/context/AuthContext.tsx`, `src/lib/supabase.ts` | Optional magic-link sign-in; guest by default |
 | Validation | `scripts/validate-content.ts` | Content correctness + teaching-philosophy lint |
 
 ### The extension points (how the app grows)
@@ -115,6 +150,9 @@ src/content/
     data-engineer-associate/
       index.ts                ← assembles the certification (7 modules)
       lessons/*.ts            ← 24 fully-authored lessons
+    data-engineer-professional/
+      index.ts                ← assembles the certification (9 modules)
+      lessons/*.ts            ← 31 fully-authored lessons
   authoring.ts                ← shared helpers (planned() etc.)
   registry.ts                 ← lookup helpers used by the UI
 ```

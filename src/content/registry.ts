@@ -6,11 +6,13 @@ import type {
 } from '@/types/content'
 import { dataAnalystAssociate } from './databricks/data-analyst-associate'
 import { dataEngineerAssociate } from './databricks/data-engineer-associate'
+import { dataEngineerProfessional } from './databricks/data-engineer-professional'
 
 /** All certifications known to the app. Add new ones here. */
 export const certifications: Certification[] = [
   dataAnalystAssociate,
   dataEngineerAssociate,
+  dataEngineerProfessional,
 ]
 
 export function getCertification(id: string): Certification | undefined {

@@ -45,7 +45,9 @@ This is the primary extension seam of the whole app.
 Renderers receive `CardRendererProps` (`src/components/cards/types.ts`): the card
 plus an optional `onAnswered(correct)` callback. Presentational cards ignore it;
 interactive cards (`mcq`, `truefalse`) call it once so the player can record the
-result.
+result. `flashcard` also calls it — with the learner's self-graded recall ("I
+knew this" → `true`) — so competence is captured, but it is **not** in
+`INTERACTIVE_CARD_TYPES`, so self-report never dilutes objective quiz accuracy.
 
 ### Why a registry instead of a big `switch`?
 
