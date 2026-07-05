@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useAuth } from '@/context/AuthContext'
 
 /**
@@ -73,7 +74,7 @@ function SignInDialog({ onClose }: { onClose: () => void }) {
     setStatus(error ? { kind: 'error', message: error } : { kind: 'sent' })
   }
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-ink/40 p-4"
       role="dialog"
@@ -129,6 +130,7 @@ function SignInDialog({ onClose }: { onClose: () => void }) {
           </form>
         )}
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
