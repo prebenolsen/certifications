@@ -7,12 +7,16 @@ import type {
 import { dataAnalystAssociate } from './databricks/data-analyst-associate'
 import { dataEngineerAssociate } from './databricks/data-engineer-associate'
 import { dataEngineerProfessional } from './databricks/data-engineer-professional'
+import { generativeAiEngineerAssociate } from './databricks/generative-ai-engineer-associate'
+import { githubCopilot } from './github/copilot'
 
 /** All certifications known to the app. Add new ones here. */
 export const certifications: Certification[] = [
   dataAnalystAssociate,
   dataEngineerAssociate,
   dataEngineerProfessional,
+  generativeAiEngineerAssociate,
+  githubCopilot,
 ]
 
 export function getCertification(id: string): Certification | undefined {

@@ -15,6 +15,89 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
 
 ---
 
+## [1.2.0] — 2026-07-06
+
+A fifth certification: the **Databricks Certified Generative AI Engineer
+Associate** — scaffolded end to end, ready for lesson authoring.
+
+### Added
+
+- **Databricks Certified Generative AI Engineer Associate** — a new
+  certification (45 questions · 90 minutes · USD 200 · valid 2 years) organized
+  as **8 learning modules** following the RAG application build-arc, mapped to
+  the **6 official exam sections**, with **35 planned lessons** scaffolded as
+  "Coming soon":
+  - *Module 1 — GenAI Foundations on Databricks*: how LLMs work, embeddings and
+    vector similarity, RAG vs fine-tuning vs prompting, and the Mosaic AI stack.
+  - *Module 2 — Designing GenAI Applications* (Design, 14%): problem → pipeline,
+    prompt–response design, component/model selection, multi-stage decomposition.
+  - *Module 3 — Preparing Data for Retrieval* (Data Preparation, 14%): document
+    extraction, chunking strategies, embedding prep, and retrieval data quality.
+  - *Module 4 — Building RAG Applications* (Application Development, 30%): RAG
+    architecture, Vector Search retrieval, chain orchestration, prompt
+    augmentation, and prompt engineering.
+  - *Module 5 — Guardrails, Hallucinations & Model Choice* (Application
+    Development, 30%): guardrails, hallucination mitigation, prompt-injection
+    defense, model selection, and agents/tools.
+  - *Module 6 — Assembling & Deploying* (22%): MLflow packaging, Unity Catalog
+    model registration, Vector Search index creation, Model Serving, Foundation
+    Model APIs/external models, and end-to-end deployment.
+  - *Module 7 — Governance & Security* (8%): Unity Catalog governance, masking/
+    PII protection, and legal/licensing/provenance.
+  - *Module 8 — Evaluation & Monitoring* (12%): LLM evaluation metrics, MLflow
+    evaluate with LLM-as-a-judge, production monitoring (inference tables,
+    Lakehouse Monitoring), and cost/latency control.
+  - Source material captured in
+    `src_material/databricks/databricks-certified-generative-ai-engineer-associate`.
+
+## [1.1.0] — 2026-07-06
+
+The fourth certification joins the platform: the **GitHub Copilot (GH-300)**
+exam — scaffolded end to end, ready for lesson authoring.
+
+### Added
+
+- **GitHub Copilot (GH-300)** — a new certification (~55–65 questions ·
+  100 minutes · pass at 700/1000 · valid ~2 years) organized as **8 learning
+  modules** mapped to the exam's **6 official skill domains**, with **27 planned
+  lessons** scaffolded as "Coming soon":
+  - *Module 1 — Meet GitHub Copilot*: what Copilot is, the plans (Free/Pro/
+    Business/Enterprise), and enabling it in the IDE.
+  - *Module 2 — How Copilot Works: Data & Architecture*: data flow and sharing,
+    prompt building, proxy filtering/post-processing, the suggestion lifecycle,
+    and LLM limitations.
+  - *Module 3 — Using Copilot Responsibly*: generative-AI risks, ethical use
+    and harm mitigation, and validating AI output.
+  - *Module 4 — Prompt Engineering & Context*: prompt structure, how context is
+    determined, zero-shot vs few-shot, and prompt-crafting best practices.
+  - *Module 5 — Copilot Features in Depth*: inline/Chat/Plan Mode, the Copilot
+    CLI, Agent/Edit Mode and MCP (sub-agents, agent sessions), and code review,
+    Spaces, Spark, PR summaries, and instructions files.
+  - *Module 6 — Boosting Developer Productivity*: code generation/refactoring/
+    documentation, learning acceleration and legacy modernization, testing, and
+    security/performance improvements.
+  - *Module 7 — Privacy, Exclusions & Safeguards*: content exclusions and editor
+    settings, output ownership, and duplication detection/security warnings.
+  - *Module 8 — Administration & Governance*: org-wide policies and feature
+    availability, Copilot Code Review policies, audit-log events, and REST-API
+    subscription management.
+  - Source material captured in `src_material/github/gh-300-github-copilot`.
+  - **First lessons authored** (Module 1):
+    - *"What is GitHub Copilot?"* (13 cards): the AI-pair-programmer mental
+      model, inline suggestions vs Chat (compare diagram), why Copilot
+      *generates* rather than *searches* code, the reach across
+      IDE/github.com/CLI/PRs/mobile, and the "you stay the pilot" responsible-use
+      theme.
+    - *"Which Copilot: Free, Pro, Business, or Enterprise?"* (12 cards): the
+      individual-vs-organization plan families, the capability ladder
+      (Free → Pro/Pro+ → Business → Enterprise), and the key exam distinction
+      that governance (policy management, content exclusions, audit logs) only
+      unlocks at Business, with Enterprise adding deep github.com integration.
+    - *"Getting set up in your IDE"* (11 cards): the three ingredients that
+      enable Copilot (account access + extension + sign-in), supported editors,
+      the seat-must-be-assigned trap for org plans, and confirming it works via
+      the status icon. **Completes Module 1.**
+
 ## [1.0.0] — 2026-07-04
 
 ### Added
@@ -168,6 +251,8 @@ fully-authored lessons for the Databricks Certified Data Analyst Associate.
 - **Documentation** — `README.md`, `CHANGELOG.md`, `CONTENT.md`, and
   `docs/ARCHITECTURE.md`.
 
+[1.2.0]: https://example.com/releases/1.2.0
+[1.1.0]: https://example.com/releases/1.1.0
 [0.3.0]: https://example.com/releases/0.3.0
 [0.2.0]: https://example.com/releases/0.2.0
 [0.1.0]: https://example.com/releases/0.1.0

@@ -11,6 +11,177 @@ can be regenerated from its summary line.
 
 ---
 
+## Certification: Databricks Certified Generative AI Engineer Associate
+
+- **Exam:** 45 questions · 90 minutes · USD 200 · valid 2 years
+- **Source of truth:** `src_material/databricks/databricks-certified-generative-ai-engineer-associate`
+- **Modules:** 8 (RAG build-arc order, mapped to the 6 official exam sections)
+- **Lessons authored:** 0 of 35 · **Recommended:** 6+ months hands-on GenAI on Databricks
+
+### Module GA1 — GenAI Foundations on Databricks 🧠 (Design Applications) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| How large language models actually work | ⬜ | Tokens, next-token prediction, context windows |
+| Embeddings and vector similarity | ⬜ | Meaning as distance; basis of semantic search |
+| RAG, fine-tuning, or just prompting? | ⬜ | Choosing how to add knowledge/behavior |
+| The Databricks GenAI stack (Mosaic AI) | ⬜ | Vector Search, Model Serving, FM APIs, MLflow, UC |
+
+### Module GA2 — Designing GenAI Applications 🎯 (Design Applications, 14%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| From business problem to GenAI pipeline | ⬜ | Requirement → inputs/outputs/tasks |
+| Designing prompt–response pairs | ⬜ | Work backward from the needed output |
+| Choosing models, tools, and chain components | ⬜ | Model tasks, retrievers, tool access |
+| When one prompt isn’t enough | ⬜ | Multi-stage task decomposition |
+
+### Module GA3 — Preparing Data for Retrieval 📚 (Data Preparation, 14%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Extracting text from messy documents | ⬜ | Python extraction tools; filtering noise |
+| Chunking: size, overlap, and structure | ⬜ | Chunk trade-offs vs context/precision |
+| From chunks to embeddings | ⬜ | Embedding into a vector store; metadata |
+| Garbage in, garbage out | ⬜ | Source-data quality caps RAG quality |
+
+### Module GA4 — Building RAG Applications 🔗 (Application Development, 30%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| The anatomy of a RAG application | ⬜ | Retrieve-then-generate loop end to end |
+| Retrieving context with Vector Search | ⬜ | Querying the index; metadata filters |
+| Orchestrating with chains | ⬜ | LangChain-style wiring of prompts/models |
+| Augmenting prompts with retrieved context | ⬜ | Inject chunks so it answers from your data |
+| Prompt engineering that works | ⬜ | Instructions, examples, templates |
+
+### Module GA5 — Guardrails, Hallucinations & Model Choice 🛡️ (Application Development, 30%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Guardrails: keeping the model in bounds | ⬜ | Constrain inputs/outputs for safety |
+| Reducing hallucinations | ⬜ | Grounding techniques for factual answers |
+| Defending against prompt injection | ⬜ | Malicious input hijacking a prompt |
+| Choosing the right model | ⬜ | Context window vs quality/cost/latency |
+| Agents and tools: giving the model hands | ⬜ | When to let a model call tools/act |
+
+### Module GA6 — Assembling & Deploying 🚀 (Assembling and Deploying Applications, 22%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Packaging a chain with MLflow | ⬜ | Log a RAG chain (pyfunc / LangChain flavor) |
+| Registering models in Unity Catalog | ⬜ | UC model registry; versions & aliases |
+| Creating and syncing a Vector Search index | ⬜ | Index over a Delta table; keep it current |
+| Serving models and endpoints | ⬜ | Mosaic AI Model Serving for real-time |
+| Foundation Model APIs and external models | ⬜ | Pay-per-token vs provisioned; external routing |
+| Deploying an end-to-end RAG app | ⬜ | Sequence index → chain → register → serve |
+
+### Module GA7 — Governance & Security 🔐 (Governance, 8%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Governing GenAI with Unity Catalog | ⬜ | Models, indexes, data under one model |
+| Masking and protecting sensitive data | ⬜ | PII out of prompts/logs/responses |
+| Legal, licensing, and data provenance | ⬜ | Data-source and model-license terms |
+
+### Module GA8 — Evaluation & Monitoring 📊 (Evaluation and Monitoring, 12%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| How do you grade an LLM? | ⬜ | Faithfulness, relevance, toxicity, correctness |
+| Evaluating with MLflow and LLM-as-a-judge | ⬜ | MLflow evaluate; model scores model |
+| Monitoring GenAI in production | ⬜ | Inference tables; Lakehouse Monitoring |
+| Controlling cost and latency | ⬜ | Fast & affordable without wrecking quality |
+
+- **Weightings:** Design 14% · Data Prep 14% · **App Dev 30% (split GA4 + GA5)** ·
+  Assemble & Deploy 22% · Governance 8% · Eval & Monitoring 12%.
+- **Next step:** author lessons one at a time with the `author-lesson` skill,
+  flipping each ⬜ to ✅.
+
+---
+
+## Certification: GitHub Copilot (GH-300)
+
+- **Exam:** ~55–65 questions · 100 minutes · pass at 700/1000 · valid ~2 years
+- **Source of truth:** `src_material/github/gh-300-github-copilot`
+- **Modules:** 8 (learning-flow order, mapped to the 6 official skill domains)
+- **Lessons authored:** 3 of 27 · **Skills measured as of** January 2026
+
+### Module G1 — Meet GitHub Copilot 🚀 (Use GitHub Copilot features) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| What is GitHub Copilot? | ✅ | 13 | 1 mcq, 1 t/f, 1 flashcard | pair-programmer analogy; inline vs Chat (compare); generates ≠ searches; you stay the pilot |
+| Which Copilot: Free, Pro, Business, or Enterprise? | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | individual vs org families; capability ladder (flow); governance starts at Business |
+| Getting set up in your IDE | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | three ingredients (access+extension+sign-in); setup flow; seat must be assigned |
+
+### Module G2 — How Copilot Works: Data & Architecture 🧠 (Understand data and architecture) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Where your code goes and how it is used | ⬜ | Data flow/sharing; prompt building; proxy filtering; post-processing |
+| The life of a code suggestion | ⬜ | Suggestion request lifecycle |
+| What LLMs (and Copilot) can and cannot do | ⬜ | LLM/Copilot limitations |
+
+### Module G3 — Using Copilot Responsibly ⚖️ (Use GitHub Copilot responsibly) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Risks and limitations of generative AI | ⬜ | Hallucination, bias, IP, over-reliance |
+| Ethical and responsible AI use | ⬜ | Potential harms + mitigation strategies |
+| Trust, but verify: validating AI output | ⬜ | Why/how to validate; operate responsibly |
+
+### Module G4 — Prompt Engineering & Context 💬 (Apply prompt engineering and context crafting) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Anatomy of a good prompt | ⬜ | Prompt structure and context |
+| How Copilot builds context | ⬜ | Open files, selection, neighboring tabs |
+| Zero-shot and few-shot prompting | ⬜ | When to show examples |
+| Prompt-crafting best practices | ⬜ | Principles; process flow; chat-history use |
+
+### Module G5 — Copilot Features in Depth 🛠️ (Use GitHub Copilot features) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Inline suggestions, Chat, and Plan Mode | ⬜ | Triggers; Chat limits/options/feedback/commands |
+| GitHub Copilot in the command line | ⬜ | CLI install, commands, sessions, scripts |
+| Agent Mode, Edit Mode, and MCP | ⬜ | Autonomous work; sub-agents/sessions; MCP |
+| Code review, Spaces, Spark, and PR summaries | ⬜ | Review, PR summaries, Spaces, instructions files |
+
+### Module G6 — Boosting Developer Productivity 📈 (Improve developer productivity) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Generating, refactoring, and documenting code | ⬜ | Everyday SDLC wins |
+| Learning faster and modernizing legacy code | ⬜ | Context switching; sample data; modernization |
+| Writing tests with Copilot | ⬜ | Unit/integration tests; edge cases; assertions |
+| Security and performance improvements | ⬜ | Security fixes; performance optimizations |
+
+### Module G7 — Privacy, Exclusions & Safeguards 🔒 (Configure privacy, content exclusions, and safeguards) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Content exclusions and editor settings | ⬜ | What Copilot can/can't see |
+| Who owns Copilot’s output? | ⬜ | Output ownership + limitations |
+| Duplication detection and security warnings | ⬜ | Safeguards + troubleshooting |
+
+### Module G8 — Administration & Governance 🏢 (Use GitHub Copilot features) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Organization-wide policies and settings | ⬜ | Policies; Code Review policy; feature availability |
+| Auditing Copilot with audit-log events | ⬜ | Audit-log events |
+| Managing subscriptions with the REST API | ⬜ | Seat/subscription management via REST API |
+
+- **Domain weightings:** Responsible (15–20%) · Features (25–30%, split across G5 + G8) ·
+  Data & architecture (10–15%) · Prompt engineering (10–15%) · Productivity (10–15%) ·
+  Privacy & safeguards (10–15%).
+- **Next step:** author lessons one at a time with the `author-lesson` skill,
+  flipping each ⬜ to ✅.
+
+---
+
 ## Certification: Databricks Certified Data Engineer Professional
 
 - **Exam:** 59 multiple-choice questions · 120 minutes · USD 200 · valid 2 years

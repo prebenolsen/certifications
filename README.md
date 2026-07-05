@@ -9,6 +9,8 @@ Certifications currently supported:
 - **Databricks Certified Data Analyst Associate**
 - **Databricks Certified Data Engineer Associate**
 - **Databricks Certified Data Engineer Professional**
+- **Databricks Certified Generative AI Engineer Associate** — *scaffolded; lessons in authoring*
+- **GitHub Copilot (GH-300)** — *scaffolded; lessons in authoring*
 
 ---
 
@@ -191,5 +193,6 @@ Versioning follows [Semantic Versioning](https://semver.org/) — see
 
 ## Source material
 
-Official exam guides (objectives + sample questions) are stored in
-`src_material/databricks/`. Content should map back to these objectives.
+Official exam guides (objectives + sample questions) are stored under
+`src_material/<provider>/` (e.g. `src_material/databricks/`,
+`src_material/github/`). Content should map back to these objectives.
