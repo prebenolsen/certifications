@@ -22,7 +22,7 @@ Legend — platform build status:
 
 | Certification | Provider | Code | Build status | Lessons |
 |---|---|---|---|---|
-| Data Engineer Associate | Databricks | — | ✅ complete | 24 / 24 |
+| Data Engineer Associate | Databricks | — | ✅ complete | 25 / 25 |
 | Data Engineer Professional | Databricks | — | ✅ complete | 31 / 31 |
 | Generative AI Engineer Associate | Databricks | — | 🚧 in authoring | 4 / 35 |
 | GitHub Copilot | GitHub | GH-300 | 🚧 scaffolded | 3 / 27 (Module 1 done) |

@@ -24,6 +24,69 @@ Stack: Vite · React 18 · TypeScript · Tailwind · React Router.
 - **Data Analyst Associate is parked on purpose** (2/24). That is a decision, not
   a backlog item — do not resume it unless asked.
 - **Teach, don't list.** If a card says "and also…", split it. One idea per card.
+- **Define every term the first time the learner meets it.** See below — this is
+  the rule that gets broken most often and costs the most when it does.
+
+## Defining terms
+
+**A learner who meets an undefined term stops learning and starts guessing.**
+This is not a style preference; it is the fastest way to lose someone, and it is
+invisible to the author, who already knows what the word means.
+
+The rule: **the first time a term appears anywhere a learner can reach, it is
+defined — clearly, in one sentence, in place.** Not "explained later in the
+module." Not "obvious from context." Not defined in a *different* certification.
+Every certification has to stand on its own.
+
+This was not hypothetical. *Lakeflow* appeared **51 times across 20 files** —
+"Lakeflow Jobs", "Lakeflow Connect", "Lakeflow pipelines" — and the content never
+once said what **Lakeflow** is. A learner was expected to infer an entire product
+family from a prefix.
+
+### Track terms literally
+
+The glossary is real data, not a convention to remember:
+
+- **`src/content/glossary.ts`** — every term, defined once, with `aliases`
+  (former product names, abbreviations), an `introducedIn` list of the lessons
+  that *properly teach* it, and a `source` for anything version-specific.
+- **`npm run glossary`** — walks every certification in reading order, finds
+  where each term is first used, and compares that to where it is introduced.
+  Writes **`docs/GLOSSARY.md`**. Statuses: `✅` introduced before use ·
+  `🔗` introduced in a prerequisite cert (`Certification.assumes`) ·
+  `⚠️` used before it is introduced · `❌` used and never introduced.
+- **`RichText`** underlines known terms wherever they appear and shows the
+  definition on click — once per card, so repeated mentions do not become noise.
+  Nothing is marked up in the content; it happens at render time.
+
+**When authoring, run `npm run glossary` alongside `npm run check`.** A new `❌`
+is a bug you just introduced. A new `⚠️` means either move the definition earlier
+or gloss the term at its first mention.
+
+### What goes in the glossary
+
+Proper nouns and distinctive multi-word phrases only — "Lakeflow Pipelines",
+"materialized view", "Liquid Clustering". **Not** bare common words ("flow",
+"view", "sink"): they match ordinary prose and turn a card into a field of
+underlines. Define those inside the lesson that needs them.
+
+Set `introducedIn` **honestly**. A lesson that *mentions* a term does not
+introduce it. Leaving it off and letting the report say "nothing introduces this"
+is the useful outcome; a false ✅ is worse than no entry at all.
+
+### Watch for product families
+
+Vendors group products under an umbrella and then only ever use the compound
+names. Databricks does this constantly. When you meet one, **check the vendor's
+own navigation** — if it is a category in their docs with a *Concepts* page, it
+is a thing the learner must be told about, not a prefix to skip past.
+
+Lakeflow is the worked example: an umbrella over **Lakeflow Connect**
+(ingestion), **Lakeflow Pipelines** (transformation), **Lakeflow Designer**
+(visual authoring), and **Lakeflow Jobs** (orchestration). Its concepts page
+carries a vocabulary of its own — pipeline, flow, streaming table, materialized
+view, sink, expectation, AUTO CDC — every one of which is a term the learner
+meets and therefore a term that needs defining.
 
 ## The authoring loop
 
@@ -43,7 +106,8 @@ module share vocabulary, diagrams, and a narrative arc.
    This is the review checkpoint — it happens *before* any lesson is written.
    The user's domain experience is the check on teaching quality here.
 5. **Claude authors the whole module in one pass**, then runs `npm run check`
-   and syncs the docs once.
+   **and `npm run glossary`**, adds any newly introduced terms to
+   `src/content/glossary.ts`, and syncs the docs once.
 6. Repeat for the next module.
 
 ### Why targeted lookups, not bulk scraping
@@ -75,8 +139,15 @@ understanding.
 - `author-lesson` — write one lesson as typed card data.
 - `sync-content-docs` — run the gate and update `CONTENT.md` / `CHANGELOG.md` / `README.md`.
 
+## Commands
+
+- `npm run check` — typecheck + lint + validate. Warnings are failures.
+- `npm run glossary` — term-coverage report → `docs/GLOSSARY.md`.
+- `npm run dev` — dev server on http://localhost:5173.
+
 ## Also read
 
+- `docs/GLOSSARY.md` — which terms are defined, and where they are still missing.
 - `GOING-FORWARD.md` — open improvements, flags, and the current build order.
 - `CERTIFICATION-ROADMAP.md` — which certs, and why, in what order.
 - `docs/ARCHITECTURE.md` — the content/UI split and extension points.

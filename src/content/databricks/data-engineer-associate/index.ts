@@ -1,4 +1,5 @@
 import type { Certification } from '@/types/content'
+import { lakeflowOverviewLesson } from './lessons/lakeflow-overview'
 import { lakehouseFoundationsLesson } from './lessons/lakehouse-foundations'
 import { computeChoicesLesson } from './lessons/compute-choices'
 import { ingestionPatternsLesson } from './lessons/ingestion-patterns'
@@ -52,10 +53,14 @@ export const dataEngineerAssociate: Certification = {
       order: 1,
       title: 'The Data Intelligence Platform',
       summary:
-        'Why the lakehouse exists, how Delta Lake and Unity Catalog make it trustworthy, and choosing compute without overpaying.',
+        'Why the lakehouse exists, how Delta Lake and Unity Catalog make it trustworthy, what Lakeflow actually is, and choosing compute without overpaying.',
       examSections: ['Section 1'],
       icon: '🧠',
-      lessons: [lakehouseFoundationsLesson, computeChoicesLesson],
+      lessons: [
+        lakehouseFoundationsLesson,
+        lakeflowOverviewLesson,
+        computeChoicesLesson,
+      ],
     },
     {
       id: 'ingestion',

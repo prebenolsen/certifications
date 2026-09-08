@@ -164,6 +164,30 @@ moves fast.
 **Do not author Modules 2–8 against the captured outline.** Re-pull the official
 skills-measured list first, or risk writing 24 lessons against a stale spec.
 
+### C5. Terms used but never defined — and one missing lesson ⭐
+
+Found while checking whether the content ever says what **Lakeflow** is. It did
+not: the word appeared **51 times across 20 files** as a prefix — *Lakeflow
+Jobs*, *Lakeflow Connect*, *Lakeflow pipelines* — and nothing defined the family.
+
+Fixed in v1.4.0 with `src/content/glossary.ts`, a clickable in-app glossary, and
+`npm run glossary` → `docs/GLOSSARY.md`. That report is now the tracker; work
+from it rather than from this list.
+
+**What it still says is open:**
+
+1. **The Data Engineer Associate has no lesson on Lakeflow Pipelines.** The exam
+   guide references them in Section 3 (streaming tables / materialized views),
+   Section 4 (pipeline tasks) and Section 5 (deploying pipelines via bundles).
+   The concept is only taught in the *Professional* cert. `pipeline expectation`
+   is the report's remaining ❌ for exactly this reason.
+   **→ Author *Pipelines you declare* for Module E3.**
+2. **10 `⚠️` forward references** — a term used a lesson or two before the one
+   that introduces it. Mostly benign now that the popover exists, but each is
+   worth a glance: some want a one-line gloss at first mention.
+3. **The glossary covers 23 terms.** That is a seed, not a sweep. Every future
+   module should add its terms as it is authored (now in the loop, step 5).
+
 ### C4. `databricks_mcp.log` sits in the working tree
 
 Covered by `.gitignore` (`*.log`) so it isn't tracked — noted only as local
@@ -201,16 +225,25 @@ more investment; that's an independent argument for doing GenAI first.
   4 lessons, 48 cards. The loop worked; documentation research caught three
   factual errors that memory alone would have shipped (see C5).*
 
+- ~~**C5** — term tracking~~ ✅ *done (v1.4.0): glossary data, in-app popovers,
+  `npm run glossary`, and the *Lakeflow* lesson that closes the biggest hole.*
+
 Remaining:
 
-1. **B1** — generate `CONTENT.md`, wire into `check`. *(Stops the docs being
+1. **C5.1** — author *Lakeflow Pipelines* for the DE Associate (Module E3). The
+   only remaining ❌ in the glossary report, and genuinely on the exam.
+2. **B1** — generate `CONTENT.md`, wire into `check`. *(Stops the docs being
    manual work before 55 lessons land on top of them.)*
-2. **C2** — normalize `src_material` naming + strip PDF ligatures.
-3. **B3** — promote the loop into an `author-module` skill. GA1 proved the
+3. **C2** — normalize `src_material` naming + strip PDF ligatures.
+4. **B3** — promote the loop into an `author-module` skill. GA1 proved the
    workflow by hand; it is not yet codified.
-4. **GA2** — continue the GenAI cert at *Designing GenAI Applications*.
-5. **B4** — objective verification + coverage report, once C2 makes it viable.
-6. **C3** — refresh GH-300 source material, then resume it at Module 2.
+5. **GA2** — continue the GenAI cert at *Designing GenAI Applications*.
+6. **B4** — objective verification + coverage report, once C2 makes it viable.
+7. **C3** — refresh GH-300 source material, then resume it at Module 2.
+
+**Also worth doing:** wire `npm run glossary` into `npm run check` so a new ❌
+fails CI, the same way B1 proposes for `CONTENT.md`. Held back only until the
+one known ❌ is cleared.
 
 `B5`, `B6`, and the `C1` decision slot in opportunistically.
 

@@ -261,6 +261,15 @@ export interface Certification {
   summary: string
   /** Link to the official certification page. */
   officialUrl: string
+  /**
+   * Certification ids whose content this one **builds on**. Terms taught there
+   * count as already introduced here, so the glossary report does not flag a
+   * Professional lesson for not re-teaching Delta Lake.
+   *
+   * Use it only for a genuine prerequisite relationship. Two certs that merely
+   * share a platform do not qualify — each has to stand on its own.
+   */
+  assumes?: string[]
   examFacts: {
     questions: number
     minutes: number
@@ -268,4 +277,54 @@ export interface Certification {
     validityYears: number
   }
   modules: Module[]
+}
+
+/* ------------------------------------------------------------------ */
+/* Glossary                                                            */
+/* ------------------------------------------------------------------ */
+
+/**
+ * A term the learner is expected to know, defined **once**, canonically.
+ *
+ * Two jobs:
+ *
+ * 1. **Runtime** — <RichText /> underlines known terms wherever they appear in
+ *    card text, so a learner who has forgotten one can click it and get the
+ *    definition without leaving the card.
+ * 2. **Authoring discipline** — `npm run glossary` walks every card in reading
+ *    order and reports where a term is *used before it is introduced*. A term
+ *    with no `introducedIn` is a term the content name-drops but never teaches.
+ *
+ * Terms must be proper nouns or distinctive multi-word phrases. Bare common
+ * words ("flow", "sink", "view") would match ordinary prose and turn the page
+ * into noise — define those inside the lesson that needs them instead.
+ */
+export interface GlossaryTerm {
+  id: string
+  /** Canonical display name, e.g. "Lakeflow Jobs". */
+  term: string
+  /**
+   * Other surface forms that mean the same thing — former product names,
+   * abbreviations, plurals. Matched case-insensitively on word boundaries.
+   */
+  aliases?: string[]
+  /** One or two sentences. This is what the popover shows. Supports inline markup. */
+  definition: RichText
+  /**
+   * Optional second paragraph: the "why it exists" or a disambiguation the
+   * short definition can't carry.
+   */
+  note?: RichText
+  /** Ids of related terms, surfaced as "see also" in the popover. */
+  seeAlso?: string[]
+  /**
+   * Lesson ids that *properly introduce* this term — where a learner meets it
+   * defined, not merely mentioned. A list because each certification has to
+   * stand on its own: a term taught in the Analyst cert is still undefined for
+   * an Engineer learner. Omit entirely when nothing teaches it yet; the
+   * glossary report will flag it.
+   */
+  introducedIn?: string[]
+  /** Where the definition came from, so it can be re-verified when products drift. */
+  source?: string
 }

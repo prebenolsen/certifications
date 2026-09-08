@@ -15,6 +15,53 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
 
 ---
 
+## [1.4.0] — 2026-09-08
+
+### Added
+
+- **A glossary, so terms get defined instead of assumed.** `src/content/glossary.ts`
+  holds 23 terms — each with its aliases (former product names, abbreviations),
+  the lessons that properly introduce it, and a source URL for anything
+  version-specific.
+- **Terms are clickable in the app.** `RichText` — the single renderer every
+  card's text passes through — now underlines known terms and shows the
+  definition in a popover on click. Once per card, so repeated mentions don't
+  become noise. No markup in the content; matching happens at render time.
+- **`npm run glossary`** — walks every certification in *reading order*, finds
+  where each term is first used, compares that against where it is introduced,
+  and writes `docs/GLOSSARY.md`. Flags `⚠️` used-before-introduced and `❌`
+  never-introduced.
+- **`Certification.assumes`** — declares a prerequisite certification, so
+  Professional-level lessons aren't flagged for not re-teaching Delta Lake.
+  Set on Data Engineer Professional.
+- **New lesson: *Lakeflow: the word in front of everything*** (Data Engineer
+  Associate, Module E1, 14 cards) — defines Lakeflow and its four components,
+  the DLT → Lakeflow rename history, and the Jobs-vs-Pipelines distinction.
+
+### Changed
+
+- `CLAUDE.md` gains a **Defining terms** section: define every term the first
+  time a learner meets it, track terms literally in the glossary, and run
+  `npm run glossary` alongside `npm run check` when authoring.
+- Data Engineer Associate: 24 → **25 lessons**, 230 → **244 cards**.
+
+### Notes
+
+The trigger was a real gap, not a hypothetical one: **Lakeflow** appeared **51
+times across 20 files** — "Lakeflow Jobs", "Lakeflow Connect", "Lakeflow
+pipelines" — and the content never said what Lakeflow *is*. The report found two
+more of the same shape in the Associate cert (Lakeflow Pipelines, pipeline
+expectations) plus 10 forward references across the other certs.
+
+Documentation check (2026-09-08) also updated the naming: Databricks now writes
+**Lakeflow pipelines**, having shortened *Lakeflow Spark Declarative Pipelines*
+(itself formerly *Delta Live Tables*). A fourth component, **Lakeflow Designer**,
+was absent from the content entirely.
+
+Still open: the Data Engineer Associate has **no lesson on Lakeflow Pipelines**,
+though the exam guide references them in Sections 3, 4 and 5. `pipeline
+expectation` remains the one `❌` in the report.
+
 ## [1.3.0] — 2026-09-08
 
 The first authored lessons for the **Generative AI Engineer Associate**, plus

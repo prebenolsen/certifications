@@ -62,6 +62,9 @@ export const dataEngineerProfessional: Certification = {
     'Design, optimize, and operate production-grade data engineering on the Databricks Data Intelligence Platform: modular Python for Asset Bundles, Lakeflow Spark Declarative Pipelines and Structured Streaming, CDC with APPLY CHANGES, Delta modelling and optimization (Liquid Clustering, deletion vectors, CDF), Delta Sharing and Lakehouse Federation, fine-grained security and PII compliance, and observability, debugging and CI/CD.',
   officialUrl:
     'https://www.databricks.com/learn/certification/data-engineer-professional',
+  // Professional-level content deliberately does not re-teach the Associate
+  // foundations (Delta Lake, Unity Catalog, the medallion layers, Auto Loader).
+  assumes: ['databricks-data-engineer-associate'],
   examFacts: {
     questions: 59,
     minutes: 120,

@@ -59,6 +59,7 @@ npm run preview    # preview the production build
 npm run typecheck  # tsc without emitting
 npm run lint       # eslint
 npm run validate   # content validator (structure + teaching-philosophy rules)
+npm run glossary   # term-coverage report → docs/GLOSSARY.md
 npm run check      # typecheck + lint + validate — run before committing
 ```
 
@@ -120,6 +121,7 @@ for the full picture. In short:
 | Pages / routing | `src/pages/**`, `src/App.tsx` | Home, certification, module, lesson |
 | Progress | `src/context/ProgressContext.tsx` | Learner progress — localStorage (guest) or Supabase (signed in) |
 | Auth | `src/context/AuthContext.tsx`, `src/lib/supabase.ts` | Optional magic-link sign-in; guest by default |
+| Glossary | `src/content/glossary.ts`, `src/lib/glossary.ts` | Terms defined once; matched and underlined at render time |
 | Validation | `scripts/validate-content.ts` | Content correctness + teaching-philosophy lint |
 
 ### The extension points (how the app grows)
@@ -170,6 +172,20 @@ truefalse · mcq · summary · recap`
 
 Each card communicates **one** idea. Prefer many small cards over long ones.
 
+### Terms are defined once, and checked
+
+A learner who meets an undefined term stops learning and starts guessing. Every
+term the content expects them to know lives in
+[`src/content/glossary.ts`](src/content/glossary.ts), and two things follow from
+that one definition:
+
+- **In the app** — the term is subtly underlined wherever it appears (once per
+  card) and shows its definition on click. Nothing is marked up in the content;
+  matching happens at render time in `RichText`.
+- **In CI** — `npm run glossary` walks every certification in reading order and
+  reports terms used *before* they are introduced, or never introduced at all.
+  The result is [`docs/GLOSSARY.md`](docs/GLOSSARY.md).
+
 The current inventory — what's built, what's planned — lives in
 [`CONTENT.md`](CONTENT.md) and is kept in sync with the code.
 
@@ -184,7 +200,8 @@ The current inventory — what's built, what's planned — lives in
    exist? When is it used? How does it differ from similar things? What's the
    common misconception? How does it show up on the exam and at work?*
 4. Author the lesson as a typed `Lesson` object; flip its `status` to
-   `complete`; run `npm run check`.
+   `complete`; run `npm run check` **and `npm run glossary`** — add any term you
+   introduced to `src/content/glossary.ts`.
 5. **Update the docs in the same change:** `CHANGELOG.md`, `CONTENT.md`, and
    this README if anything structural changed. These files must never fall
    behind the code.

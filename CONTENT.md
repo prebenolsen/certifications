@@ -9,6 +9,10 @@ Status legend: ✅ complete · 🚧 in progress · ⬜ planned
 Run `npm run validate` to check this content structurally; the numbers below
 can be regenerated from its summary line.
 
+Run `npm run glossary` for the companion view: **which terms the content uses,
+and whether each is defined before the learner meets it** →
+[`docs/GLOSSARY.md`](docs/GLOSSARY.md).
+
 ---
 
 ## Certification: Databricks Certified Generative AI Engineer Associate
@@ -285,7 +289,7 @@ can be regenerated from its summary line.
 - **Exam:** 45 multiple-choice questions · 90 minutes · USD 200 · valid 2 years
 - **Source of truth:** `src_material/databricks/databricks-certified-data-engineer-associate`
 - **Modules:** 7 (mirroring the 7 official exam sections)
-- **Lessons authored:** 24 of 24 ✅ · **Cards:** 230 · all 5 official sample
+- **Lessons authored:** 25 of 25 ✅ · **Cards:** 244 · all 5 official sample
   questions woven in as MCQs
 
 ### Module E1 — The Data Intelligence Platform 🧠 (Section 1, 6%) · ✅
@@ -293,6 +297,7 @@ can be regenerated from its summary line.
 | Lesson | Status | Cards | Checks | Diagrams | Highlights |
 |--------|:------:|:-----:|--------|----------|------------|
 | Why the lakehouse exists | ✅ | 11 | 1 mcq, 1 flashcard | architecture (compare) | kitchen/pantry analogy; time-travel SQL; sample Q2 |
+| Lakeflow: the word in front of everything | ✅ | 14 | 1 mcq, 1 t/f, 1 flashcard | the four members (flow) | Connect/Pipelines/Designer/Jobs; DLT→Lakeflow renames; Jobs vs Pipelines |
 | Picking the right compute | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | compute menu (compare) | DBU cost model; sample Q4 |
 
 ### Module E2 — Ingesting Data 📥 (Section 2, 21%) · ✅

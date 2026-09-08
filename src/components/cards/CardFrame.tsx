@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { Card, CardType } from '@/types/content'
+import { GlossaryScope } from '@/components/ui/GlossaryMark'
 
 /** Human labels + accent colour per card type, used for the eyebrow badge. */
 const TYPE_META: Record<CardType, { label: string; className: string }> = {
@@ -36,7 +37,9 @@ export function CardFrame({
       >
         {eyebrow}
       </span>
-      <div className="prose-card text-ink-soft">{children}</div>
+      <div className="prose-card text-ink-soft">
+        <GlossaryScope>{children}</GlossaryScope>
+      </div>
     </article>
   )
 }
