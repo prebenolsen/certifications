@@ -78,7 +78,7 @@ export const bronzeToSilverLesson: Lesson = {
       id: 'concept-quality',
       type: 'concept',
       title: 'Quality checks: trust, verified',
-      body: 'Cleaning fixes what you *expected* to be wrong. **Quality checks** catch what you didn’t. Two levels:\n\n• **Table constraints** on Delta tables: `NOT NULL` and `CHECK` constraints make the table itself **reject** invalid writes (`ALTER TABLE ... ADD CONSTRAINT valid_age CHECK (age >= 0)`).\n• **Pipeline expectations**: declarative rules in Lakeflow pipelines that count, drop, or fail on violating rows — so you can *measure* quality per run, not just enforce it.',
+      body: 'Cleaning fixes what you *expected* to be wrong. **Quality checks** catch what you didn’t. Two levels:\n\n• **Table constraints** on Delta tables: `NOT NULL` and `CHECK` constraints make the table itself **reject** invalid writes (`ALTER TABLE ... ADD CONSTRAINT valid_age CHECK (age >= 0)`).\n• **Pipeline expectations**: declarative rules in Lakeflow pipelines (the last lesson of this module) that count, drop, or fail on violating rows — so you can *measure* quality per run, not just enforce it.',
       takeaways: [
         'Constraints = the table defends itself.',
         'Expectations = quality measured and acted on per pipeline run.',

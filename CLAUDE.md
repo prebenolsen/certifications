@@ -63,6 +63,25 @@ The glossary is real data, not a convention to remember:
 is a bug you just introduced. A new `⚠️` means either move the definition earlier
 or gloss the term at its first mention.
 
+### Open a certification by explaining the obvious
+
+**Every certification gets an orientation lesson**, and it starts from genuinely
+zero — including the vendor's own name. "Databricks is a cloud platform for
+storing and processing very large amounts of data" is not beneath the learner;
+it is the sentence that makes the next 26 lessons parse as one product instead
+of a pile of features.
+
+An orientation lesson covers: what the product **is**, at a high level of
+abstraction; the engine or idea underneath it; and the handful of everyday nouns
+the rest of the certification silently assumes (for Databricks: *workspace*,
+*notebook*, *cluster*, *DBU*). Nothing in it is an exam question by itself.
+Everything in it is assumed by every exam question.
+
+**And introduce big things early.** If something is a large part of the subject,
+it belongs near the front — not at the point where the exam outline happens to
+mention it. *Lakeflow* is most of what data engineering on Databricks *is*, so it
+is Module 1, not a prefix the learner meets in Module 4.
+
 ### What goes in the glossary
 
 Proper nouns and distinctive multi-word phrases only — "Lakeflow Pipelines",

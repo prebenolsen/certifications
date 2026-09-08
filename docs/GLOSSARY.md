@@ -9,12 +9,12 @@ on its own: a term taught in one is still undefined in another.
 
 | | |
 |---|---|
-| Terms defined | 23 |
-| Term/certification pairs checked | 39 |
-| ✅ introduced before use | 20 |
-| 🔗 introduced in a prerequisite certification | 7 |
-| ⚠️ used before introduced | 11 |
-| ❌ used but never introduced | 1 |
+| Terms defined | 31 |
+| Term/certification pairs checked | 55 |
+| ✅ introduced before use | 26 |
+| 🔗 introduced in a prerequisite certification | 13 |
+| ⚠️ used before introduced | 14 |
+| ❌ used but never introduced | 2 |
 
 ---
 
@@ -22,14 +22,18 @@ on its own: a term taught in one is still undefined in another.
 
 | | Term | Certification | First met in | Introduced in |
 |---|---|---|---|---|
-| ❌ | **pipeline expectation** | Databricks Certified Data Engineer Associate | M3 · `bronze-to-silver` | — *nothing does* |
+| ❌ | **Databricks** | Databricks Certified Data Analyst Associate | M1 · `unity-namespace` | — *nothing does* |
+| ⚠️ | **lakehouse** | Databricks Certified Data Engineer Associate | M1 · `what-is-databricks` | M1 · `lakehouse-foundations` |
+| ⚠️ | **Lakeflow** | Databricks Certified Data Engineer Associate | M1 · `what-is-databricks` | M1 · `lakeflow-overview` |
+| ⚠️ | **pipeline expectation** | Databricks Certified Data Engineer Associate | M3 · `bronze-to-silver` | M3 · `lakeflow-pipelines` |
 | ⚠️ | **Auto Loader** | Databricks Certified Data Engineer Associate | M2 · `ingestion-patterns` | M2 · `auto-loader` |
-| ⚠️ | **Databricks Asset Bundle** | Databricks Certified Data Engineer Associate | M5 · `git-folders` | M5 · `asset-bundles` |
+| ⚠️ | **Databricks Asset Bundle** | Databricks Certified Data Engineer Associate | M3 · `lakeflow-pipelines` | M5 · `asset-bundles` |
 | ⚠️ | **streaming table** | Databricks Certified Data Engineer Professional | M2 · `declarative-pipelines` | M2 · `streaming-tables-vs-mvs` |
 | ⚠️ | **materialized view** | Databricks Certified Data Engineer Professional | M2 · `declarative-pipelines` | M2 · `streaming-tables-vs-mvs` |
 | ⚠️ | **AUTO CDC** | Databricks Certified Data Engineer Professional | M2 · `streaming-tables-vs-mvs` | M2 · `apply-changes-cdc` |
 | ⚠️ | **Databricks Asset Bundle** | Databricks Certified Data Engineer Professional | M1 · `python-project-structure` | M9 · `cicd-asset-bundles` |
 | ⚠️ | **Liquid Clustering** | Databricks Certified Data Engineer Professional | M5 · `dimensional-modeling` | M5 · `liquid-clustering` |
+| ❌ | **Databricks** | Databricks Certified Generative AI Engineer Associate | M1 · `embeddings-vectors` | — *nothing does* |
 | ⚠️ | **Mosaic AI Vector Search** | Databricks Certified Generative AI Engineer Associate | M1 · `embeddings-vectors` | M1 · `mosaic-ai-stack` |
 | ⚠️ | **embedding** | Databricks Certified Generative AI Engineer Associate | M1 · `llm-basics` | M1 · `embeddings-vectors` |
 | ⚠️ | **RAG** | Databricks Certified Generative AI Engineer Associate | M1 · `llm-basics` | M1 · `rag-vs-alternatives` |
@@ -50,16 +54,24 @@ following the intended order has already met it.
 
 | Term | Also written as | Introduced in | Used by |
 |---|---|---|---|
-| **Lakeflow** | — | `lakeflow-overview` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **Databricks** | — | `what-is-databricks` | ❌ Data Analyst Associate<br>✅ Data Engineer Associate<br>🔗 Data Engineer Professional<br>❌ Generative AI Engineer Associate |
+| **Data Intelligence Platform** | — | `what-is-databricks` | ✅ Data Engineer Associate |
+| **Apache Spark** | `Spark` | `what-is-databricks` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **PySpark** | — | `what-is-databricks` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **lakehouse** | — | `lakehouse-foundations` | ⚠️ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **DBU** | `Databricks Unit`, `DBUs` | `what-is-databricks` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **workspace** | — | `what-is-databricks` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **cluster** | `clusters` | `what-is-databricks`, `compute-choices` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **Lakeflow** | — | `lakeflow-overview` | ⚠️ Data Engineer Associate<br>🔗 Data Engineer Professional |
 | **Lakeflow Connect** | — | `lakeflow-overview`, `lakeflow-connect` | ✅ Data Engineer Associate |
-| **Lakeflow Pipelines** | `Lakeflow Spark Declarative Pipelines`, `Lakeflow Spark Declarative Pipeline`, `Lakeflow declarative pipelines`, `Lakeflow declarative pipeline`, `Lakeflow pipeline`, `declarative pipelines`, `declarative pipeline` | `lakeflow-overview`, `declarative-pipelines` | ✅ Data Engineer Associate<br>✅ Data Engineer Professional |
+| **Lakeflow Pipelines** | `Lakeflow Spark Declarative Pipelines`, `Lakeflow Spark Declarative Pipeline`, `Lakeflow declarative pipelines`, `Lakeflow declarative pipeline`, `Lakeflow pipeline`, `declarative pipelines`, `declarative pipeline` | `lakeflow-overview`, `lakeflow-pipelines`, `declarative-pipelines` | ✅ Data Engineer Associate<br>✅ Data Engineer Professional |
 | **Lakeflow Designer** | — | `lakeflow-overview` | ✅ Data Engineer Associate |
 | **Lakeflow Jobs** | `Lakeflow Job` | `lakeflow-overview`, `jobs-tasks-dag` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
-| **streaming table** | `streaming tables` | `gold-layer`, `streaming-tables-vs-mvs` | ✅ Data Engineer Associate<br>⚠️ Data Engineer Professional |
-| **materialized view** | `materialized views` | `gold-layer`, `streaming-tables-vs-mvs` | ✅ Data Engineer Associate<br>⚠️ Data Engineer Professional |
-| **pipeline expectation** | `pipeline expectations` | `declarative-pipelines` | ❌ Data Engineer Associate<br>✅ Data Engineer Professional |
+| **streaming table** | `streaming tables` | `gold-layer`, `lakeflow-pipelines`, `streaming-tables-vs-mvs` | ✅ Data Engineer Associate<br>⚠️ Data Engineer Professional |
+| **materialized view** | `materialized views` | `gold-layer`, `lakeflow-pipelines`, `streaming-tables-vs-mvs` | ✅ Data Engineer Associate<br>⚠️ Data Engineer Professional |
+| **pipeline expectation** | `pipeline expectations` | `lakeflow-pipelines`, `declarative-pipelines` | ⚠️ Data Engineer Associate<br>✅ Data Engineer Professional |
 | **AUTO CDC** | `APPLY CHANGES` | `apply-changes-cdc` | ⚠️ Data Engineer Professional |
-| **Delta Lake** | — | `lakehouse-foundations` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **Delta Lake** | — | `lakehouse-foundations` | ✅ Data Engineer Associate |
 | **Unity Catalog** | `UC` | `lakehouse-foundations`, `unity-namespace`, `mosaic-ai-stack` | ✅ Data Analyst Associate<br>✅ Data Engineer Associate<br>🔗 Data Engineer Professional<br>✅ Generative AI Engineer Associate |
 | **Auto Loader** | — | `auto-loader` | ⚠️ Data Engineer Associate<br>🔗 Data Engineer Professional |
 | **medallion architecture** | `medallion` | `lakehouse-foundations` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |

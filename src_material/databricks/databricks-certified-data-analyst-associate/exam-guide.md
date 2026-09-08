@@ -1,24 +1,24 @@
 Databricks Exam Guide
-Databricks Certiﬁed
+Databricks Certified
 Data Analyst Associate
 Provide Exam Guide Feedback
 Purpose of this Exam Guide
-This exam guide gives you an overview of the Databricks Certiﬁed Data Analyst Associate exam
+This exam guide gives you an overview of the Databricks Certified Data Analyst Associate exam
 and what it covers to help you determine your exam readiness. This version covers the current
 version as of Oct 30, 2025. Please check back two weeks before you take your exam to make
 sure you have the most current version.
 Audience Description
-The Databricks Certiﬁed Data Analyst Associate exam evaluates a candidate's proﬁciency with the
+The Databricks Certified Data Analyst Associate exam evaluates a candidate's proficiency with the
 Databricks Data Intelligence Platform, assessing their ability to manage data with Unity Catalog -
-this includes discovering, querying, cleaning, and managing certiﬁed datasets, import Data by
+this includes discovering, querying, cleaning, and managing certified datasets, import Data by
 utilizing various methods such as the UI, S3 ingestion, Delta Sharing for external systems, API-driven
 intake, Auto Loader, and the Marketplace feature, and executing and optimizing queries for Data
 Analysis - including creating views, performing aggregate operations, combining tables with joins,
-ﬁltering, sorting, and analyzing queries using auditing, history, logs, and Liquid clustering features.
+filtering, sorting, and analyzing queries using auditing, history, logs, and Liquid clustering features.
 Additionally, the exam covers the basics of working with Dashboards and Visualisations,
 understanding the fundamentals of developing, sharing, and maintaining AI/BI Genie spaces within
 Databricks, data modelling with Databricks SQL, and securing data by adhering to best practices
-for data storage and management.  Individuals who pass this certiﬁcation exam can be expected
+for data storage and management.  Individuals who pass this certification exam can be expected
 to complete basic Data Analytics tasks, such as managing data, analyzing data, and utilizing
 Dashboards.
 About the Exam
@@ -28,10 +28,10 @@ About the Exam
 ●  Prerequisite: None is required. None is required; related course attendance and six months
 of hands-on experience as a Data Analyst are highly recommended.
 ●  Validity: 2 years
-●  Recertiﬁcation: Recertiﬁcation is required every two years to maintain your certiﬁed status.
+●  Recertification: Recertification is required every two years to maintain your certified status.
 To recertify, you must take the full exam that is currently live.
 ●  Unscored questions: Exams may include unscored questions to gather statistical
-information for future use. These questions are not identiﬁed on the form and do not
+information for future use. These questions are not identified on the form and do not
 impact your score. Additional time is factored into the exams to account for these
 questions.
 Recommended Training
@@ -44,13 +44,13 @@ This self-paced course will soon be replaced with the following two modules.
 Exam Outline
 Section 1: Understanding of Databricks Data Intelligence Platform
 ●  Describe the core components of the Databricks Intelligence Platform, including
-Mosaic AI, DeltaLive tables, Lakeﬂow Jobs, Data Intelligence Engine, Delta Lake, Unity
+Mosaic AI, DeltaLive tables, Lakeflow Jobs, Data Intelligence Engine, Delta Lake, Unity
 Catalog, and Databricks SQL.
 ●  Understand catalogs, schemas, managed and external tables, access controls, views,
-certiﬁed tables, and lineage within the Catalog Explorer interface.
+certified tables, and lineage within the Catalog Explorer interface.
 ●  Describe the role and features of Databricks Marketplace.
 Section 2: Managing Data
-●  Use Unity Catalog to discover, query, and manage certiﬁed datasets.
+●  Use Unity Catalog to discover, query, and manage certified datasets.
 ●  Use the Catalog Explorer to tag a data asset and view its lineage.
 ●  Perform data cleaning on Unity Catalog Tables in SQL, including removing invalid data
 or handling missing values.
@@ -58,7 +58,7 @@ Section 3: Importing Data
 ●  Explain the approaches for bringing data into Databricks, covering ingestion from S3,
 data sharing with external systems via Delta Sharing, API-driven data intake, the Auto
 Loader feature, and Marketplace.
-●  Use the Databricks Workspace UI to upload a data ﬁle to the platform.
+●  Use the Databricks Workspace UI to upload a data file to the platform.
 Section 4: Executing queries using Databricks SQL and Databricks SQL Warehouses
 ●  Utilize Databricks Assistant within a Notebook or SQL Editor to facilitate query
 writing and debugging.
@@ -72,38 +72,38 @@ summary statistics.
 ●  Write queries to combine tables using various join operations (inner, left, right, and
 so on) with single or multiple keys, as well as set operations like union and union all,
 including the differences between the joins (inner, left, right, and so on).
-●  Perform sorting and ﬁltering operations on a table.
+●  Perform sorting and filtering operations on a table.
 ●  Create managed tables and external tables, including creating tables by joining data
-from multiple sources (e.g., CSV, Parquet, Delta tables) to create uniﬁed datasets,
+from multiple sources (e.g., CSV, Parquet, Delta tables) to create unified datasets,
 including Unity Catalog.
 ●  Use Delta Lake's time travel to access and query historical data versions.
 Section 5: Analyzing Queries
-●  Understand the Features, Beneﬁts, and Supported Workloads of Photon.
+●  Understand the Features, Benefits, and Supported Workloads of Photon.
 ●
 Identify poorly performing queries in the Databricks Intelligence platform, such as
-Query Insights, Query Proﬁler log, etc.
+Query Insights, Query Profiler log, etc.
 ●  Utilize Delta Lake to audit and view history, validate results, and compare historical
 results or trends.
 ●  Utilize query history and caching to reduce development time and query latency
-●  Apply Liquid Clustering to improve query speed when ﬁltering large tables on
-speciﬁc columns.
+●  Apply Liquid Clustering to improve query speed when filtering large tables on
+specific columns.
 ●  Fix a query to achieve the desired results.
 Section 6: Working with Dashboards and Visualizations in Databricks
 ●  Build dashboards using AI/BI Dashboards, including multi-tabs/page layouts, multiple
 data sources/datasets, and widgets (visualizations, text, images).
 ●  Create visualizations in notebooks and the SQL editor.
-●  Work with parameters in SQL queries and dashboards, including deﬁning,
-conﬁguring, and testing parameters.
-●  Conﬁgure permissions through the UI to share dashboards with workspace
+●  Work with parameters in SQL queries and dashboards, including defining,
+configuring, and testing parameters.
+●  Configure permissions through the UI to share dashboards with workspace
 users/groups, external users through shareable links, and embed dashboards in
 external apps.
 ●  Schedule an automatic dashboard refresh.
-●  Conﬁgure an alert with a desired threshold and destination.
+●  Configure an alert with a desired threshold and destination.
 ●
 Identify the effective visualization type to communicate insights clearly.
 Section 7: Developing, Sharing, and Maintaining AI/BI Genie spaces
 ●  Describe the purpose, key features, and components of AI/BI Genie spaces.
-●  Create Genie spaces by deﬁning reasonable sample questions and domain-speciﬁc
+●  Create Genie spaces by defining reasonable sample questions and domain-specific
 instructions, choosing SQL warehouses, curating Unity Catalog datasets (tables,
 views...), and vetting queries as Trusted Assets.
 ●  Assign permissions via the UI and distribute Genie spaces using embedded links and
@@ -112,7 +112,7 @@ external app integrations.
 feedback; updating instructions and trusted assets based on stakeholder input;
 validating accuracy with benchmarks; refreshing Unity Catalog metadata.
 Section 8: Data Modeling with Databricks SQL
-●  Apply industry-standard data modeling techniques, such as star, snowﬂake, and
+●  Apply industry-standard data modeling techniques, such as star, snowflake, and
 data vault schemas, to analytical workloads.
 ●  Understand how industry-standard models align with the Medallion Architecture.
 Section 9: Securing Data
@@ -126,7 +126,7 @@ Sample Questions
 These questions are similar to actual question items and give you a general sense of how questions
 are asked on this exam.  They include exam objectives as they are stated in the exam guide and
 give you a sample question that aligns with the objective. The exam guide lists all of the objectives
-that could be covered on an exam. The best way to prepare for a certiﬁcation exam is to review the
+that could be covered on an exam. The best way to prepare for a certification exam is to review the
 exam outline in the exam guide.
 Question 1
 Objective: Perform aggregate operations such as count, approximate count distinct, mean, and
@@ -174,27 +174,27 @@ A data analyst attempts to query a Delta table as it existed 30 days ago, but re
 What is the reason for this error?
 A.  The table schema was updated after the target date, which prevents time travel to previous
 versions.
-B.  The data ﬁles and log ﬁles needed for that version were deleted by a VACUUM operation.
+B.  The data files and log files needed for that version were deleted by a VACUUM operation.
 C.  The Delta table’s permissions were changed, which disables time travel functionality.
 D.  The table was renamed, which removes access to historical versions.
 Question 5
-Objective: Conﬁgure an alert with a desired threshold and destination.
+Objective: Configure an alert with a desired threshold and destination.
 A data pipeline processes a high volume of incoming sensor readings. To prevent potential
-equipment damage, the data analyst needs to be notiﬁed immediately if the average temperature
+equipment damage, the data analyst needs to be notified immediately if the average temperature
 reported by these sensors within the last 15 minutes exceeds a critical threshold.
 Which action should the analyst perform to implement this requirement?
 A.  Set up a Databricks SQL Alert that runs a query calculating the 15‑minute average temperature,
-triggers when the value exceeds the critical threshold, and sends instant notiﬁcations to the
+triggers when the value exceeds the critical threshold, and sends instant notifications to the
 desired channels (e.g., email, Slack).
 B.  Create a Databricks Dashboard with a temperature chart and manually refresh it every 15
 minutes to check if the reading exceeds the threshold.
 C.  Use a Databricks Job to run a notebook periodically and review the output logs manually to
 detect threshold breaches.
-D.  Modify Databricks cluster Conﬁguration to automatically scale up resources or restart when
-temperature metrics are high, with alert notiﬁcations every 15 minutes.
+D.  Modify Databricks cluster Configuration to automatically scale up resources or restart when
+temperature metrics are high, with alert notifications every 15 minutes.
 Question 6
 Objective: Create managed tables and external tables, including creating tables by joining data
-from multiple sources (e.g., CSV, Parquet, Delta tables) to create uniﬁed datasets, including Unity
+from multiple sources (e.g., CSV, Parquet, Delta tables) to create unified datasets, including Unity
 Catalog.
 A database administrator needs to set up an inventory tracking table, product_inventory, in
 the warehouse_db schema. The table must include three integer columns (width, length, and
@@ -223,34 +223,34 @@ B. The query is using ORDER BY, which is not allowed in an aggregation.
 C. The query is missing a HAVING clause
 D. The region column is selected, but it should only appear in the ORDER BY clause.
 Question 8:
-Objective: Work with parameters in SQL queries and dashboards, including deﬁning, conﬁguring,
+Objective: Work with parameters in SQL queries and dashboards, including defining, configuring,
 and testing parameters.
 A dashboard displays a bar chart. This bar chart is linked to a Date widget parameter.
 What is the role of the Date widget parameter in this context?
-A. It deﬁnes the start and end dates for the x-axis range of the bar chart.
-B. It acts as a global ﬁlter, so all dashboard visualizations use the same date range.
+A. It defines the start and end dates for the x-axis range of the bar chart.
+B. It acts as a global filter, so all dashboard visualizations use the same date range.
 C. Its start and end dates are used in a WHERE clause of the query that populates the bar chart
 with data.
 D. It is a static text display showing the current date range, but does not affect the visualizations.
 Question 9
 Objective: Understand catalogs, schemas, managed and external tables, access controls, views,
-certiﬁed tables, and lineage within the Catalog Explorer interface.
+certified tables, and lineage within the Catalog Explorer interface.
 A database administrator executes the given query on a 12 GB table in their data warehouse:
 DROP TABLE IF EXISTS customer_orders;
 After 10 days, running the SHOW TABLES command no longer displays the table. However, the
-underlying data ﬁles in the storage layer remain unchanged in the ﬁle system.
+underlying data files in the storage layer remain unchanged in the file system.
 What explains this behavior?
-A. The table was conﬁgured as a managed table with automatic cleanup disabled
-B. The table was deﬁned as an external table referencing data in a separate storage location
-C. The table exceeded the 10 GB threshold for automatic data ﬁle deletion
+A. The table was configured as a managed table with automatic cleanup disabled
+B. The table was defined as an external table referencing data in a separate storage location
+C. The table exceeded the 10 GB threshold for automatic data file deletion
 D. The table was created without specifying a default storage location
 Question 10
 Objective: Utilize Query History and caching to reduce development time and query latency.
 Which two are features of the Query History in Databricks?
 A. Query history only tracks SQL queries executed through notebooks, not through SQL
 warehouses
-B. It is possible to  ﬁlter query history by user, date range, compute resources, and query status to
-locate speciﬁc patterns
+B. It is possible to  filter query history by user, date range, compute resources, and query status to
+locate specific patterns
 C. Query history automatically deletes all records after 24 hours to save storage space
 D. The query history interface provides detailed execution metrics, including query duration and
 I/O performance

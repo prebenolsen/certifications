@@ -289,14 +289,15 @@ and whether each is defined before the learner meets it** →
 - **Exam:** 45 multiple-choice questions · 90 minutes · USD 200 · valid 2 years
 - **Source of truth:** `src_material/databricks/databricks-certified-data-engineer-associate`
 - **Modules:** 7 (mirroring the 7 official exam sections)
-- **Lessons authored:** 25 of 25 ✅ · **Cards:** 244 · all 5 official sample
+- **Lessons authored:** 27 of 27 ✅ · **Cards:** 271 · all 5 official sample
   questions woven in as MCQs
 
 ### Module E1 — The Data Intelligence Platform 🧠 (Section 1, 6%) · ✅
 
 | Lesson | Status | Cards | Checks | Diagrams | Highlights |
 |--------|:------:|:-----:|--------|----------|------------|
-| Why the lakehouse exists | ✅ | 11 | 1 mcq, 1 flashcard | architecture (compare) | kitchen/pantry analogy; time-travel SQL; sample Q2 |
+| What Databricks actually is | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | platform shape (layers) | orientation lesson — Spark, workspace, cluster, DBU; "you don't load data into Databricks" |
+| Why the lakehouse exists | ✅ | 11 | 1 mcq, 1 flashcard | architecture (compare) | library/storage-unit analogy; time-travel SQL; sample Q2 |
 | Lakeflow: the word in front of everything | ✅ | 14 | 1 mcq, 1 t/f, 1 flashcard | the four members (flow) | Connect/Pipelines/Designer/Jobs; DLT→Lakeflow renames; Jobs vs Pipelines |
 | Picking the right compute | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | compute menu (compare) | DBU cost model; sample Q4 |
 
@@ -318,6 +319,7 @@ and whether each is defined before the learner meets it** →
 | Reshaping tables | ✅ | 10 | 1 mcq, 1 t/f | explode (flow) | withColumn/split/filter/explode; grain awareness |
 | Deduplication & aggregation | ✅ | 9 | 1 mcq, 1 flashcard | — | dropDuplicates keys; approx_count_distinct; summary() |
 | Gold layer objects | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | freshness vs speed (compare) | table vs view vs MV vs streaming table |
+| Lakeflow Pipelines | ✅ | 15 | 1 mcq, 1 t/f, 1 flashcard | one pipeline, several tables (flow) | satnav analogy; streaming table vs MV by *source behaviour*; **`ON VIOLATION` defaults to warn** |
 
 ### Module E4 — Orchestrating with Lakeflow Jobs 🗓️ (Section 4, 16%) · ✅
 

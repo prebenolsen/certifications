@@ -15,6 +15,55 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
 
 ---
 
+## [1.5.0] — 2026-09-08
+
+### Added
+
+- **New lesson: *What Databricks actually is*** (Data Engineer Associate, Module
+  E1, first lesson, 12 cards). The orientation lesson — what the product is,
+  Apache Spark underneath, and the four words every later lesson assumes:
+  **workspace**, **notebook**, **cluster**, **DBU**. Includes the correction of
+  the most common beginner model: you do not load data *into* Databricks.
+- **New lesson: *Lakeflow Pipelines: describe the table, not the steps***
+  (Module E3, 15 cards). Closes the gap the glossary report found: the exam
+  guide references pipelines from Sections 3, 4 and 5 but never gives them a
+  section, so the Associate had no lesson on them. Covers pipeline as container,
+  streaming table vs materialized view **chosen by source behaviour rather than
+  freshness**, verified expectation syntax, and the fact that `ON VIOLATION`
+  **defaults to warn** — violating rows are kept and counted, not dropped.
+- 8 more glossary terms, all of them the "mundane" ones a certification is most
+  likely to skip: **Databricks**, **Data Intelligence Platform**, **Apache
+  Spark**, **PySpark**, **lakehouse**, **DBU**, **workspace**, **cluster**.
+
+### Changed
+
+- **Replaced the lakehouse analogy.** It previously described building a kitchen
+  inside a pantry, which is not a thing anyone does — the image did not carry
+  the idea. Now: a **reference library** (warehouse), a **self-storage unit**
+  (lake), and a lakehouse as *the library's catalogue installed over the storage
+  unit*. The mapping is stronger too: the catalogue is Unity Catalog, and the
+  record of what changed is the transaction log.
+- **`src_material` normalized** (flag C2 cleared): all five certifications now
+  use `<provider>/<cert-id>/exam-guide.md`, and **185 PDF ligature artifacts**
+  (`ﬁ`, `ﬂ`) were stripped across three guides. This unblocks verbatim
+  `examObjective` matching.
+- The glossary report no longer scans `mcq.examObjective`. It quotes the official
+  outline verbatim, so a term appearing there early cannot be fixed by
+  rewording — flagging it produced noise that could never be cleared. The in-app
+  glossary still underlines terms there.
+- Data Engineer Associate: 25 → **27 lessons**, 244 → **271 cards**.
+
+### Notes
+
+Research for the pipelines lesson is in
+`src_material/databricks/databricks-certified-data-engineer-associate/research/lakeflow.md`
+with source URLs.
+
+The report is down to **two `❌`**, both honest and both the same shape: neither
+the **Data Analyst Associate** (parked, 2/24) nor the **GenAI Engineer
+Associate** ever says what *Databricks* is. Each certification has to stand on
+its own, so each needs its own orientation lesson.
+
 ## [1.4.0] — 2026-09-08
 
 ### Added

@@ -1,11 +1,11 @@
 Databricks Exam Guide
-Databricks Certiﬁed
+Databricks Certified
 Data Engineer Professional
 
 Provide Exam Guide Feedback
 
 Purpose of this Exam Guide
-This exam guide gives you an overview of the Databricks Certiﬁed Data Engineer Professional
+This exam guide gives you an overview of the Databricks Certified Data Engineer Professional
 exam and what it covers to help you determine your exam readiness. This document will get
 updated anytime there are any changes to an exam (and when those changes will take effect
 on an exam), so that you can be prepared. Please check back two weeks before your exam
@@ -13,17 +13,17 @@ to ensure you have the most current version. This version covers the currently l
 as of November 30, 2025.
 
 Audience Description
-The Databricks Certiﬁed Data Engineering Professional exam validates a candidate's advanced
+The Databricks Certified Data Engineering Professional exam validates a candidate's advanced
 skills in building, optimizing, and maintaining production-grade data engineering solutions on the
 Databricks Data Intelligence Platform. Successful candidates demonstrate expertise across core
-platform features such as Delta Lake, Unity Catalog, Auto Loader, Lakeﬂow Spark Declarative
-Pipelines,  Databricks Compute (including serverless), Lakeﬂow Jobs and the Medallion
-Architecture. This Certiﬁcation assesses the ability to design secure, reliable, and cost-effective
+platform features such as Delta Lake, Unity Catalog, Auto Loader, Lakeflow Spark Declarative
+Pipelines,  Databricks Compute (including serverless), Lakeflow Jobs and the Medallion
+Architecture. This Certification assesses the ability to design secure, reliable, and cost-effective
 ETL Pipelines, process complex data from diverse sources using Python and SQL, and apply best
 practices in schema management, observability, governance, and performance optimization.
-Candidates are also tested on implementing streaming workloads, orchestrating workﬂows,
+Candidates are also tested on implementing streaming workloads, orchestrating workflows,
 leveraging DevOps &  CI/CD, and deploying with tools like the Databricks CLI, REST API, and Asset
-Bundles. Individuals who pass this certiﬁcation exam can be expected to complete advanced
+Bundles. Individuals who pass this certification exam can be expected to complete advanced
 data engineering tasks using Databricks and its associated tools.
 
   About the Exam
@@ -38,12 +38,12 @@ data engineering tasks using Databricks and its associated tools.
 experience in Data Engineering tasks outlined in the exam guide are highly
 recommended.
 ●  Validity: 2 years
-●  Recertiﬁcation:  Recertiﬁcation is required every two years to maintain your certiﬁed
+●  Recertification:  Recertification is required every two years to maintain your certified
 status. To recertify, you must take the current version of the exam. Please review the
-“Getting Ready for the Exam” section below to prepare for your recertiﬁcation exam.
+“Getting Ready for the Exam” section below to prepare for your recertification exam.
 
 ●  Unscored Content: Exams may include unscored items to gather statistical information
-for future use. These items are not identiﬁed on the form and do not impact your score,
+for future use. These items are not identified on the form and do not impact your score,
 and additional time is factored into account for this content.
 
 Recommended Training
@@ -53,7 +53,7 @@ Instructor-led: Advanced Data Engineering With Databricks
 ●
 ●  Self-paced (available in Databricks Academy):
 
-○  Databricks Streaming and Lakeﬂow Spark Declarative Pipelines
+○  Databricks Streaming and Lakeflow Spark Declarative Pipelines
 ○  Databricks Data Privacy
 ○  Databricks Performance Optimization
 ○  Automated Deployment with Databricks Asset Bundle
@@ -73,33 +73,33 @@ automation, and CI/CD integration.
 dependencies in Databricks, including PyPI packages, local wheels, and source
 archives.
 
-●  Develop User-Deﬁned Functions (UDFs) using Pandas/Python UDF.
+●  Develop User-Defined Functions (UDFs) using Pandas/Python UDF.
 
-●  Building and Testing an ETL pipeline with Lakeﬂow Spark Declarative Pipelines, SQL, and
+●  Building and Testing an ETL pipeline with Lakeflow Spark Declarative Pipelines, SQL, and
 
 Apache Spark on the Databricks Platform
 
 ●  Build and manage reliable, production-ready data pipelines for batch and
-streaming data using Lakeﬂow Spark Declarative Pipelines and Autoloader.
+streaming data using Lakeflow Spark Declarative Pipelines and Autoloader.
 
 ●  Create and Automate ETL workloads using Jobs via UI/APIs/CLI.
 ●  Explain the advantages and disadvantages of streaming tables compared to
 
 materialized views.
 
-●  Use APPLY CHANGES APIs to simplify CDC in Lakeﬂow Spark Declarative
+●  Use APPLY CHANGES APIs to simplify CDC in Lakeflow Spark Declarative
 
 Pipelines.
 
-●  Compare Spark Structured Streaming and Lakeﬂow Spark Declarative Pipelines to
+●  Compare Spark Structured Streaming and Lakeflow Spark Declarative Pipelines to
 
 determine the optimal approach for building scalable ETL pipelines.
 
-●  Create a pipeline component that uses control ﬂow operators (e.g., if/else,
+●  Create a pipeline component that uses control flow operators (e.g., if/else,
 
 for/each, etc.).
 
-●  Choose the appropriate conﬁgs for environments and dependencies,  high
+●  Choose the appropriate configs for environments and dependencies,  high
 memory for notebook tasks, and auto-optimization to disallow retries.
 
 ●  Develop unit and integration tests using assertDataFrameEqual,
@@ -111,7 +111,7 @@ code correctness, including a built-in debugger.
 
  formats including Delta Lake, Parquet, ORC, AVRO, JSON, CSV, XML, Text and Binary from
 
-●  Design and implement data ingestion pipelines to efﬁciently ingest a variety of data
+●  Design and implement data ingestion pipelines to efficiently ingest a variety of data
 ●
 ●  diverse sources such as message buses and cloud storage.
 ●  Create an append-only data pipeline capable of handling both batch and streaming
@@ -120,12 +120,12 @@ data using Delta.
 
  Section 3: Data Transformation, Cleansing, and Quality
 
-●  Write efﬁcient Spark SQL and PySpark code to apply advanced data transformations,
+●  Write efficient Spark SQL and PySpark code to apply advanced data transformations,
 
 including window functions, joins, and aggregations, to manipulate and analyze large
 Datasets.
 
-●  Develop a quarantining process for bad data with Lakeﬂow Spark Declarative Pipelines,
+●  Develop a quarantining process for bad data with Lakeflow Spark Declarative Pipelines,
 
 or autoloader in classic jobs.
 
@@ -135,7 +135,7 @@ Section 4: Data Sharing and Federation
 to Databricks Sharing (D2D) or to external platforms using the open sharing protocol
 (D2O).
 
-●  Conﬁgure Lakehouse Federation with proper governance across the supported source
+●  Configure Lakehouse Federation with proper governance across the supported source
 
 Systems.
 
@@ -149,14 +149,14 @@ Systems.
 
 workload monitoring.
 
-○  Use Query Proﬁler UI and Spark UI to monitor workloads.
+○  Use Query Profiler UI and Spark UI to monitor workloads.
 ○  Use the Databricks REST APIs/Databricks CLI for monitoring jobs and pipelines.
-○  Use Lakeﬂow Spark Declarative Pipelines Event Logs to monitor pipelines.
+○  Use Lakeflow Spark Declarative Pipelines Event Logs to monitor pipelines.
 
 ●  Alerting
 
 ○  Use SQL Alerts to monitor data quality.
-○  Use the Lakeﬂow Jobs UI and Jobs API to set up notiﬁcations for job status and
+○  Use the Lakeflow Jobs UI and Jobs API to set up notifications for job status and
 
 performance issues.
 
@@ -170,15 +170,15 @@ clustering.
 
 ●  Understand the optimization techniques used by Databricks to ensure the performance
 
-of queries on large datasets (data skipping, ﬁle pruning, etc.).
+of queries on large datasets (data skipping, file pruning, etc.).
 
-●  Apply Change Data Feed (CDF) to address speciﬁc limitations of streaming tables and
+●  Apply Change Data Feed (CDF) to address specific limitations of streaming tables and
 
 enhance latency.
 
-●  Use the query proﬁle to analyze the query and identify bottlenecks, such as bad data
+●  Use the query profile to analyze the query and identify bottlenecks, such as bad data
 
-skipping, inefﬁcient types of joins, and data shufﬂing.
+skipping, inefficient types of joins, and data shuffling.
 
  Section 7: Ensuring Data Security and Compliance
 
@@ -187,9 +187,9 @@ skipping, inefﬁcient types of joins, and data shufﬂing.
 ○  Use ACLs to secure Workspace Objects, enforcing the principle of least privilege,
 
 including enforcing principles like least privilege, policy enforcement.
-○  Use row ﬁlters and column masks to ﬁlter and mask sensitive table data.
+○  Use row filters and column masks to filter and mask sensitive table data.
 ○  Apply anonymization and pseudonymization methods, such as Hashing,
-Tokenization, Suppression, and generalisation, to conﬁdential data.
+Tokenization, Suppression, and generalisation, to confidential data.
 
 ●  Ensuring Compliance
 
@@ -214,20 +214,20 @@ discoverable.
 ○
 
 Identify pertinent diagnostic information using Spark UI, cluster logs, system
-tables, and query proﬁles to troubleshoot errors.
+tables, and query profiles to troubleshoot errors.
 
 ○  Analyze the errors and remediate the failed job runs with job repairs and
 
 parameter overrides.
 
-○  Use Lakeﬂow Spark Declarative Pipelines event logs and the Spark UI to debug
+○  Use Lakeflow Spark Declarative Pipelines event logs and the Spark UI to debug
 
-Lakeﬂow Spark Declarative Pipelines and Spark pipelines.
+Lakeflow Spark Declarative Pipelines and Spark pipelines.
 
 ●  Deploying CI/CD
 
 ○  Build and deploy Databricks resources using Databricks Asset Bundles.
-○  Conﬁgure and integrate with Git-based CI/CD workﬂows using Databricks Git
+○  Configure and integrate with Git-based CI/CD workflows using Databricks Git
 
 Folders for notebook and code deployment.
 
@@ -236,9 +236,9 @@ Section 10: Data Modelling
 ●  Design and implement scalable data models using Delta Lake to manage large datasets.
 ●  Simplify data layout decisions and optimize query performance using Liquid Clustering.
 ●
-●  Design Dimensional Models for analytical workloads, ensuring efﬁcient querying and
+●  Design Dimensional Models for analytical workloads, ensuring efficient querying and
 
-Identify the beneﬁts of using liquid Clustering over Partitioning and ZOrder.
+Identify the benefits of using liquid Clustering over Partitioning and ZOrder.
 
 aggregation.
 
@@ -246,7 +246,7 @@ aggregation.
 These questions are retired from a previous version of the exam. The purpose is to show you
 the objectives as they are stated on the exam guide, and give you a sample question that aligns
 with the objective. The exam guide lists the objectives that could be covered on an exam. The
-best way to prepare for a certiﬁcation exam is to review the exam outline in the exam guide.
+best way to prepare for a certification exam is to review the exam outline in the exam guide.
 
 Question 1
 Objective: Understand Delta Lake's catalog- metastore operations and ACID compliance
@@ -269,7 +269,7 @@ B.
 C.
 D.
 
-All related ﬁles and metadata are dropped and recreated in a single ACID transaction.
+All related files and metadata are dropped and recreated in a single ACID transaction.
 The table name change is recorded in the Delta transaction log.
 A new Delta transaction log is created for the renamed table..
 The table reference in the metastore is updated.
@@ -282,14 +282,14 @@ A Structured Streaming job deployed to production has been experiencing delays d
 hours of the day. Currently, during normal execution, each microbatch of data is processed in
 under 3 seconds. During peak hours of the day, execution time for each microbatch becomes
 very inconsistent, sometimes exceeding 30 seconds. The streaming write is currently
-conﬁgured with a 10-second trigger interval.
+configured with a 10-second trigger interval.
 
 Holding all other variables constant and assuming records need to be processed in less than 10
 seconds, which adjustment will meet the requirement?
 
 A.
 
-Use the trigger once option and conﬁgure a Databricks job to execute the query every 8
+Use the trigger once option and configure a Databricks job to execute the query every 8
 seconds; this ensures all backlogged records are processed with each batch.
 B.  Decrease the trigger interval to 5 seconds; triggering batches more frequently may
 
@@ -300,9 +300,9 @@ C.  Decrease the trigger interval to 5 seconds; triggering batches more frequent
 D.
 
 idle executors to begin processing the next batch while longer-running tasks from
-previous batches ﬁnish.
-The trigger interval cannot be modiﬁed without modifying the checkpoint directory; to
-maintain the current stream state, increase the number of shufﬂe partitions to maximize
+previous batches finish.
+The trigger interval cannot be modified without modifying the checkpoint directory; to
+maintain the current stream state, increase the number of shuffle partitions to maximize
 parallelism.
 
 Question 3
@@ -326,14 +326,14 @@ Question 4
 Objective: Demonstrate understanding of Unity Catalog permission inheritance model
 
 A table named user_ltv is being used to create a view that will be used by data analysts on
-various teams. Users in the workspace are conﬁgured into groups, which are used for setting up
+various teams. Users in the workspace are configured into groups, which are used for setting up
 data access using ACLs.
 
 The user_ltv table has the following schema:
 
 email STRING, age INT, ltv INT
 
-The following view deﬁnition is executed:
+The following view definition is executed:
 
 CREATE VIEW email_ltv AS
 SELECT
@@ -367,14 +367,14 @@ null values.
 The email and ltv columns will be returned with the values in user_ltv.
 
 Question 5
-Objective- Choose the appropriate conﬁgs for environments and dependencies, high memory
+Objective- Choose the appropriate configs for environments and dependencies, high memory
 for notebook tasks and auto-optimization to disallow retries.
 
 The business reporting team requires that data for their dashboards be updated every hour.
 The total processing time for the pipeline, which extracts, transforms, and loads data for its
 runs, is 10 minutes.
 
-Assuming normal operating conditions, which conﬁguration will meet their service-level
+Assuming normal operating conditions, which configuration will meet their service-level
 agreement requirements with the lowest cost?
 
 A.
@@ -387,17 +387,17 @@ Schedule a job to execute the pipeline once an hour on a dedicated interactive
 
 Schedule a job to execute the pipeline once an hour on a new job cluster.
 Schedule a Structured Streaming job with a trigger interval of 60 minutes.
-Conﬁgure a job that executes every time new data lands in a given directory.
+Configure a job that executes every time new data lands in a given directory.
 
 Question 6
 Objective- Understand the Notebook development environment, variable management and
-creating secure, conﬁgurable code.
+creating secure, configurable code.
 
 The security team is exploring whether the Databricks secrets module can be leveraged for
 connecting to an external database.
 
-After testing the code with all Python variables being deﬁned with strings, they upload the
-password to the secrets module and conﬁgure the correct permissions for the currently active
+After testing the code with all Python variables being defined with strings, they upload the
+password to the secrets module and configure the correct permissions for the currently active
 user. They modify their code to the following (leaving all other variables unchanged).
 
 password = dbutils.secrets.get(scope="db_creds", key="jdbc_password")
@@ -429,10 +429,10 @@ A.  The connection to the external table will succeed; the string "REDACTED" wil
 
 Question 7
 Objective: Understand the optimization techniques used by Databricks to ensure performance
-of queries on large datasets (data skipping, ﬁle pruning, etc)
+of queries on large datasets (data skipping, file pruning, etc)
 
 A data ingestion task requires a 1-TB JSON dataset to be written out to Parquet with a target
-part-ﬁle size of 512 MB. Because Parquet is being used instead of Delta Lake, built-in ﬁle-sizing
+part-file size of 512 MB. Because Parquet is being used instead of Delta Lake, built-in file-sizing
 features such as Auto-Optimize & Auto-Compaction cannot be used.
 
 Which approach will work without rearranging the data?
@@ -460,13 +460,13 @@ Objective: Apply Delta Lake clone to learn how shallow and deep clones interact 
 source/target tables.
 
 The marketing team wants to share data in an aggregate table with the sales organization, but
-the ﬁeld names used by the teams do not match, and a number of marketing-speciﬁc ﬁelds
+the field names used by the teams do not match, and a number of marketing-specific fields
 have not been approved for the sales organization.
 
 Which solution addresses the situation while emphasizing simplicity?
 
-A.  Create a view on the marketing table selecting only those ﬁelds approved for the sales
-team; alias the names of any ﬁelds that should be standardized to the sales naming
+A.  Create a view on the marketing table selecting only those fields approved for the sales
+team; alias the names of any fields that should be standardized to the sales naming
 conventions.
 
 B.  Create a new table with the required schema and use Delta Lake's DEEP CLONE
@@ -474,7 +474,7 @@ B.  Create a new table with the required schema and use Delta Lake's DEEP CLONE
 functionality to sync up changes committed to one table to the corresponding table.
 C.  Use a CTAS statement to create a derivative table from the marketing table, and then
 
-conﬁgure a production job to propagate the changes.
+configure a production job to propagate the changes.
 
 D.  Add a parallel table write to the current production pipeline, updating a new sales table
 
@@ -483,7 +483,7 @@ that varies as required from the marketing table.
 Question 9
 Objective: Create a multi-task job with multiple dependencies.
 
-A Databricks job has been conﬁgured with three tasks, each of which is a Databricks notebook.
+A Databricks job has been configured with three tasks, each of which is a Databricks notebook.
 Task A does not depend on other tasks. Tasks B and C run in parallel, with each having a serial
 dependency on task A.
 

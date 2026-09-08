@@ -61,10 +61,14 @@ function cardText(card: Card): string {
       push(card.statement, card.explanation)
       break
     case 'mcq':
+      // `examObjective` is deliberately excluded: it quotes the official exam
+      // outline verbatim, so a term appearing there early is not something we
+      // can fix by rewording. Flagging it would produce noise we can never
+      // clear. (The in-app glossary still underlines terms there — a learner
+      // who meets "Delta Lake" in an objective can still click it.)
       push(
         card.question,
         card.explanation,
-        card.examObjective,
         ...card.options.map((o) => o.text),
         ...Object.values(card.optionFeedback ?? {}),
       )

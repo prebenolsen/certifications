@@ -29,6 +29,82 @@ import type { GlossaryTerm } from '@/types/content'
 
 export const glossary: GlossaryTerm[] = [
   /* ---------------------------------------------------------------- */
+  /* The ground floor — assume nothing                                 */
+  /* ---------------------------------------------------------------- */
+  {
+    id: 'databricks',
+    term: 'Databricks',
+    definition:
+      'A **cloud platform** for storing and processing very large amounts of data, and for building analytics and AI on top of it. It runs on AWS, Azure, or Google Cloud and rents you compute by the second.',
+    note: 'You never load data *into* Databricks — your data stays in **your** cloud storage in open formats, and Databricks reads it where it lies.',
+    seeAlso: ['lakehouse', 'apache-spark', 'data-intelligence-platform'],
+    introducedIn: ['what-is-databricks'],
+  },
+  {
+    id: 'data-intelligence-platform',
+    term: 'Data Intelligence Platform',
+    definition:
+      "Databricks' name for the product as a whole. The claim behind the name: data engineering, analytics, and AI belong on **one** platform over **one** copy of the data.",
+    seeAlso: ['databricks', 'lakehouse'],
+    introducedIn: ['what-is-databricks'],
+  },
+  {
+    id: 'apache-spark',
+    term: 'Apache Spark',
+    aliases: ['Spark'],
+    definition:
+      'The open-source engine that does the processing. Its trick is **splitting one big job across many machines**: the work is broken into pieces, the pieces run in parallel, and the results are combined.',
+    note: 'Databricks was founded by Spark’s creators. You write Spark code in Python (**PySpark**) or SQL; Databricks runs it.',
+    seeAlso: ['databricks', 'pyspark'],
+    introducedIn: ['what-is-databricks'],
+  },
+  {
+    id: 'pyspark',
+    term: 'PySpark',
+    definition:
+      'The Python API for Apache Spark — how most transformation code on Databricks is written, when it is not written in SQL.',
+    seeAlso: ['apache-spark'],
+    introducedIn: ['what-is-databricks'],
+  },
+  {
+    id: 'lakehouse',
+    term: 'lakehouse',
+    definition:
+      'Cheap, open, hold-anything cloud storage **plus** the discipline that made data warehouses trustworthy — transactions, quality rules, governance, and a full record of what changed.',
+    note: 'The point is **one copy of the data** serving BI and AI alike, instead of a warehouse and a lake with jobs copying between them and drifting apart.',
+    seeAlso: ['delta-lake', 'unity-catalog', 'data-intelligence-platform'],
+    introducedIn: ['lakehouse-foundations'],
+  },
+  {
+    id: 'dbu',
+    term: 'DBU',
+    aliases: ['Databricks Unit', 'DBUs'],
+    definition:
+      'A **Databricks Unit** — the unit compute is billed in, roughly "how much processing did that consume". Bigger or longer-running clusters burn more.',
+    note: 'Every cluster decision is therefore a cost decision.',
+    seeAlso: ['cluster', 'databricks'],
+    introducedIn: ['what-is-databricks'],
+  },
+  {
+    id: 'workspace',
+    term: 'workspace',
+    definition:
+      'The environment you log into: your notebooks, jobs, pipelines, dashboards, and settings. Companies usually run several — dev, test, prod.',
+    seeAlso: ['unity-catalog', 'cluster'],
+    introducedIn: ['what-is-databricks'],
+  },
+  {
+    id: 'cluster',
+    term: 'cluster',
+    aliases: ['clusters'],
+    definition:
+      'The group of machines that actually runs your code. A notebook with no cluster attached does nothing.',
+    note: '**All-purpose** clusters are for people working interactively; **job** clusters are created for a scheduled run and deleted when it ends, at a cheaper rate.',
+    seeAlso: ['dbu', 'workspace'],
+    introducedIn: ['what-is-databricks', 'compute-choices'],
+  },
+
+  /* ---------------------------------------------------------------- */
   /* Lakeflow — the umbrella and its four components                   */
   /* ---------------------------------------------------------------- */
   {
@@ -72,7 +148,7 @@ export const glossary: GlossaryTerm[] = [
       'The **transformation** component of Lakeflow. You declare *what each table should contain* as a query; the engine derives the dependency graph, runs it incrementally, retries failures, and enforces data-quality rules.',
     note: 'Built on **Apache Spark Declarative Pipelines**. Formerly **Delta Live Tables (DLT)**, then **Lakeflow Spark Declarative Pipelines** — the exam guide still uses the longer name; the product now says *Lakeflow pipelines*.',
     seeAlso: ['lakeflow', 'streaming-table', 'materialized-view', 'lakeflow-jobs'],
-    introducedIn: ['lakeflow-overview', 'declarative-pipelines'],
+    introducedIn: ['lakeflow-overview', 'lakeflow-pipelines', 'declarative-pipelines'],
     source: 'https://docs.databricks.com/aws/en/ldp/concepts',
   },
   {
@@ -107,7 +183,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       'A managed table fed by an append-only source, where **each incoming record is processed exactly once**. Use it when new rows arrive and old rows never change.',
     seeAlso: ['materialized-view', 'lakeflow-pipelines'],
-    introducedIn: ['gold-layer', 'streaming-tables-vs-mvs'],
+    introducedIn: ['gold-layer', 'lakeflow-pipelines', 'streaming-tables-vs-mvs'],
     source: 'https://docs.databricks.com/aws/en/ldp/concepts',
   },
   {
@@ -118,7 +194,7 @@ export const glossary: GlossaryTerm[] = [
       'A managed table whose contents are defined by a query and **recomputed as needed** so they reflect the current state of the source data. Use it when upstream rows can change.',
     note: 'The trade-off against a **streaming table**: a materialized view can absorb updates and deletes, but may have to recompute rather than just append.',
     seeAlso: ['streaming-table', 'lakeflow-pipelines'],
-    introducedIn: ['gold-layer', 'streaming-tables-vs-mvs'],
+    introducedIn: ['gold-layer', 'lakeflow-pipelines', 'streaming-tables-vs-mvs'],
     source: 'https://docs.databricks.com/aws/en/ldp/concepts',
   },
   {
@@ -129,7 +205,7 @@ export const glossary: GlossaryTerm[] = [
       'A declarative data-quality rule attached to a dataset in a Lakeflow pipeline: a SQL boolean condition plus what to do when a row fails it — **warn** (count it), **drop** it, or **fail** the run.',
     note: 'The point is that quality becomes *measurable per run*, not just enforced. Table `CHECK` constraints reject bad writes; expectations report on them.',
     seeAlso: ['lakeflow-pipelines'],
-    introducedIn: ['declarative-pipelines'],
+    introducedIn: ['lakeflow-pipelines', 'declarative-pipelines'],
     source: 'https://docs.databricks.com/aws/en/ldp/concepts',
   },
   {
@@ -162,7 +238,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       'The governance layer for the whole platform: one place that names, secures, and tracks the lineage of every table, volume, model, and function, across all workspaces.',
     note: 'Its three-level namespace is `catalog.schema.object` — that extra top level is what lets one metastore serve many workspaces.',
-    seeAlso: ['delta-lake'],
+    seeAlso: ['delta-lake', 'lakehouse'],
     introducedIn: ['lakehouse-foundations', 'unity-namespace', 'mosaic-ai-stack'],
   },
   {

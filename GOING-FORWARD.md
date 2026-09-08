@@ -138,7 +138,12 @@ beyond what a ~100-line exam outline supports.
 it is someone else's copyrighted content) or as a local, gitignored reference?
 Recommendation: **gitignored local reference**, cited but not vendored.
 
-### C2. `src_material` is inconsistent, and PDF artifacts will break B4
+### C2. `src_material` is inconsistent, and PDF artifacts will break B4 — ✅ RESOLVED (v1.5.0)
+
+*All five certifications now use `<provider>/<cert-id>/exam-guide.md`, and 185
+ligature artifacts were stripped. B4 is unblocked. Original text below.*
+
+#### Original
 
 Two different conventions are in use:
 
@@ -176,17 +181,17 @@ from it rather than from this list.
 
 **What it still says is open:**
 
-1. **The Data Engineer Associate has no lesson on Lakeflow Pipelines.** The exam
-   guide references them in Section 3 (streaming tables / materialized views),
-   Section 4 (pipeline tasks) and Section 5 (deploying pipelines via bundles).
-   The concept is only taught in the *Professional* cert. `pipeline expectation`
-   is the report's remaining ❌ for exactly this reason.
-   **→ Author *Pipelines you declare* for Module E3.**
+1. ~~The Data Engineer Associate has no lesson on Lakeflow Pipelines.~~
+   ✅ *done (v1.5.0) — Module E3, 15 cards.*
 2. **10 `⚠️` forward references** — a term used a lesson or two before the one
    that introduces it. Mostly benign now that the popover exists, but each is
    worth a glance: some want a one-line gloss at first mention.
-3. **The glossary covers 23 terms.** That is a seed, not a sweep. Every future
+3. **The glossary covers 31 terms.** That is a seed, not a sweep. Every future
    module should add its terms as it is authored (now in the loop, step 5).
+4. **Two certifications never say what *Databricks* is** — the parked Data
+   Analyst Associate and the GenAI Engineer Associate. Each certification has to
+   stand on its own, so each needs its own orientation lesson (the Data Engineer
+   Associate got one in v1.5.0). **→ Add one to GenAI when GA2 is authored.**
 
 ### C4. `databricks_mcp.log` sits in the working tree
 
@@ -227,19 +232,20 @@ more investment; that's an independent argument for doing GenAI first.
 
 - ~~**C5** — term tracking~~ ✅ *done (v1.4.0): glossary data, in-app popovers,
   `npm run glossary`, and the *Lakeflow* lesson that closes the biggest hole.*
+- ~~**C2** — normalize `src_material`~~ ✅ *done (v1.5.0).*
+- ~~**C5.1** — *Lakeflow Pipelines* for the DE Associate~~ ✅ *done (v1.5.0),
+  along with the *What Databricks actually is* orientation lesson.*
 
 Remaining:
 
-1. **C5.1** — author *Lakeflow Pipelines* for the DE Associate (Module E3). The
-   only remaining ❌ in the glossary report, and genuinely on the exam.
-2. **B1** — generate `CONTENT.md`, wire into `check`. *(Stops the docs being
+1. **B1** — generate `CONTENT.md`, wire into `check`. *(Stops the docs being
    manual work before 55 lessons land on top of them.)*
-3. **C2** — normalize `src_material` naming + strip PDF ligatures.
-4. **B3** — promote the loop into an `author-module` skill. GA1 proved the
+2. **B3** — promote the loop into an `author-module` skill. GA1 proved the
    workflow by hand; it is not yet codified.
-5. **GA2** — continue the GenAI cert at *Designing GenAI Applications*.
-6. **B4** — objective verification + coverage report, once C2 makes it viable.
-7. **C3** — refresh GH-300 source material, then resume it at Module 2.
+3. **GA2** — continue the GenAI cert at *Designing GenAI Applications*, plus the
+   orientation lesson it is missing.
+4. **B4** — objective verification + coverage report. **Now unblocked** — C2 is done.
+5. **C3** — refresh GH-300 source material, then resume it at Module 2.
 
 **Also worth doing:** wire `npm run glossary` into `npm run check` so a new ❌
 fails CI, the same way B1 proposes for `CONTENT.md`. Held back only until the

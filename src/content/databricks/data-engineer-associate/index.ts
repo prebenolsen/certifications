@@ -1,5 +1,7 @@
 import type { Certification } from '@/types/content'
 import { lakeflowOverviewLesson } from './lessons/lakeflow-overview'
+import { lakeflowPipelinesLesson } from './lessons/lakeflow-pipelines'
+import { whatIsDatabricksLesson } from './lessons/what-is-databricks'
 import { lakehouseFoundationsLesson } from './lessons/lakehouse-foundations'
 import { computeChoicesLesson } from './lessons/compute-choices'
 import { ingestionPatternsLesson } from './lessons/ingestion-patterns'
@@ -53,10 +55,11 @@ export const dataEngineerAssociate: Certification = {
       order: 1,
       title: 'The Data Intelligence Platform',
       summary:
-        'Why the lakehouse exists, how Delta Lake and Unity Catalog make it trustworthy, what Lakeflow actually is, and choosing compute without overpaying.',
+        'What Databricks is, why the lakehouse exists, how Delta Lake and Unity Catalog make it trustworthy, what Lakeflow actually is, and choosing compute without overpaying.',
       examSections: ['Section 1'],
       icon: '🧠',
       lessons: [
+        whatIsDatabricksLesson,
         lakehouseFoundationsLesson,
         lakeflowOverviewLesson,
         computeChoicesLesson,
@@ -82,7 +85,7 @@ export const dataEngineerAssociate: Certification = {
       order: 3,
       title: 'Transforming with PySpark',
       summary:
-        'Bronze to silver to gold: cleaning, joins, reshaping, deduplication, aggregation, and the objects that serve BI.',
+        'Bronze to silver to gold: cleaning, joins, reshaping, deduplication, aggregation, the objects that serve BI, and declaring them as a Lakeflow pipeline.',
       examSections: ['Section 3'],
       icon: '🔄',
       lessons: [
@@ -91,6 +94,7 @@ export const dataEngineerAssociate: Certification = {
         reshapingDataLesson,
         dedupAggregationLesson,
         goldLayerLesson,
+        lakeflowPipelinesLesson,
       ],
     },
     {
