@@ -16,16 +16,20 @@ can be regenerated from its summary line.
 - **Exam:** 45 questions · 90 minutes · USD 200 · valid 2 years
 - **Source of truth:** `src_material/databricks/databricks-certified-generative-ai-engineer-associate`
 - **Modules:** 8 (RAG build-arc order, mapped to the 6 official exam sections)
-- **Lessons authored:** 0 of 35 · **Recommended:** 6+ months hands-on GenAI on Databricks
+- **Lessons authored:** 4 of 35 · **Cards:** 48 · **Recommended:** 6+ months hands-on GenAI on Databricks
+- **Product naming:** the exam guide uses **Mosaic AI** names; current docs have
+  renamed several (Vector Search → *Databricks AI Search*). Lessons lead with the
+  **exam guide's** name and note the current one. Research + sources:
+  `src_material/databricks/databricks-certified-generative-ai-engineer-associate/research/`.
 
-### Module GA1 — GenAI Foundations on Databricks 🧠 (Design Applications) · ⬜
+### Module GA1 — GenAI Foundations on Databricks 🧠 (Design Applications) · ✅
 
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| How large language models actually work | ⬜ | Tokens, next-token prediction, context windows |
-| Embeddings and vector similarity | ⬜ | Meaning as distance; basis of semantic search |
-| RAG, fine-tuning, or just prompting? | ⬜ | Choosing how to add knowledge/behavior |
-| The Databricks GenAI stack (Mosaic AI) | ⬜ | Vector Search, Model Serving, FM APIs, MLflow, UC |
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| How large language models actually work | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | autocomplete analogy; generation-loop flow; tokens ≈ 4 chars; context window as a desk; myth "bigger window beats retrieval"; temperature ≠ truthfulness |
+| Embeddings and vector similarity | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | map-of-meaning analogy; keyword vs semantic (compare); **HNSW/L2 vs cosine needs normalizing**; one model for query + docs |
+| RAG, fine-tuning, or just prompting? | ✅ | 13 | 1 mcq, 1 t/f, 1 flashcard | new-hire analogy; retrieve-then-generate flow (simplified; GA4 completes it); RAG-vs-fine-tune (compare); myth "fine-tune on our docs" |
+| The Databricks GenAI stack (Mosaic AI) | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | stack as layers under UC; **four** index types; FM API modes; myth "the index is a copy you refresh" |
 
 ### Module GA2 — Designing GenAI Applications 🎯 (Design Applications, 14%) · ⬜
 
@@ -95,8 +99,9 @@ can be regenerated from its summary line.
 
 - **Weightings:** Design 14% · Data Prep 14% · **App Dev 30% (split GA4 + GA5)** ·
   Assemble & Deploy 22% · Governance 8% · Eval & Monitoring 12%.
-- **Next step:** author lessons one at a time with the `author-lesson` skill,
-  flipping each ⬜ to ✅.
+- **Next step:** **Module GA2 (Designing GenAI Applications)**, authored a whole
+  module at a time following the loop in `CLAUDE.md` — research → outline →
+  review → author → sync.
 
 ---
 

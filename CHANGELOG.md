@@ -15,6 +15,48 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
 
 ---
 
+## [1.3.0] — 2026-09-08
+
+The first authored lessons for the **Generative AI Engineer Associate**, plus
+the working agreement that produced them.
+
+### Added
+
+- **GenAI Engineer Associate — Module GA1 (GenAI Foundations) complete**: 4
+  lessons, 48 cards, each with an mcq, a true/false and a flashcard, every mcq
+  tied to an official exam objective.
+  - *How large language models actually work* (12 cards) — next-token
+    prediction, tokens, the context window as a desk; the myth that a bigger
+    context window removes the need for retrieval.
+  - *Embeddings and vector similarity* (11 cards) — meaning as distance,
+    nearest-neighbour retrieval, and why query and documents must share one
+    embedding model.
+  - *RAG, fine-tuning, or just prompting?* (13 cards) — three levers for three
+    different problems; the "fine-tune it on our documents" misconception.
+  - *The Databricks GenAI stack (Mosaic AI)* (12 cards) — Vector Search, Model
+    Serving, Foundation Model APIs, MLflow and Unity Catalog, and which job each
+    one owns.
+- **`CLAUDE.md`** — repository guidance for Claude Code, including the agreed
+  **authoring loop**: exam guide → module mapping → targeted documentation
+  research → outline review → author the module → sync docs.
+- **`GOING-FORWARD.md`** — a working document of process improvements, flags,
+  and the current build order.
+- **Source-material research notes** —
+  `src_material/.../generative-ai-engineer-associate/research/foundations.md`,
+  recording verified product facts with source URLs so lessons stay traceable
+  and refreshable.
+
+### Notes
+
+- **Product naming drift.** Documentation research found the exam guide is
+  behind the product: *Mosaic AI Vector Search* is now *Databricks AI Search*,
+  and there are **four** index types and **three** Foundation Model API modes
+  rather than the two each the guide implies. Lessons lead with the exam guide's
+  vocabulary and note the current name, following the existing house pattern
+  (*"a Git folder (formerly Databricks Repos)"*).
+- Verified that the 55 authored Data Engineer lessons have **not** gone stale —
+  no "Delta Live Tables" references remain; Lakeflow naming is already in use.
+
 ## [1.2.0] — 2026-07-06
 
 A fifth certification: the **Databricks Certified Generative AI Engineer

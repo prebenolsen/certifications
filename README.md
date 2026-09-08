@@ -9,7 +9,7 @@ Certifications currently supported:
 - **Databricks Certified Data Analyst Associate**
 - **Databricks Certified Data Engineer Associate**
 - **Databricks Certified Data Engineer Professional**
-- **Databricks Certified Generative AI Engineer Associate** — *scaffolded; lessons in authoring*
+- **Databricks Certified Generative AI Engineer Associate** — *in authoring (Module 1 complete)*
 - **GitHub Copilot (GH-300)** — *scaffolded; lessons in authoring*
 
 ---
@@ -156,6 +156,9 @@ src/content/
     data-engineer-professional/
       index.ts                ← assembles the certification (9 modules)
       lessons/*.ts            ← 31 fully-authored lessons
+    generative-ai-engineer-associate/
+      index.ts                ← assembles the certification (8 modules)
+      lessons/*.ts            ← 4 authored lessons (Module 1); 31 planned
   authoring.ts                ← shared helpers (planned() etc.)
   registry.ts                 ← lookup helpers used by the UI
 ```

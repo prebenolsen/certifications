@@ -24,13 +24,13 @@ Legend — platform build status:
 |---|---|---|---|---|
 | Data Engineer Associate | Databricks | — | ✅ complete | 24 / 24 |
 | Data Engineer Professional | Databricks | — | ✅ complete | 31 / 31 |
-| Generative AI Engineer Associate | Databricks | — | 🚧 scaffolded | 0 / 35 |
+| Generative AI Engineer Associate | Databricks | — | 🚧 in authoring | 4 / 35 |
 | GitHub Copilot | GitHub | GH-300 | 🚧 scaffolded | 3 / 27 (Module 1 done) |
 | Data Analyst Associate | Databricks | — | 🅿️ parked | 2 / 24 |
 
 **Immediate build backlog (already scaffolded, just needs authoring):**
 1. **GitHub Copilot (GH-300)** — resume at Module 2 (Data & Architecture).
-2. **Databricks GenAI Engineer Associate** — start at Module 1 (Foundations).
+2. **Databricks GenAI Engineer Associate** — Module 1 done; resume at Module 2 (Designing GenAI Applications).
 
 ---
 

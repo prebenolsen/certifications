@@ -1,5 +1,9 @@
 import type { Certification } from '@/types/content'
 import { planned } from '@/content/authoring'
+import { llmBasicsLesson } from './lessons/llm-basics'
+import { embeddingsVectorsLesson } from './lessons/embeddings-vectors'
+import { ragVsAlternativesLesson } from './lessons/rag-vs-alternatives'
+import { mosaicAiStackLesson } from './lessons/mosaic-ai-stack'
 
 /**
  * Databricks Certified Generative AI Engineer Associate.
@@ -35,26 +39,10 @@ export const generativeAiEngineerAssociate: Certification = {
       examSections: ['Design Applications'],
       icon: '🧠',
       lessons: [
-        planned(
-          'llm-basics',
-          'How large language models actually work',
-          'Tokens, next-token prediction, context windows, and why an LLM is a probabilistic generator — not a database.',
-        ),
-        planned(
-          'embeddings-vectors',
-          'Embeddings and vector similarity',
-          'Turning text into vectors so “meaning” becomes distance — the idea that makes semantic search possible.',
-        ),
-        planned(
-          'rag-vs-alternatives',
-          'RAG, fine-tuning, or just prompting?',
-          'The three ways to give an LLM new knowledge or behavior, and how to choose between them.',
-        ),
-        planned(
-          'mosaic-ai-stack',
-          'The Databricks GenAI stack (Mosaic AI)',
-          'How Vector Search, Model Serving, Foundation Model APIs, MLflow, and Unity Catalog fit together.',
-        ),
+        llmBasicsLesson,
+        embeddingsVectorsLesson,
+        ragVsAlternativesLesson,
+        mosaicAiStackLesson,
       ],
     },
     {
