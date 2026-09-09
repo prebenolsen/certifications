@@ -6,9 +6,10 @@
  * (unique ids, valid MCQ answers, registered diagrams) and the teaching
  * philosophy (no walls of text, lessons end with a recap, checks exist).
  */
-import { certifications } from '../src/content/registry'
+import { certifications, moduleStatus } from '../src/content/registry'
 import { diagramRegistry } from '../src/components/diagrams/registry'
-import { isInteractive, type Card, type Lesson } from '../src/types/content'
+import { QUIZ_MIN } from '../src/lib/quiz'
+import { isInteractive, type Card, type Lesson, type Module } from '../src/types/content'
 
 const errors: string[] = []
 const warnings: string[] = []
@@ -160,6 +161,30 @@ function validateLesson(where: string, lesson: Lesson) {
   }
 }
 
+/**
+ * A module's quiz is assembled from the interactive checks in its lessons, so
+ * pool size is not authored anywhere — it is a consequence of the teaching. A
+ * finished module that cannot fill a quiz is a teaching gap, not a config error.
+ */
+function validateModuleQuiz(where: string, module: Module) {
+  const status = moduleStatus(module)
+  if (status !== 'complete') return
+
+  const pool = module.lessons
+    .filter((lesson) => lesson.status !== 'planned')
+    .reduce((n, lesson) => n + lesson.cards.filter(isInteractive).length, 0)
+
+  if (pool < QUIZ_MIN) {
+    warn(
+      where,
+      `complete module has no quiz (pool of ${pool}) — add interactive checks`,
+    )
+  }
+  quizPools.push(pool)
+}
+
+const quizPools: number[] = []
+
 checkDuplicates('root', 'certification', certifications.map((c) => c.id))
 
 for (const cert of certifications) {
@@ -177,6 +202,7 @@ for (const cert of certifications) {
     for (const lesson of module.lessons) {
       validateLesson(`${cert.id} → ${module.id} → ${lesson.id}`, lesson)
     }
+    validateModuleQuiz(`${cert.id} → ${module.id}`, module)
   }
 }
 
@@ -186,8 +212,14 @@ const lessonCount = certifications.flatMap((c) =>
 const complete = lessonCount.filter((l) => l.status === 'complete').length
 const cards = lessonCount.reduce((n, l) => n + l.cards.length, 0)
 
+const quizzable = quizPools.filter((n) => n >= QUIZ_MIN).length
+const quizQuestions = quizPools.reduce((n, size) => n + size, 0)
+
 console.log(
   `Checked ${certifications.length} certification(s), ${lessonCount.length} lessons (${complete} complete), ${cards} cards.`,
+)
+console.log(
+  `Module quizzes: ${quizzable}/${quizPools.length} complete module(s) can fill one, from ${quizQuestions} question(s).`,
 )
 
 if (warnings.length) {

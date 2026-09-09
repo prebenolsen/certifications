@@ -3,6 +3,7 @@ import { getModule } from '@/content/registry'
 import { useLessonStats } from '@/hooks/useStats'
 import { ProgressBar } from '@/components/layout/ProgressBar'
 import { StatusBadge } from '@/components/layout/StatusBadge'
+import { ModuleQuizCard } from '@/components/quiz/ModuleQuizCard'
 import { NotFound } from './NotFound'
 import type { Lesson } from '@/types/content'
 
@@ -35,22 +36,7 @@ export function ModulePage() {
         </div>
       </header>
 
-      <div className="rounded-2xl border border-slate-200 bg-surface p-4 shadow-sm">
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
-              End-of-module quiz
-            </p>
-            <h2 className="mt-1 text-lg font-bold text-ink">Check what you retained</h2>
-          </div>
-          <Link
-            to={`/cert/${certId}/module/${moduleId}/quiz`}
-            className="rounded-xl bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-strong"
-          >
-            Open quiz →
-          </Link>
-        </div>
-      </div>
+      <ModuleQuizCard certId={certId} module={module} />
 
       <ol className="space-y-3">
         {module.lessons.map((lesson, i) => (

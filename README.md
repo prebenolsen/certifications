@@ -28,6 +28,10 @@ topic is taught the way a good teacher would:
   checks — chosen per concept to build a real mental model.
 - Every interactive question ties back to an **official exam objective** and,
   where useful, a **real day-at-work scenario**.
+- **End-of-module quizzes** built from those same checks — practice mode for
+  feedback as you go, exam mode for none until you submit. Optional, and never
+  part of your progress. Anything you miss collects into a targeted review that
+  links back to the lesson that teaches it.
 
 ### What it looks like
 
@@ -35,11 +39,15 @@ topic is taught the way a good teacher would:
 Home (certifications)
   └─ Certification   (modules, overall progress)
        └─ Module     (list of lessons, per-module progress)
-            └─ Lesson → full-screen Card Player
-                        · vertical, one card at a time
-                        · progress bar + keyboard nav (↑/↓, Esc)
-                        · interactive cards record answers
-                        · "Next lesson" hand-off at the end
+            ├─ Lesson → full-screen Card Player
+            │            · vertical, one card at a time
+            │            · progress bar + keyboard nav (↑/↓, Esc)
+            │            · interactive cards record answers
+            │            · "Next lesson" hand-off at the end
+            └─ Module quiz → practice | exam
+                        · one question at a time, shuffled
+                        · results reveal what you picked and why
+                        · misses feed "Learn what you struggle with"
 ```
 
 ---
@@ -89,9 +97,10 @@ Sign-in is **optional**. By default everyone is a **Guest** and progress is save
 in the browser's `localStorage` — no account, works offline, per-device.
 
 Signing in (passwordless email **magic link**, via Supabase) syncs lesson
-progress and quiz knowledge to the cloud so they follow you across devices.
-Completed quizzes write unresolved questions in one batch; the certification
-page then offers **Learn what you struggle with** for targeted review. If
+progress and **what you got wrong in quizzes** to the cloud, so they follow you
+across devices; the certification page then offers **Learn what you struggle
+with** for targeted review. Quiz *attempt history* stays on the device on
+purpose — a half-finished exam shouldn't follow you to another browser. If
 Supabase env vars are absent the app stays guest-only and the "Sign in" button
 never appears.
 
@@ -123,9 +132,9 @@ for the full picture. In short:
 | Card renderers | `src/components/cards/**` | One renderer per card type + a registry |
 | Diagrams | `src/components/diagrams/**` | Data-driven `DiagramSpec` primitives + custom SVGs by id |
 | Player | `src/components/player/CardPlayer.tsx` | The vertical card-flow experience |
-| Pages / routing | `src/pages/**`, `src/App.tsx` | Home, certification, module, lesson |
+| Pages / routing | `src/pages/**`, `src/App.tsx` | Home, certification, module, lesson, quiz intro/attempt/results |
 | Progress | `src/context/ProgressContext.tsx` | Lesson progress and quiz knowledge — localStorage (guest) or Supabase (signed in) |
-| Quizzes | `src/lib/quiz.ts`, `src/pages/QuizAttemptPage.tsx` | Seeded question selection, Back/Skip/I don't know navigation, attempts, and targeted review |
+| Quizzes | `src/lib/quiz.ts`, `src/pages/Quiz*.tsx` | Pool assembly from lesson checks, seeded shuffle, scoring, and targeted review |
 | Auth | `src/context/AuthContext.tsx`, `src/lib/supabase.ts` | Optional magic-link sign-in; guest by default |
 | Glossary | `src/content/glossary.ts`, `src/lib/glossary.ts` | Terms defined once; matched and underlined at render time |
 | Validation | `scripts/validate-content.ts` | Content correctness + teaching-philosophy lint |

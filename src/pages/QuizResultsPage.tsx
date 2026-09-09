@@ -1,99 +1,194 @@
+import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { CardView } from '@/components/cards/registry'
+import { getLesson } from '@/content/registry'
 import { useProgress } from '@/context/ProgressContext'
-import { buildCertificationQuizPool, buildQuizPool } from '@/lib/quiz'
+import {
+  buildCertificationQuizPool,
+  buildQuizPool,
+  STRUGGLES_KEY,
+  VERDICT_MIN,
+} from '@/lib/quiz'
 import { NotFound } from './NotFound'
+
+/** Where a missed question is taught. Degrades rather than linking nowhere. */
+function TeachingLink({
+  certId,
+  reviewRef,
+}: {
+  certId: string
+  reviewRef: { lessonId: string; cardId: string; moduleId?: string }
+}) {
+  const found = reviewRef.moduleId
+    ? getLesson(certId, reviewRef.moduleId, reviewRef.lessonId)
+    : undefined
+  if (!found || !reviewRef.moduleId) {
+    return (
+      <p className="text-xs text-ink-faint">
+        The lesson this came from has changed.
+      </p>
+    )
+  }
+
+  return (
+    <Link
+      to={`/cert/${certId}/module/${reviewRef.moduleId}/lesson/${reviewRef.lessonId}`}
+      className="text-sm font-semibold text-accent hover:underline"
+    >
+      Read this in “{found.lesson.title}” →
+    </Link>
+  )
+}
 
 export function QuizResultsPage() {
   const { certId = '', moduleId = '', attemptId = '' } = useParams()
   const navigate = useNavigate()
-  const { getModuleQuiz, getStruggleQuestions } = useProgress()
+  const { getModuleQuiz } = useProgress()
+  const [showAll, setShowAll] = useState(false)
+
   const reviewMode = !moduleId
-  const storageModuleId = reviewMode ? '__struggles__' : moduleId
+  const storageModuleId = reviewMode ? STRUGGLES_KEY : moduleId
+  const introPath = reviewMode
+    ? `/cert/${certId}/quiz/struggles`
+    : `/cert/${certId}/module/${moduleId}/quiz`
+  const backPath = reviewMode ? `/cert/${certId}` : `/cert/${certId}/module/${moduleId}`
+  const backLabel = reviewMode ? 'Back to certification' : 'Back to module'
 
   const quiz = getModuleQuiz(certId, storageModuleId)
-  const attempt = quiz?.attempts.find((item) => item.id === attemptId) ?? quiz?.draft
+  const attempt = quiz?.attempts.find((item) => item.id === attemptId)
 
   if (!attempt) return <NotFound />
 
   const pool = reviewMode
     ? buildCertificationQuizPool(certId)
     : buildQuizPool(certId, moduleId)
+
   const total = attempt.questionIds.length
-  const correct = Object.values(attempt.responses).filter((response) => response.correct).length
+  const correct = attempt.questionIds.filter(
+    (id) => attempt.responses[id]?.correct,
+  ).length
+  const percent = total > 0 ? Math.round((correct / total) * 100) : 0
+  const verdictMeaningful = total >= VERDICT_MIN
+
+  const missedIds = attempt.questionIds.filter((id) => !attempt.responses[id]?.correct)
+  const shownIds = showAll ? attempt.questionIds : missedIds
 
   return (
     <div className="space-y-6">
       <nav className="text-sm">
-        <Link to={`/cert/${certId}/module/${moduleId}`} className="text-accent hover:underline">
-          ← Back to module
+        <Link to={backPath} className="text-accent hover:underline">
+          ← {backLabel}
         </Link>
       </nav>
 
       <div className="rounded-2xl border border-slate-200 bg-surface p-6 shadow-sm">
         <p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
-          Quiz results
+          {reviewMode ? 'Targeted review' : 'Quiz results'}
         </p>
-        <h1 className="mt-2 text-2xl font-extrabold text-ink">{correct} / {total} correct</h1>
-        <p className="mt-2 text-sm text-ink-soft">
-          Mode: {attempt.mode} · Score: {attempt.score ? (attempt.score * 100).toFixed(0) : '0'}%
-        </p>
+        <div role="status" aria-live="polite">
+          <h1 className="mt-2 text-2xl font-extrabold text-ink">
+            {correct} / {total} correct
+          </h1>
+          <p className="mt-1 text-sm text-ink-soft">
+            {verdictMeaningful ? (
+              <>
+                {percent}% ·{' '}
+                {percent >= 80
+                  ? 'That is exam-ready for this material.'
+                  : 'Worth another pass before you rely on this.'}
+              </>
+            ) : (
+              <>
+                {percent}% · Too few questions to gauge readiness — treat this as
+                practice.
+              </>
+            )}
+          </p>
+        </div>
 
-        <div className="mt-6 flex gap-3">
+        <div className="mt-6 flex flex-wrap gap-3">
           <button
             type="button"
-            onClick={() => navigate(reviewMode ? `/cert/${certId}/quiz/struggles` : `/cert/${certId}/module/${moduleId}/quiz`)}
-            className="rounded-xl bg-brand px-4 py-2 text-sm font-semibold text-white"
+            onClick={() => navigate(introPath)}
+            className="rounded-xl bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-strong"
           >
-            Retake quiz
+            {reviewMode ? 'Review again' : 'Retake quiz'}
           </button>
           <button
             type="button"
-            onClick={() => navigate(reviewMode ? `/cert/${certId}/quiz/struggles` : `/cert/${certId}/module/${moduleId}`)}
-            className="rounded-xl border border-slate-300 bg-surface px-4 py-2 text-sm font-semibold text-ink"
+            onClick={() => navigate(backPath)}
+            className="rounded-xl border border-slate-300 bg-surface px-4 py-2 text-sm font-semibold text-ink transition hover:border-slate-400"
           >
-            Back to module
+            {backLabel}
           </button>
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-surface p-6 shadow-sm">
-        <h2 className="text-lg font-bold text-ink">
-          {reviewMode ? 'Still to review' : 'Missed questions'}
-        </h2>
-        <div className="mt-4 space-y-3">
-          {(reviewMode ? getStruggleQuestions(certId) : Object.values(quiz?.missed ?? {})).length === 0 ? (
-            <p className="text-sm text-ink-soft">
-              {reviewMode ? 'You cleared all of these questions.' : 'No missed questions recorded for this module yet.'}
-            </p>
-          ) : (
-            (reviewMode ? getStruggleQuestions(certId) : Object.values(quiz?.missed ?? {})).map((miss) => {
-              const question = pool.find((item) => item.id === miss.questionId)
-              return (
-                <div key={miss.questionId} className="rounded-xl border border-slate-200 p-3">
-                  <p className="text-sm font-semibold text-ink">
-                    {question?.card.type === 'mcq' ? question.card.question : question?.card.statement ?? miss.stem}
-                  </p>
-                  <p className="mt-1 text-xs text-ink-faint">
-                    Miss count: {'missCount' in miss ? miss.missCount : miss.failedCount} · Last missed: {new Date('lastMissedAt' in miss ? miss.lastMissedAt : miss.lastFailedAt ?? miss.lastAnsweredAt).toLocaleDateString()}
-                  </p>
-                  <div className="mt-2 space-y-1 text-xs text-ink-soft">
-                    <p>Correct answer: {miss.correctIds.join(', ')}</p>
-                    <p>Your choice: {miss.chosen.join(', ') || 'none'}</p>
-                    {miss.reviewRefs[0]?.moduleId && (
-                      <Link
-                        to={`/cert/${certId}/module/${miss.reviewRefs[0].moduleId}/lesson/${miss.reviewRefs[0].lessonId}`}
-                        className="inline-block pt-1 font-semibold text-accent hover:underline"
-                      >
-                        Review the teaching card →
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              )
-            })
+      <section className="space-y-4">
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <h2 className="text-lg font-bold text-ink">
+            {missedIds.length === 0
+              ? '🎯 Nothing missed'
+              : `${missedIds.length} to review`}
+          </h2>
+          {missedIds.length !== total && (
+            <button
+              type="button"
+              onClick={() => setShowAll((prev) => !prev)}
+              className="text-sm font-semibold text-accent hover:underline"
+            >
+              {showAll ? 'Show only what you missed' : `Show all ${total} questions`}
+            </button>
           )}
         </div>
-      </div>
+
+        {shownIds.length === 0 ? (
+          <p className="rounded-2xl border border-slate-200 bg-surface p-6 text-sm text-ink-soft shadow-sm">
+            Every question in this attempt was correct.
+          </p>
+        ) : (
+          shownIds.map((questionId) => {
+            const question = pool.find((item) => item.id === questionId)
+            const response = attempt.responses[questionId]
+            const position = attempt.questionIds.indexOf(questionId) + 1
+
+            // The question no longer exists in the content. Fall back to the
+            // snapshot taken when it was asked, rather than dropping the row.
+            if (!question) {
+              const snapshot = attempt.provenance?.[questionId]
+              return (
+                <div
+                  key={questionId}
+                  className="rounded-2xl border border-slate-200 bg-surface p-4 text-sm text-ink-soft shadow-sm"
+                >
+                  <p className="font-semibold text-ink">
+                    {snapshot?.stem ?? 'This question is no longer in the content.'}
+                  </p>
+                  <p className="mt-1 text-xs text-ink-faint">
+                    From older content — no lesson to link to.
+                  </p>
+                </div>
+              )
+            }
+
+            return (
+              <div key={questionId} className="flex flex-col items-center gap-2">
+                <CardView
+                  card={{
+                    ...question.card,
+                    eyebrow: `Question ${position} of ${total}`,
+                  }}
+                  feedback="revealed"
+                  value={response?.chosen ?? []}
+                />
+                {question.reviewRefs[0] && (
+                  <TeachingLink certId={certId} reviewRef={question.reviewRefs[0]} />
+                )}
+              </div>
+            )
+          })
+        )}
+      </section>
     </div>
   )
 }

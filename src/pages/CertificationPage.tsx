@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { getCertification, moduleStatus } from '@/content/registry'
 import { useCertStats, useModuleStats } from '@/hooks/useStats'
+import { useProgress } from '@/context/ProgressContext'
 import { ProgressBar } from '@/components/layout/ProgressBar'
 import { StatusBadge } from '@/components/layout/StatusBadge'
 import { NotFound } from './NotFound'
@@ -50,16 +51,7 @@ function CertificationView({ cert }: { cert: Certification }) {
         </div>
       </header>
 
-      <Link
-        to={`/cert/${cert.id}/quiz/struggles`}
-        className="block rounded-2xl border border-accent/30 bg-accent-soft p-5 transition hover:border-accent"
-      >
-        <p className="text-xs font-semibold uppercase tracking-wide text-accent">Targeted review</p>
-        <h2 className="mt-1 text-lg font-bold text-ink">Learn what you struggle with</h2>
-        <p className="mt-1 text-sm text-ink-soft">
-          Revisit quiz questions you have missed across this certification.
-        </p>
-      </Link>
+      <StrugglesBanner certId={cert.id} />
 
       <section className="grid gap-4 sm:grid-cols-2">
         {cert.modules.map((module) => (
@@ -105,6 +97,31 @@ function ModuleCard({ certId, module }: { certId: string; module: Module }) {
           <p className="text-[11px] italic text-ink-faint">Content coming soon</p>
         )}
       </div>
+    </Link>
+  )
+}
+
+/**
+ * Only shown once there is something to review. An empty targeted-review link
+ * teaches the learner that the feature is decorative.
+ */
+function StrugglesBanner({ certId }: { certId: string }) {
+  const { getStruggleQuestions } = useProgress()
+  const missed = getStruggleQuestions(certId).length
+  if (missed === 0) return null
+
+  return (
+    <Link
+      to={`/cert/${certId}/quiz/struggles`}
+      className="block rounded-2xl border border-accent/30 bg-accent-soft p-5 transition hover:border-accent"
+    >
+      <p className="text-xs font-semibold uppercase tracking-wide text-accent">
+        Targeted review
+      </p>
+      <h2 className="mt-1 text-lg font-bold text-ink">Learn what you struggle with</h2>
+      <p className="mt-1 text-sm text-ink-soft">
+        {missed} question{missed === 1 ? '' : 's'} you have missed, worst first.
+      </p>
     </Link>
   )
 }

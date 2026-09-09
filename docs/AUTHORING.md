@@ -171,6 +171,34 @@ end with a `recap` (the validator warns otherwise).
 - `summary` — mid-lesson consolidation for long lessons.
 - `recap` — end-of-lesson checklist + a motivating `closing`.
 
+### Your checks are also the module quiz
+
+**Every `mcq` and `truefalse` card in a non-`planned` lesson is automatically a
+question in that module's quiz**, and in the certification-wide review a learner
+reaches after missing it. Nothing marks them up; the pool is assembled from the
+content. Three consequences for how you write them:
+
+- **The `explanation` is read out of lesson context.** On a results screen it
+  appears next to the question with none of the cards that led up to it, so it
+  has to stand alone. No "as we saw above", no "the diagram on the previous
+  card". A quiz explanation that doesn't say *why* is just a scored gotcha.
+- **Card ids are a stable interface now.** A learner's stored review record
+  points at `lessonId` + `cardId`. Renaming a card id orphans that record — the
+  review list falls back to a text snapshot and loses its link into the lesson.
+  Rename a card id only when you mean to.
+- **A `complete` module needs at least 3 interactive checks**, or `npm run
+  validate` warns that the module has no quiz — and warnings are failures here.
+  In practice one check per lesson clears it comfortably.
+
+Set `reviewRefs` on a check that tests something taught **somewhere else** —
+a `[{ lessonId, cardId, moduleId? }]` pointing at the card that actually teaches
+the answer. Leave it off for the normal case, where the check sits in the lesson
+that just explained it and its own position is the reference.
+
+`optionFeedback` earns its place here specifically: it is what the learner reads
+on the results screen when they want to know why the option they picked was
+wrong.
+
 ### Text markup
 
 Text fields support `**bold**`, `*italic*`, `` `code` ``, and `\n` line

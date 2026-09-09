@@ -18,6 +18,7 @@ its gaps, and the decisions queued up. Prune items as they land.
 | Lessons authored | 105 of 160 |
 | **Lessons still to write** | **55** (31 GenAI · 24 GH-300) |
 | Quality gate | `npm run check` — typecheck + lint + validate, enforced in CI |
+| Module quizzes | 31/31 complete modules, 175 questions, generated from lesson checks |
 | Authoring support | 3 skills, `docs/AUTHORING.md`, `docs/ARCHITECTURE.md`, content validator |
 
 The foundations are in good shape. The three skills (`add-certification`,
@@ -239,6 +240,12 @@ more investment; that's an independent argument for doing GenAI first.
   Databricks*, 10 lessons. Not on the exam ladder — it is the orientation the
   ladder assumes. It also made `examFacts` optional, so a non-exam track no
   longer has to invent exam numbers.*
+- ~~**Module quizzes**~~ ✅ *done (v1.8.0): practice/exam modes, a results screen
+  that re-renders each question with what you picked, and a per-certification
+  targeted review built from misses. Assembled from existing lesson checks — 175
+  questions, all 31 complete modules covered — so no new content type and no
+  authored bank was needed. The design doc is `docs/quiz-design.md`; §9 there
+  lists what was deliberately left out.*
 
 Remaining:
 
@@ -250,6 +257,29 @@ Remaining:
    orientation lesson it is missing.
 4. **B4** — objective verification + coverage report. **Now unblocked** — C2 is done.
 5. **C3** — refresh GH-300 source material, then resume it at Module 2.
+
+**Queued on top of the quiz** (each is a clean follow-up, none is blocking):
+
+- **Timed cert-wide mock exam.** The substrate is done — an attempt already owns
+  its `questionIds`, so this is a different pool plus a clock.
+- **`?card=` deep links** into the exact teaching card. Results currently link to
+  the lesson, not the card. Note the hazard before starting: the card tracker
+  marks whatever passes the viewport midpoint as viewed, so a *smooth* scroll to
+  card 7 would mark cards 0–7 read and inflate progress. Jump, don't animate;
+  gate the tracker until the jump lands.
+- **Authored question banks** per module, layered on the generated pool.
+  `ReviewRef` is already a real content type, which is the groundwork.
+- **Quiz stats in `useStats.ts`**, and surfacing `useLessonStats.accuracy` —
+  which is computed today and displayed nowhere. Phrase it "4/5 checks", not a
+  score, so it reads as a teaching signal.
+- **Option-order shuffling.** Verified safe (every option id is `a`–`d` in order
+  and no content text references option letters) but it needs a positional-badge
+  change in the most-used renderer for a marginal gain.
+
+**Pre-existing, noticed while reviewing the quiz:** `ProgressContext` exposes
+`resetAll`, `resetLesson` and `resetModuleQuiz`, and **no UI calls any of them**.
+There is no way for a learner to clear progress. Worth a small settings surface,
+and it needs a confirm dialog — nothing like one exists in the app yet.
 
 **Also worth doing:** wire `npm run glossary` into `npm run check` so a new ❌
 fails CI, the same way B1 proposes for `CONTENT.md`. Held back only until the

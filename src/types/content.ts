@@ -167,11 +167,28 @@ export interface FlashcardCard extends CardBase {
 }
 
 /** True/false interactive check with an explanation. */
+/**
+ * Points at the card that *teaches* a question's answer, so a learner who
+ * misses it in a quiz can be sent to the exact lesson section that explains it.
+ *
+ * An in-lesson check does not need one — its own position *is* the reference,
+ * and `buildQuizPool` derives it. Set it when a check tests something taught
+ * somewhere else.
+ */
+export interface ReviewRef {
+  lessonId: string
+  cardId: string
+  /** Omitted when the teaching is in the same module as the question. */
+  moduleId?: string
+}
+
 export interface TrueFalseCard extends CardBase {
   type: 'truefalse'
   statement: RichText
   answer: boolean
   explanation: RichText
+  /** Where this is taught, when it is not this card. See `ReviewRef`. */
+  reviewRefs?: ReviewRef[]
 }
 
 /** Multiple-choice question. Supports single- or multi-select. */
@@ -187,6 +204,8 @@ export interface McqCard extends CardBase {
   optionFeedback?: Record<string, RichText>
   /** Ties this question back to an official exam objective. */
   examObjective?: string
+  /** Where this is taught, when it is not this card. See `ReviewRef`. */
+  reviewRefs?: ReviewRef[]
 }
 
 /** Short list of the key ideas from the lesson so far. */

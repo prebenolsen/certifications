@@ -18,6 +18,14 @@ Sign-in is a **passwordless email magic link** — no passwords stored.
 2. Open **SQL Editor** and run, in order:
    - [`01_schema.sql`](./01_schema.sql) — tables, index, and the new-user trigger.
    - [`02_policies.sql`](./02_policies.sql) — Row Level Security policies.
+   - [`03_quiz_knowledge.sql`](./03_quiz_knowledge.sql) — the quiz table with its
+     own policies.
+
+**`01` and `02` are single-run only** — `create policy` has no `if not exists`,
+so re-running `02` fails on the policies it already created. `03` is written with
+`drop policy if exists` in front of every `create`, so it is safe to re-run and
+can be applied on its own to a project that was set up before quizzes existed.
+Anything added later should follow `03`'s pattern in a new numbered file.
 
 This creates three application tables. They all use the `certifications_`
 prefix; Supabase's shared built-in `auth.users` table is referenced but not
@@ -27,7 +35,10 @@ created by this app:
 |-------|---------|
 | `certifications_profiles` | One row per user (auto-created on sign-up). |
 | `certifications_lesson_progress` | One row per (user, cert, lesson): viewed cards, answers, completed. |
-| `certifications_quiz_knowledge` | One row per (user, cert, module, question): unresolved knowledge and review history. |
+| `certifications_quiz_knowledge` | One row per (user, cert, module, question): what the learner got wrong, and whether it is resolved. |
+
+Quiz **attempt history and unsubmitted drafts are not synced** — they stay in
+localStorage, so a half-finished exam does not follow you to another device.
 
 RLS ensures every user can read/write **only their own** rows, so the public
 anon key is safe to ship in the client bundle.

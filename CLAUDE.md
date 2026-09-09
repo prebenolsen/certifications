@@ -21,8 +21,10 @@ Stack: Vite · React 18 · TypeScript · Tailwind · React Router.
   philosophy (walls of text, missing recap, no interactive check).
 - **Docs are updated in the same change.** `CONTENT.md`, `CHANGELOG.md`, and
   `README.md` must never lag the code. Drift is treated as a bug.
-- **Data Analyst Associate is parked on purpose** (2/24). That is a decision, not
-  a backlog item — do not resume it unless asked.
+- **Quizzes are assembled, not authored.** Every `mcq`/`truefalse` in a written
+  lesson becomes a question in its module quiz, so an `explanation` must stand
+  alone out of lesson context and a card id is a stable interface — renaming one
+  breaks a learner's saved review link. See `docs/AUTHORING.md`.
 - **Teach, don't list.** If a card says "and also…", split it. One idea per card.
 - **Maximum understanding per word.** Direct, concrete, no padding — see *How it
   should read*. If a sentence can be removed without costing the reader

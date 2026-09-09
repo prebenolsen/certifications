@@ -17,19 +17,131 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
 
 ## [Unreleased]
 
+## [1.8.0] — 2026-09-09
+
 ### Added
 
-- **Persistent quiz knowledge for signed-in users.** Completed quizzes now send
-  one batched write to Supabase, recording unresolved questions and clearing
-  them when the learner later answers correctly. Certification pages expose a
-  targeted "Learn what you struggle with" review.
-- **Real quiz navigation.** Learners can go back, skip a question for later,
-  or mark "I don't know" so it returns as a failed knowledge item.
+- **End-of-module quizzes, and a durable record of what you got wrong.** Every
+  module with at least 3 interactive checks gains an optional quiz assembled
+  from those checks — no separate question bank, so authoring a lesson well is
+  what makes a good quiz. The learner picks **practice** (feedback after every
+  question) or **exam** (nothing revealed until the end, and answers stay
+  changeable until then) per attempt. Order is shuffled from a stored seed, so
+  positions can't be memorised and the results screen can replay the exact
+  order served.
+- **A results screen that teaches.** Every question is re-rendered with what the
+  learner picked, why it was wrong, the authored per-option feedback, and a link
+  into the lesson that teaches the answer. Below 5 questions it suppresses the
+  pass/fail verdict instead of pretending a 3-question score means something.
+- **Targeted review.** Missed questions collect per certification, hardest
+  first, and a later correct answer retires one — while keeping the record, so
+  "you have missed this twice" stays true. Surfaced from the certification page
+  and from the module quiz card, and synced for signed-in learners.
+- **Real quiz navigation** — go back, skip a question for later, or say "I don't
+  know" and have it come back later.
+- `CardRendererProps.feedback` (`'immediate' | 'deferred' | 'revealed'`) plus
+  controlled `value` / `onValueChange`. One prop, two features: it is what
+  enables exam mode *and* what renders the results screen, with no new markup.
+- `src/lib/quiz.ts` (pool assembly, ids, scoring, thresholds — UI-free) and
+  `src/lib/random.ts` (seeded PRNG + shuffle, so an attempt is replayable).
+- A validator rule: a **complete** module whose interactive pool is under 3 now
+  warns, and the summary reports how many complete modules can fill a quiz.
+  `npm run validate` prints `Module quizzes: 31/31 … from 175 question(s)`.
+- One more interactive check in *Delta Lake* (intro course) — an MCQ on why a
+  rollback works, which is what took the `foundations` module over the line.
+
+### Changed
+
+- `ModuleQuizProgress` no longer carries its own `missed` map. Missed questions
+  were being recorded twice, in two shapes, and the results screen had to sniff
+  which one it had received at runtime. `knowledge` is now the single record.
+- Quiz attempt history and unsubmitted drafts are explicitly **local-only**;
+  what syncs is the record of what you got wrong. Documented, not incidental.
+- `ReviewRef` is a real field on `McqCard` / `TrueFalseCard` in
+  `src/types/content.ts`, rather than being read off a `Card` with a cast to a
+  field the content model never declared.
+- The Supabase quiz table moved out of `01_schema.sql` / `02_policies.sql` into
+  **`supabase/03_quiz_knowledge.sql`**, written with `drop policy if exists` so
+  it is re-runnable and can be applied on its own.
+- `docs/ARCHITECTURE.md` gains a *Quizzes and review* section and a fuller
+  routing table; `docs/AUTHORING.md` gains *Your checks are also the module
+  quiz*.
 
 ### Fixed
 
-- Quiz answers no longer leak into the next question, and feedback now has an
-  explicit Continue/See results action.
+- **Signing in destroyed your quiz history.** Hydration reset the `quizzes` map
+  to `{}` and the next save persisted the empty version, so attempts and best
+  scores were gone for good. Local quiz state now survives sign-in, and a
+  first-time sign-in adopts guest struggle records and pushes them up — the same
+  all-or-nothing rule lesson progress already used.
+- **Cloud sync never actually wrote anything.** `upsertCloud`, `deleteCloud` and
+  the new `deleteQuizKnowledge` fired their queries as `void supabase.from(…)…`,
+  but a postgrest-js builder is a **thenable, not a Promise** — it issues the
+  request inside `then()`, so a bare `void` built the query and dropped it,
+  silently and with no error anywhere. Verified against the installed
+  `@supabase/postgrest-js@2.110.0`: the `void` form makes **zero** HTTP calls,
+  the awaited form makes one. So for signed-in learners, lesson progress had
+  never reached Supabase despite the UI reporting sync. All three are now
+  `async`/awaited and log on failure.
+- **Signing in offline, or with the quiz table missing, destroyed local
+  progress.** A failed cloud read returned an empty map (postgrest-js reports
+  network failures as `error`, it does not throw), that empty map replaced local
+  state, and the writer effect persisted the emptiness. A failed read now keeps
+  local data and skips cloud writes entirely, rather than treating "I could not
+  read" as "there is nothing there".
+- **Anything done during the sign-in fetch window was dropped.** The writer
+  effect skipped `saveLocal` until hydration finished, then hydration overwrote
+  state from disk. localStorage — the always-safe store — is now written
+  unconditionally; only the cloud diff waits for hydration.
+- **First-sign-in adoption is decided per map.** Deciding across both meant one
+  populated map suppressed adoption of the other, overwriting the learner's local
+  copy of it with nothing — which the cloud-sync bug above made the *normal*
+  case, since knowledge rows synced while lesson rows never did.
+- **The targeted review drew a random slice, not your worst questions.** The
+  struggle list was sorted by failure count and then reshuffled wholesale before
+  slicing to 12, so with 30 unresolved questions you got a random 12. It now
+  takes the most-failed first and shuffles only those, so the order stays
+  unpredictable without losing the targeting.
+- **A stray click in exam mode locked in an empty answer.** Because selection is
+  the answer there, deselecting your last option banked a response that scored
+  wrong while still counting as answered — hiding "Skip for later" and "I don't
+  know", and letting you reach the results screen with a question you meant to
+  revisit. Clearing a selection now returns the question to unanswered.
+- **`resetAll` left cloud quiz rows in place**, so cleared progress came back on
+  the next sign-in. It now deletes them, and so does `resetModuleQuiz`. (Note:
+  the reset API still has no UI — `resetAll` and `resetLesson` were already
+  unwired before this change.)
+- **The quiz's Supabase policies could never be applied to an existing
+  deployment.** They had been appended to `02_policies.sql`, which is
+  single-run-only — `create policy` has no `if not exists` — so re-running it
+  failed on the policies already there, leaving RLS enabled with no policies and
+  every quiz read and write silently denied. Now in a re-runnable `03`, and the
+  client logs instead of failing quietly.
+- **Glossary terms weren't underlined anywhere in a quiz.** The quiz had its own
+  copies of the MCQ and true/false UI, and `RichText` only marks terms inside
+  `CardFrame`'s `GlossaryScope`. Both copies are gone; the quiz uses the real
+  renderers, which also restores per-option feedback, exam objectives, the
+  "Select all that apply" hint, the square-vs-round multi-select affordance, and
+  `AnswerFeedback`'s live region.
+- Modules with no quiz no longer advertise one. The card is hidden below 3
+  questions instead of linking to a page that says the quiz doesn't exist, and
+  "Learn what you struggle with" only appears once something has been missed.
+- Two dead links: the results screen built `/cert/:certId/module/` with an empty
+  module id in targeted-review mode, 404ing both its back links.
+- "Skip for later" is disabled when there is nothing to skip to, instead of
+  silently doing nothing on the last unanswered question.
+- A thin-pool module quiz redirects to its intro page, which explains why there
+  is no quiz yet, rather than rendering a 404 for a module that plainly exists.
+- Duplicated `crashing.` line in `docs/ARCHITECTURE.md`, and its long-standing
+  claim that an `IntersectionObserver` tracks the active card — it is a
+  scroll-position tracker, deliberately, because a card taller than the viewport
+  never reaches a visibility threshold.
+
+### Notes
+
+Deliberately out of scope, and queued in `GOING-FORWARD.md`: authored question
+banks on top of the generated pool, `?card=` deep links to the exact teaching
+card, quiz stats in `useStats.ts`, and the timed cert-wide mock exam.
 
 ## [1.7.0] — 2026-09-09
 

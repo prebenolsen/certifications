@@ -1,5 +1,21 @@
 # End-of-module quizzes, with a durable record of what you got wrong
 
+> **Status: shipped in v1.8.0, with deliberate divergences.** This is the design
+> doc the feature was built from, kept for its reasoning — the *why* behind the
+> decisions, which `ARCHITECTURE.md` only summarises. It is **not** a description
+> of the current code. What differs:
+>
+> | Section | Reality |
+> |---|---|
+> | §1 authored banks | **Not built.** The pool is generated from lesson checks only. `ReviewRef` did land as a real content type, so the groundwork exists. |
+> | §4 renderer seam | Built, but the derivations here are **wrong in three places** — `feedback` must default to `'immediate'` at the destructure (in-lesson it arrives `undefined`, so `locked` would never become true); control must branch on `value !== undefined`, not on whether `onValueChange` was passed; and true/false must decode `[]` as "no answer", not as False. See the real code. |
+> | §5 `QuizPlayer`, scroll-snap, `useActiveSnapIndex`, `LayoutRoute` | **Not built.** The attempt is one question at a time inside the normal `Layout`. Assessment wants an explicit step between questions, and this avoided extracting the scroll tracker. |
+> | §6 `?card=` deep links | **Not built** — queued in `GOING-FORWARD.md`, hazard and all. |
+> | §7 validator | Only the "complete module has no quiz" warning landed; bank rules are moot without banks. |
+> | §3 `missed` map | **Dropped.** Recording a miss in both `missed` and `knowledge` meant two shapes for one fact. `knowledge` is the single record. |
+> | §3 `supabase/03_module_quiz.sql` | Landed as `03_quiz_knowledge.sql`, one table for knowledge; attempts stay local. |
+
+
 ## Context
 
 Every authored lesson ends with 1–2 interactive checks (`mcq` / `truefalse`)

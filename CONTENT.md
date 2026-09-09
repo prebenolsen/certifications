@@ -512,13 +512,32 @@ and whether each is defined before the learner meets it** →
 - **Future ideas:** a hands-on SQL sandbox card type; a mixed-section mock exam;
   a clickable dashboard-builder walkthrough.
 - **Quiz coverage:** all 30 lessons contain at least one interactive check (58
-  MCQ/true-false cards total), so every module supports the shared practice,
-  exam, Back/Skip, and targeted struggle-review pipeline.
+  MCQ/true-false cards total), so all 9 modules support practice mode, exam mode
+  and the targeted struggle-review queue.
+
+## Quiz coverage across the platform
+
+Every `mcq` / `truefalse` card in a written lesson is automatically a question in
+its module's quiz — there is no separate bank. A module needs 3 to open one.
+`npm run validate` prints the totals and warns on any **complete** module that
+cannot fill a quiz.
+
+| Track | Questions | Complete modules that can fill a quiz |
+|-------|:---------:|:-------------------------------------:|
+| Data Analyst Associate | 58 | 9 / 9 |
+| Data Engineer Professional | 50 | 9 / 9 |
+| Data Engineer Associate | 40 | 7 / 7 |
+| Introduction to Data Engineering | 13 | 4 / 4 |
+| GenAI Engineer Associate | 8 | 1 / 1 authored |
+| GitHub Copilot (GH-300) | 6 | 1 / 1 authored |
+| **Total** | **175** | **31 / 31** |
 
 ## Platform-level future ideas
 
-- Exam-simulation mode (timed, 45 questions, mixed objectives).
-- Adaptive spaced-repetition scheduling for the existing struggle-review queue.
+- Exam-simulation mode (timed, 45 questions, mixed objectives) — the attempt
+  already owns its `questionIds`, so this is a different pool plus a clock.
+- Adaptive spaced-repetition scheduling on top of the struggle-review queue.
+- Authored question banks per module, on top of the generated pool.
 - "Explain in your own words" free-text reflection cards.
 - Drag-and-drop and ordering exercise card types.
 - Per-objective readiness heatmap tied to the official exam outline.

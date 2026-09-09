@@ -101,6 +101,26 @@ export const deltaLakeIntroLesson: Lesson = {
         'The new files are invisible until the log commits them, and the commit is a single atomic step. A query sees the version before the write or the version after it — nothing in between.',
     },
     {
+      id: 'mcq-rollback',
+      type: 'mcq',
+      question:
+        'An overnight job loaded a corrupt file into a Delta table. Nothing else has written to the table since. Why can you put the table back the way it was without restoring a backup?',
+      options: [
+        { id: 'a', text: 'The corrupt rows were quarantined on arrival, so the table never contained them.' },
+        { id: 'b', text: 'The log recorded the load as a new version rather than overwriting the old one, so the previous version is still describable.' },
+        { id: 'c', text: 'Databricks keeps a nightly copy of every table in separate storage.' },
+        { id: 'd', text: 'The job failed, so its files were never committed to the log.' },
+      ],
+      correct: ['b'],
+      optionFeedback: {
+        a: 'Nothing here rejected the file — the load succeeded. It loaded the wrong thing.',
+        c: 'There is no hidden second copy. The recovery comes from the log, not from a backup.',
+        d: 'The job worked. That is the problem: a successful load of bad data is committed like any other.',
+      },
+      explanation:
+        'Time travel is a consequence of how the log works, not a separate backup feature. Each commit adds a version instead of replacing the last one, so "the table before that load" is still a thing you can name and read — and therefore roll back to. It also has a limit: old versions are cleaned up on a retention schedule, so this is a same-week recovery, not a permanent archive.',
+    },
+    {
       id: 'flash-delta',
       type: 'flashcard',
       front: 'What two things make up a **Delta table**?',
