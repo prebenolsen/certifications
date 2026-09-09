@@ -27,5 +27,6 @@ export const supabase: SupabaseClient | null = isSupabaseConfigured
 /** Table names are prefixed so this app can share a Supabase project safely. */
 export const TABLES = {
   lessonProgress: 'certifications_lesson_progress',
+  quizKnowledge: 'certifications_quiz_knowledge',
   profiles: 'certifications_profiles',
 } as const

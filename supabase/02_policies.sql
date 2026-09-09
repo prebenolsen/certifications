@@ -4,6 +4,7 @@
 
   alter table public.certifications_profiles enable row level security;
   alter table public.certifications_lesson_progress enable row level security;
+  alter table public.certifications_quiz_knowledge enable row level security;
 
   -- Profiles: a user manages only their own row.
   create policy "certifications_profiles_select_own"
@@ -35,4 +36,21 @@
 
   create policy "certifications_progress_delete_own"
     on public.certifications_lesson_progress for delete
+    using (auth.uid() = user_id);
+
+  create policy "certifications_quiz_knowledge_select_own"
+    on public.certifications_quiz_knowledge for select
+    using (auth.uid() = user_id);
+
+  create policy "certifications_quiz_knowledge_insert_own"
+    on public.certifications_quiz_knowledge for insert
+    with check (auth.uid() = user_id);
+
+  create policy "certifications_quiz_knowledge_update_own"
+    on public.certifications_quiz_knowledge for update
+    using (auth.uid() = user_id)
+    with check (auth.uid() = user_id);
+
+  create policy "certifications_quiz_knowledge_delete_own"
+    on public.certifications_quiz_knowledge for delete
     using (auth.uid() = user_id);

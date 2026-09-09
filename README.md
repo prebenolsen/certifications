@@ -88,9 +88,12 @@ The app ships as a static site to GitHub Pages at
 Sign-in is **optional**. By default everyone is a **Guest** and progress is saved
 in the browser's `localStorage` — no account, works offline, per-device.
 
-Signing in (passwordless email **magic link**, via Supabase) syncs progress to
-the cloud so it follows you across devices. If Supabase env vars are absent the
-app stays guest-only and the "Sign in" button never appears.
+Signing in (passwordless email **magic link**, via Supabase) syncs lesson
+progress and quiz knowledge to the cloud so they follow you across devices.
+Completed quizzes write unresolved questions in one batch; the certification
+page then offers **Learn what you struggle with** for targeted review. If
+Supabase env vars are absent the app stays guest-only and the "Sign in" button
+never appears.
 
 To enable accounts, follow [`supabase/supabase-readme.md`](supabase/supabase-readme.md):
 run the `.sql` files, then set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`
@@ -121,7 +124,8 @@ for the full picture. In short:
 | Diagrams | `src/components/diagrams/**` | Data-driven `DiagramSpec` primitives + custom SVGs by id |
 | Player | `src/components/player/CardPlayer.tsx` | The vertical card-flow experience |
 | Pages / routing | `src/pages/**`, `src/App.tsx` | Home, certification, module, lesson |
-| Progress | `src/context/ProgressContext.tsx` | Learner progress — localStorage (guest) or Supabase (signed in) |
+| Progress | `src/context/ProgressContext.tsx` | Lesson progress and quiz knowledge — localStorage (guest) or Supabase (signed in) |
+| Quizzes | `src/lib/quiz.ts`, `src/pages/QuizAttemptPage.tsx` | Seeded question selection, Back/Skip/I don't know navigation, attempts, and targeted review |
 | Auth | `src/context/AuthContext.tsx`, `src/lib/supabase.ts` | Optional magic-link sign-in; guest by default |
 | Glossary | `src/content/glossary.ts`, `src/lib/glossary.ts` | Terms defined once; matched and underlined at render time |
 | Validation | `scripts/validate-content.ts` | Content correctness + teaching-philosophy lint |

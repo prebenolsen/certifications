@@ -1,4 +1,4 @@
-import { getModule } from '@/content/registry'
+import { getCertification, getModule } from '@/content/registry'
 import {
   isInteractive,
   type Card,
@@ -8,7 +8,7 @@ import {
 } from '@/types/content'
 import { newSeed, rngFromSeed, shuffled } from './random'
 
-export type QuizMode = 'exam' | 'practice'
+export type QuizMode = 'exam' | 'practice' | 'review'
 
 export interface ReviewRef {
   lessonId: string
@@ -70,6 +70,11 @@ export function buildQuizPool(certId: string, moduleId: string): QuizQuestion[] 
       }]
     })
   })
+}
+
+export function buildCertificationQuizPool(certId: string): QuizQuestion[] {
+  const cert = getCertification(certId)
+  return cert?.modules.flatMap((module) => buildQuizPool(certId, module.id)) ?? []
 }
 
 export function quizPoolSize(module: Module): number {

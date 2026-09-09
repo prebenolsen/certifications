@@ -19,12 +19,15 @@ Sign-in is a **passwordless email magic link** — no passwords stored.
    - [`01_schema.sql`](./01_schema.sql) — tables, index, and the new-user trigger.
    - [`02_policies.sql`](./02_policies.sql) — Row Level Security policies.
 
-This creates two tables:
+This creates three application tables. They all use the `certifications_`
+prefix; Supabase's shared built-in `auth.users` table is referenced but not
+created by this app:
 
 | Table | Purpose |
 |-------|---------|
 | `certifications_profiles` | One row per user (auto-created on sign-up). |
 | `certifications_lesson_progress` | One row per (user, cert, lesson): viewed cards, answers, completed. |
+| `certifications_quiz_knowledge` | One row per (user, cert, module, question): unresolved knowledge and review history. |
 
 RLS ensures every user can read/write **only their own** rows, so the public
 anon key is safe to ship in the client bundle.

@@ -15,6 +15,22 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- **Persistent quiz knowledge for signed-in users.** Completed quizzes now send
+  one batched write to Supabase, recording unresolved questions and clearing
+  them when the learner later answers correctly. Certification pages expose a
+  targeted "Learn what you struggle with" review.
+- **Real quiz navigation.** Learners can go back, skip a question for later,
+  or mark "I don't know" so it returns as a failed knowledge item.
+
+### Fixed
+
+- Quiz answers no longer leak into the next question, and feedback now has an
+  explicit Continue/See results action.
+
 ## [1.7.0] — 2026-09-09
 
 ### Added

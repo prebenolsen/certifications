@@ -1,12 +1,47 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getModule } from '@/content/registry'
+import { useProgress } from '@/context/ProgressContext'
 import { buildQuizPool, QUIZ_MIN, QUIZ_TARGET } from '@/lib/quiz'
 import { NotFound } from './NotFound'
 
 export function QuizIntroPage() {
   const { certId = '', moduleId = '' } = useParams()
   const navigate = useNavigate()
+  const { getStruggleQuestions } = useProgress()
   const found = getModule(certId, moduleId)
+
+  if (!moduleId) {
+    const struggles = getStruggleQuestions(certId)
+    return (
+      <div className="space-y-6">
+        <nav className="text-sm">
+          <Link to={`/cert/${certId}`} className="text-accent hover:underline">
+            ← Back to certification
+          </Link>
+        </nav>
+        <div className="rounded-2xl border border-slate-200 bg-surface p-6 shadow-sm">
+          <p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
+            Targeted review
+          </p>
+          <h1 className="mt-2 text-2xl font-extrabold text-ink">Learn what you struggle with</h1>
+          <p className="mt-2 max-w-xl text-sm text-ink-soft">
+            {struggles.length === 0
+              ? 'You have no unresolved quiz questions yet.'
+              : `${struggles.length} question${struggles.length === 1 ? '' : 's'} need another pass.`}
+          </p>
+          {struggles.length > 0 && (
+            <button
+              type="button"
+              onClick={() => navigate(`/cert/${certId}/quiz/struggles/attempt?mode=review`)}
+              className="mt-6 rounded-2xl bg-brand px-5 py-3 text-sm font-semibold text-white"
+            >
+              Start targeted review
+            </button>
+          )}
+        </div>
+      </div>
+    )
+  }
 
   if (!found) return <NotFound />
 

@@ -29,6 +29,29 @@ create table if not exists public.certifications_lesson_progress (
 create index if not exists certifications_lesson_progress_user_idx
   on public.certifications_lesson_progress (user_id);
 
+-- One row per (user, certification, module, question). Rows remain available
+-- after a quiz so the learner can practise unresolved questions later.
+create table if not exists public.certifications_quiz_knowledge (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users (id) on delete cascade,
+  cert_id text not null,
+  module_id text not null,
+  question_id text not null,
+  review_refs jsonb not null default '[]'::jsonb,
+  stem text not null,
+  correct_ids jsonb not null default '[]'::jsonb,
+  chosen jsonb not null default '[]'::jsonb,
+  failed_count integer not null default 0,
+  needs_review boolean not null default true,
+  last_answered_at timestamptz not null default now(),
+  last_failed_at timestamptz,
+  resolved_at timestamptz,
+  unique (user_id, cert_id, module_id, question_id)
+);
+
+create index if not exists certifications_quiz_knowledge_user_idx
+  on public.certifications_quiz_knowledge (user_id, cert_id, needs_review);
+
 -- Create a profile automatically whenever a new auth user is created.
 create or replace function public.certifications_handle_new_user()
 returns trigger

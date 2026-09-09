@@ -511,11 +511,14 @@ and whether each is defined before the learner meets it** →
 
 - **Future ideas:** a hands-on SQL sandbox card type; a mixed-section mock exam;
   a clickable dashboard-builder walkthrough.
+- **Quiz coverage:** all 30 lessons contain at least one interactive check (58
+  MCQ/true-false cards total), so every module supports the shared practice,
+  exam, Back/Skip, and targeted struggle-review pipeline.
 
 ## Platform-level future ideas
 
 - Exam-simulation mode (timed, 45 questions, mixed objectives).
-- Spaced-repetition review queue built from missed questions.
+- Adaptive spaced-repetition scheduling for the existing struggle-review queue.
 - "Explain in your own words" free-text reflection cards.
 - Drag-and-drop and ordering exercise card types.
 - Per-objective readiness heatmap tied to the official exam outline.

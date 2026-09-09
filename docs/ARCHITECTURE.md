@@ -86,7 +86,7 @@ one-card-at-a-time flow — the "learning principles of TikTok" applied to study
 - The player is rendered **outside the standard `Layout`** (see `App.tsx`) so it
   can own the full viewport with its own header/footer chrome.
 
-## Progress & persistence
+## Progress, quizzes & persistence
 
 [`ProgressProvider`](../src/context/ProgressContext.tsx) stores per-lesson
 progress (`viewedCards`, `answers`, `completed`) and persists to `localStorage`
@@ -94,9 +94,15 @@ under `certifications.progress.v2`. Progress keys are scoped as
 `certId/lessonId`, so lesson ids only need to be unique *within* one
 certification (two certs can both have an `auto-loader` lesson). Legacy v1
 state (bare lesson-id keys) is migrated on first load by resolving each lesson
-id to its certification. It is deliberately backend-free; swapping in a remote
-store later means changing only this file. Storage reads are defensive —
-corrupt or unavailable storage falls back to an empty state rather than
+ids to its certification. Quiz attempts remain separate from lesson progress.
+At quiz completion, the provider derives one knowledge record per answered
+question and sends one batched upsert to
+`certifications_quiz_knowledge` for signed-in users. Records carry the source
+lesson/card reference, failure count, and `needs_review`; the certification-wide
+targeted review reads unresolved records and clears them after a later correct
+answer. Guests keep the same data in localStorage. Storage reads are defensive
+— corrupt or unavailable storage falls back to an empty state rather than
+crashing.
 crashing.
 
 Derived, learner-facing stats (lesson %, module %, quiz accuracy, cert-wide
@@ -105,7 +111,7 @@ keeping presentation logic out of the persistence layer.
 
 ## Routing & pages
 
-React Router drives four routes plus a fallback (`src/App.tsx`):
+React Router drives the learning and quiz routes plus a fallback (`src/App.tsx`):
 
 | Route | Page | Purpose |
 |-------|------|---------|
@@ -113,6 +119,8 @@ React Router drives four routes plus a fallback (`src/App.tsx`):
 | `/cert/:certId` | `CertificationPage` | Module grid |
 | `/cert/:certId/module/:moduleId` | `ModulePage` | Lesson list |
 | `/cert/:certId/module/:moduleId/lesson/:lessonId` | `LessonPage` | Full-screen player |
+| `/cert/:certId/module/:moduleId/quiz/...` | Quiz pages | Module practice/exam quiz |
+| `/cert/:certId/quiz/struggles/...` | Quiz pages | Certification-wide targeted review |
 
 Pages look content up through [`src/content/registry.ts`](../src/content/registry.ts),
 which is also where a new certification is registered. The registry additionally

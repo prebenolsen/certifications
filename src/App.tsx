@@ -35,6 +35,9 @@ export default function App() {
         <Route path="/cert/:certId/module/:moduleId/quiz" element={<QuizIntroPage />} />
         <Route path="/cert/:certId/module/:moduleId/quiz/attempt" element={<QuizAttemptPage />} />
         <Route path="/cert/:certId/module/:moduleId/quiz/results/:attemptId" element={<QuizResultsPage />} />
+        <Route path="/cert/:certId/quiz/struggles" element={<QuizIntroPage />} />
+        <Route path="/cert/:certId/quiz/struggles/attempt" element={<QuizAttemptPage />} />
+        <Route path="/cert/:certId/quiz/struggles/results/:attemptId" element={<QuizResultsPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
