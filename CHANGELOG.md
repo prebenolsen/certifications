@@ -15,6 +15,31 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
 
 ---
 
+## [1.5.1] — 2026-09-09
+
+### Changed
+
+- **Scoped the glossary rule: define the vendor's vocabulary, assume the
+  field's.** The learner has a degree or a career in data — they know data,
+  warehouses, SQL, compute, clusters, schemas and joins, and they know what Git
+  is. Glossing those is condescending and it buries the entries that mattered.
+  `CLAUDE.md` now carries the rule with a define/assume table, plus the
+  exception: **when the certification is *about* the thing** (Git in a GitHub
+  cert) it stops being background and gets taught properly.
+- Removed three glossary terms that broke the new rule — **PySpark**,
+  **workspace**, **cluster** (31 → 28). **Apache Spark** stays: it is a named
+  engine the platform is specifically bound to, not generic vocabulary. So does
+  **materialized view**, because a Lakeflow materialized view is a particular
+  managed dataset rather than the textbook SQL object.
+- **Reframed *What Databricks actually is*** to match. It no longer explains what
+  a cluster or distributed processing is. Instead: Databricks' *relationship* to
+  Spark (managed Spark plus a platform — your skills transfer), the vendor's
+  names for things you already know, and the DBU as the cost lens the exam
+  actually grades. The compute analogy shifted from "why you'd use a cluster" to
+  the metering model.
+- Split the vocabulary card in two — it had grown past the 700-character limit,
+  and the DBU point deserved its own card anyway. 13 cards, 272 for the cert.
+
 ## [1.5.0] — 2026-09-08
 
 ### Added

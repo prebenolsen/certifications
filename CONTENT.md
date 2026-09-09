@@ -289,14 +289,14 @@ and whether each is defined before the learner meets it** →
 - **Exam:** 45 multiple-choice questions · 90 minutes · USD 200 · valid 2 years
 - **Source of truth:** `src_material/databricks/databricks-certified-data-engineer-associate`
 - **Modules:** 7 (mirroring the 7 official exam sections)
-- **Lessons authored:** 27 of 27 ✅ · **Cards:** 271 · all 5 official sample
+- **Lessons authored:** 27 of 27 ✅ · **Cards:** 272 · all 5 official sample
   questions woven in as MCQs
 
 ### Module E1 — The Data Intelligence Platform 🧠 (Section 1, 6%) · ✅
 
 | Lesson | Status | Cards | Checks | Diagrams | Highlights |
 |--------|:------:|:-----:|--------|----------|------------|
-| What Databricks actually is | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | platform shape (layers) | orientation lesson — Spark, workspace, cluster, DBU; "you don't load data into Databricks" |
+| What Databricks actually is | ✅ | 13 | 1 mcq, 1 t/f, 1 flashcard | platform shape (layers) | orientation lesson — vendor vocabulary only, not generic DE; DBU as the cost lens; "you don't load data into Databricks" |
 | Why the lakehouse exists | ✅ | 11 | 1 mcq, 1 flashcard | architecture (compare) | library/storage-unit analogy; time-travel SQL; sample Q2 |
 | Lakeflow: the word in front of everything | ✅ | 14 | 1 mcq, 1 t/f, 1 flashcard | the four members (flow) | Connect/Pipelines/Designer/Jobs; DLT→Lakeflow renames; Jobs vs Pipelines |
 | Picking the right compute | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | compute menu (compare) | DBU cost model; sample Q4 |

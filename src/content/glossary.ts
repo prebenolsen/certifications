@@ -15,14 +15,24 @@
  *
  * Rules for adding a term:
  *
- * 1. **Proper nouns and distinctive phrases only.** "Lakeflow Pipelines", yes.
+ * 1. **Vendor- and platform-specific terms only.** The learner is a data
+ *    engineer: they know data, warehouses, SQL, compute, clusters, schemas,
+ *    joins — and they know what Git is. Glossing those is condescending and it
+ *    buries the entries that mattered. Define **Lakeflow**, **Unity Catalog**,
+ *    **DBU**, **Liquid Clustering**; assume the rest.
+ *    *Exception:* when the certification is **about** the thing (Git in a GitHub
+ *    cert), it stops being background and gets taught properly.
+ *    *Also in scope:* a generic word the platform gives a **specific** meaning —
+ *    a *materialized view* in a Lakeflow pipeline is a particular managed
+ *    dataset, not the textbook SQL object.
+ * 2. **Proper nouns and distinctive phrases only.** "Lakeflow Pipelines", yes.
  *    "flow", "view", "sink" — no: they match ordinary prose and turn the card
  *    into a field of underlines. Define those inside the lesson that needs them.
- * 2. **Definition, not description.** One or two sentences a learner could
+ * 3. **Definition, not description.** One or two sentences a learner could
  *    repeat back. If it needs three, the second one belongs in `note`.
- * 3. **Cite volatile facts.** Product names drift (see the Lakeflow entries).
+ * 4. **Cite volatile facts.** Product names drift (see the Lakeflow entries).
  *    `source` is what lets us re-verify instead of re-guessing.
- * 4. **Set `introducedIn` honestly.** A lesson that mentions the term does not
+ * 5. **Set `introducedIn` honestly.** A lesson that mentions the term does not
  *    introduce it. Leave it off and let the report tell the truth.
  */
 import type { GlossaryTerm } from '@/types/content'
@@ -55,15 +65,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       'The open-source engine that does the processing. Its trick is **splitting one big job across many machines**: the work is broken into pieces, the pieces run in parallel, and the results are combined.',
     note: 'Databricks was founded by Spark’s creators. You write Spark code in Python (**PySpark**) or SQL; Databricks runs it.',
-    seeAlso: ['databricks', 'pyspark'],
-    introducedIn: ['what-is-databricks'],
-  },
-  {
-    id: 'pyspark',
-    term: 'PySpark',
-    definition:
-      'The Python API for Apache Spark — how most transformation code on Databricks is written, when it is not written in SQL.',
-    seeAlso: ['apache-spark'],
+    seeAlso: ['databricks', 'data-intelligence-platform'],
     introducedIn: ['what-is-databricks'],
   },
   {
@@ -82,26 +84,8 @@ export const glossary: GlossaryTerm[] = [
     definition:
       'A **Databricks Unit** — the unit compute is billed in, roughly "how much processing did that consume". Bigger or longer-running clusters burn more.',
     note: 'Every cluster decision is therefore a cost decision.',
-    seeAlso: ['cluster', 'databricks'],
+    seeAlso: ['databricks'],
     introducedIn: ['what-is-databricks'],
-  },
-  {
-    id: 'workspace',
-    term: 'workspace',
-    definition:
-      'The environment you log into: your notebooks, jobs, pipelines, dashboards, and settings. Companies usually run several — dev, test, prod.',
-    seeAlso: ['unity-catalog', 'cluster'],
-    introducedIn: ['what-is-databricks'],
-  },
-  {
-    id: 'cluster',
-    term: 'cluster',
-    aliases: ['clusters'],
-    definition:
-      'The group of machines that actually runs your code. A notebook with no cluster attached does nothing.',
-    note: '**All-purpose** clusters are for people working interactively; **job** clusters are created for a scheduled run and deleted when it ends, at a cheaper rate.',
-    seeAlso: ['dbu', 'workspace'],
-    introducedIn: ['what-is-databricks', 'compute-choices'],
   },
 
   /* ---------------------------------------------------------------- */

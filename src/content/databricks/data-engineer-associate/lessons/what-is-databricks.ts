@@ -13,7 +13,7 @@ export const whatIsDatabricksLesson: Lesson = {
   id: 'what-is-databricks',
   title: 'What Databricks actually is',
   summary:
-    'Before the exam topics: what the product is, what problem it was built for, and the handful of words — workspace, cluster, notebook, DBU — that every later lesson assumes you already know.',
+    'Before the exam topics: what the product is, how it relates to Spark, and the vendor-specific vocabulary the rest of the certification assumes — including the one word that is genuinely new.',
   estimatedMinutes: 8,
   status: 'complete',
   cards: [
@@ -22,9 +22,9 @@ export const whatIsDatabricksLesson: Lesson = {
       type: 'scenario',
       eyebrow: 'Start here',
       title: 'The tour that skips the introduction',
-      body: 'Most Databricks material starts at full speed: clusters, catalogs, Lakeflow, Delta. It assumes you already know what the product **is**.\n\nSo this lesson does the boring, useful thing first. None of it is an exam question on its own. All of it is assumed by every exam question.',
+      body: 'Most Databricks material starts at full speed: catalogs, Lakeflow, Delta, DBUs. It assumes you already know what the product **is** and what its words mean.\n\nYou know data engineering. What you may not yet know is **this vendor** — so that is all this lesson covers. None of it is an exam question on its own; all of it is assumed by every exam question.',
       atWork:
-        'The fastest way to look lost in a new platform is to nod along to a word you never had defined. Get the vocabulary now and the next 24 lessons cost you less.',
+        'The fastest way to feel lost in a familiar field is a vendor word nobody defined. Get these now and the next 26 lessons cost you less.',
     },
     {
       id: 'concept-databricks',
@@ -40,34 +40,42 @@ export const whatIsDatabricksLesson: Lesson = {
     {
       id: 'analogy-power',
       type: 'analogy',
-      title: 'Renting the power station',
-      body: 'Processing a few gigabytes is a laptop job. Processing a few *petabytes* needs hundreds of machines working together — and buying hundreds of machines to use them for twenty minutes a night is absurd.\n\nDatabricks is the utility company for that: you describe the work, it starts the machines, does it, and **switches them off**. You pay for the twenty minutes, not the hardware.',
+      title: 'Metered, not owned',
+      body: 'You already know why a cluster beats one large machine. What is worth internalising early is Databricks’ **commercial** model, because it shapes almost every design decision in this certification.\n\nCompute here is metered like electricity: you describe the work, the platform starts machines, runs it, and **switches them off**. There is no idle fleet you have already paid for — which is why "just leave it running" is a cost decision, not a convenience.',
       mapping: [
-        { from: 'Buying a generator', to: 'Buying and running your own server cluster' },
-        { from: 'Plugging into the grid', to: 'Starting compute on Databricks when you need it' },
-        { from: 'Paying per kilowatt-hour', to: 'Paying per DBU — per second of compute used' },
+        { from: 'Owning a generator', to: 'A cluster you provisioned and pay for whether or not it is busy' },
+        { from: 'Metered supply from the grid', to: 'Compute started on demand and auto-terminated' },
+        { from: 'Kilowatt-hours on the bill', to: '**DBUs** — the unit Databricks meters you in' },
       ],
     },
     {
       id: 'concept-spark',
       type: 'concept',
-      title: 'Apache Spark: the engine underneath',
-      body: '**Apache Spark** is the open-source engine that actually does the processing. Its trick is **splitting one big job across many machines**: your query is broken into pieces, the pieces run in parallel, and the results are combined.\n\nDatabricks was founded by Spark’s creators. You will write Spark code — in Python (**PySpark**) or SQL — throughout this certification, and Databricks runs it for you.',
+      title: 'Its relationship with Apache Spark',
+      body: 'You have almost certainly met **Apache Spark**. What matters here is how closely the platform is bound to it: Databricks was **founded by Spark’s creators**, and Spark is the engine underneath essentially everything you will build in this certification.\n\nSo Databricks is not an alternative to Spark, and not a wrapper you could swap out. It is the managed platform *around* Spark — the compute, the storage governance, the orchestration, and the tuning that you would otherwise assemble yourself.',
       takeaways: [
-        'Spark = the distributed processing engine.',
-        'You write **PySpark** (Python) or **SQL**; Spark splits the work up.',
-        'Databricks is the managed platform around Spark, not a replacement for it.',
+        'Databricks is **managed Spark plus a platform**, not a replacement for it.',
+        'Your PySpark and SQL skills transfer directly.',
+        'When you tune a job here, you are tuning Spark.',
       ],
     },
     {
       id: 'concept-vocabulary',
       type: 'concept',
-      title: 'Four words the rest of the course assumes',
-      body: '• **Workspace** — the environment you log into: your notebooks, jobs, dashboards, and settings. A company usually has several (dev, test, prod).\n• **Notebook** — a document of runnable code cells mixed with text. Where most work gets written.\n• **Cluster** — the group of machines that runs your code. Starting one is what turns a notebook from text into results.\n• **DBU** (*Databricks Unit*) — the unit you are billed in, roughly "how much compute did that consume." Bigger or longer-running clusters burn more.',
+      title: 'The local names for things you already know',
+      body: 'You know what a cluster and a notebook are. This is just the translation, plus the details that are actually Databricks-specific:\n\n• **Workspace** — the environment you log into. What matters: companies run **several** (dev, test, prod), and each one used to govern itself.\n• **Notebook** — as expected. It does nothing until a cluster is **attached**.\n• **Cluster** — as expected, but in two flavours: **all-purpose** (you create it, you share it, it lingers) and **job** (created for a scheduled run, deleted at the end, billed cheaper).',
       takeaways: [
-        'Workspace = where you work. Cluster = what does the work.',
-        'A notebook without a running cluster attached does nothing.',
-        'Cost tracks **DBUs**, so cluster choices are cost choices.',
+        'The all-purpose/job split is a **billing** distinction as much as a technical one.',
+      ],
+    },
+    {
+      id: 'concept-dbu',
+      type: 'concept',
+      title: 'DBU — the one genuinely new word',
+      body: 'A **DBU** (*Databricks Unit*) is the unit compute is metered in — roughly "how much processing did that consume". It is not a machine-hour: a bigger or more capable cluster burns DBUs faster.\n\nThis is worth pausing on because it quietly shapes the whole certification. Cluster sizing, job clusters over all-purpose, auto-termination, Photon, choosing between Auto Loader and `COPY INTO` — these are presented as technical choices and graded as **cost** choices.',
+      takeaways: [
+        'DBUs, not hours. Capability affects the burn rate.',
+        'An entire exam section exists because compute decisions are cost decisions.',
       ],
     },
     {
@@ -176,8 +184,8 @@ export const whatIsDatabricksLesson: Lesson = {
       title: 'You now have the vocabulary',
       points: [
         'Databricks = a **cloud platform** for big-data processing, analytics, and AI.',
-        '**Apache Spark** is the engine; you write PySpark or SQL.',
-        '**Workspace** = where you work · **cluster** = what runs the code · **DBU** = how it is billed.',
+        'It is **managed Apache Spark plus a platform** — your Spark skills transfer directly.',
+        '**All-purpose** vs **job** clusters is a billing distinction; **DBUs** are the meter.',
         'Your data stays in **your** cloud storage, in open formats — nothing is loaded "into" Databricks.',
         '**Data Intelligence Platform** is the name for the whole thing.',
       ],

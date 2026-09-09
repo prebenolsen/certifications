@@ -72,22 +72,43 @@ it is the sentence that makes the next 26 lessons parse as one product instead
 of a pile of features.
 
 An orientation lesson covers: what the product **is**, at a high level of
-abstraction; the engine or idea underneath it; and the handful of everyday nouns
-the rest of the certification silently assumes (for Databricks: *workspace*,
-*notebook*, *cluster*, *DBU*). Nothing in it is an exam question by itself.
-Everything in it is assumed by every exam question.
+abstraction; the engine or idea underneath it; and **the vendor's names for
+things the learner already understands** (a Databricks *workspace*, *cluster*,
+*notebook*, *DBU*). That last part is a translation, not a tutorial — the learner
+knows what a cluster is; they do not yet know that Databricks bills one in DBUs
+and deletes a job cluster when the run ends. Nothing in an orientation lesson is
+an exam question by itself; everything in it is assumed by every exam question.
 
 **And introduce big things early.** If something is a large part of the subject,
 it belongs near the front — not at the point where the exam outline happens to
 mention it. *Lakeflow* is most of what data engineering on Databricks *is*, so it
 is Module 1, not a prefix the learner meets in Module 4.
 
-### What goes in the glossary
+### What goes in the glossary — and what does not
 
-Proper nouns and distinctive multi-word phrases only — "Lakeflow Pipelines",
-"materialized view", "Liquid Clustering". **Not** bare common words ("flow",
-"view", "sink"): they match ordinary prose and turn a card into a field of
-underlines. Define those inside the lesson that needs them.
+**Assume a data engineer.** The learner has a degree or a career in something
+data-related. They know what data, a warehouse, SQL, compute, a cluster, a
+schema, and a join are. They know what **Git** is. Explaining those is not
+thoroughness, it is condescension, and it buries the terms that actually needed
+explaining.
+
+**Define what is specific to the vendor, the platform, or the certification.**
+
+| Define | Assume known |
+|---|---|
+| **Lakeflow**, **Lakeflow Pipelines**, **Unity Catalog**, **Delta Lake**, **Auto Loader**, **DBU**, **Liquid Clustering**, **Mosaic AI Vector Search** | data, warehouse, data lake, SQL, compute, cluster, node, schema, table, join, partition, index, API, JSON, Parquet |
+| Product names, renamed products, platform-specific objects and units | Git, Python, Docker, CI/CD, REST, cloud storage |
+| A generic word the platform gives a **specific** meaning — a *materialized view* in a Lakeflow pipeline is a particular kind of managed dataset, not the textbook SQL object | The textbook meaning of that same word |
+
+**The exception is when the certification is *about* the thing.** Git is assumed
+everywhere — except in a Git or GitHub certification, where it is the subject and
+gets taught properly. Apply the same test to any term: *is this what the exam is
+examining, or is it background the learner brought with them?*
+
+Formatting rules on top of that: proper nouns and distinctive multi-word phrases
+only. **Not** bare common words ("flow", "view", "sink") — they match ordinary
+prose and turn a card into a field of underlines. Define those inside the lesson
+that needs them.
 
 Set `introducedIn` **honestly**. A lesson that *mentions* a term does not
 introduce it. Leaving it off and letting the report say "nothing introduces this"
