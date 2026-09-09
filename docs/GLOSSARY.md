@@ -9,12 +9,12 @@ on its own: a term taught in one is still undefined in another.
 
 | | |
 |---|---|
-| Terms defined | 28 |
-| Term/certification pairs checked | 49 |
-| ✅ introduced before use | 23 |
+| Terms defined | 43 |
+| Term/certification pairs checked | 106 |
+| ✅ introduced before use | 75 |
 | 🔗 introduced in a prerequisite certification | 10 |
-| ⚠️ used before introduced | 14 |
-| ❌ used but never introduced | 2 |
+| ⚠️ used before introduced | 20 |
+| ❌ used but never introduced | 1 |
 
 ---
 
@@ -22,17 +22,22 @@ on its own: a term taught in one is still undefined in another.
 
 | | Term | Certification | First met in | Introduced in |
 |---|---|---|---|---|
-| ❌ | **Databricks** | Databricks Certified Data Analyst Associate | M1 · `unity-namespace` | — *nothing does* |
+| ⚠️ | **Apache Spark** | Databricks Certified Data Analyst Associate | M1 · `platform-components` | M5 · `photon` |
+| ⚠️ | **Databricks SQL** | Databricks Certified Data Analyst Associate | M1 · `what-is-databricks-analyst` | M1 · `platform-components` |
+| ⚠️ | **query profile** | Databricks Certified Data Analyst Associate | M5 · `photon` | M5 · `query-insights-history` |
 | ⚠️ | **lakehouse** | Databricks Certified Data Engineer Associate | M1 · `what-is-databricks` | M1 · `lakehouse-foundations` |
 | ⚠️ | **Lakeflow** | Databricks Certified Data Engineer Associate | M1 · `what-is-databricks` | M1 · `lakeflow-overview` |
 | ⚠️ | **pipeline expectation** | Databricks Certified Data Engineer Associate | M3 · `bronze-to-silver` | M3 · `lakeflow-pipelines` |
 | ⚠️ | **Auto Loader** | Databricks Certified Data Engineer Associate | M1 · `what-is-databricks` | M2 · `auto-loader` |
 | ⚠️ | **Databricks Asset Bundle** | Databricks Certified Data Engineer Associate | M3 · `lakeflow-pipelines` | M5 · `asset-bundles` |
+| ⚠️ | **SQL warehouse** | Databricks Certified Data Engineer Associate | M1 · `lakehouse-foundations` | M1 · `compute-choices` |
 | ⚠️ | **streaming table** | Databricks Certified Data Engineer Professional | M2 · `declarative-pipelines` | M2 · `streaming-tables-vs-mvs` |
 | ⚠️ | **materialized view** | Databricks Certified Data Engineer Professional | M2 · `declarative-pipelines` | M2 · `streaming-tables-vs-mvs` |
 | ⚠️ | **AUTO CDC** | Databricks Certified Data Engineer Professional | M2 · `streaming-tables-vs-mvs` | M2 · `apply-changes-cdc` |
 | ⚠️ | **Databricks Asset Bundle** | Databricks Certified Data Engineer Professional | M1 · `python-project-structure` | M9 · `cicd-asset-bundles` |
 | ⚠️ | **Liquid Clustering** | Databricks Certified Data Engineer Professional | M5 · `dimensional-modeling` | M5 · `liquid-clustering` |
+| ⚠️ | **Delta Sharing** | Databricks Certified Data Engineer Professional | M6 · `managed-tables-overhead` | M7 · `delta-sharing` |
+| ⚠️ | **Lakehouse Federation** | Databricks Certified Data Engineer Professional | M7 · `delta-sharing` | M7 · `lakehouse-federation` |
 | ❌ | **Databricks** | Databricks Certified Generative AI Engineer Associate | M1 · `embeddings-vectors` | — *nothing does* |
 | ⚠️ | **Mosaic AI Vector Search** | Databricks Certified Generative AI Engineer Associate | M1 · `embeddings-vectors` | M1 · `mosaic-ai-stack` |
 | ⚠️ | **embedding** | Databricks Certified Generative AI Engineer Associate | M1 · `llm-basics` | M1 · `embeddings-vectors` |
@@ -54,31 +59,46 @@ following the intended order has already met it.
 
 | Term | Also written as | Introduced in | Used by |
 |---|---|---|---|
-| **Databricks** | — | `what-is-databricks` | ❌ Data Analyst Associate<br>✅ Data Engineer Associate<br>🔗 Data Engineer Professional<br>❌ Generative AI Engineer Associate |
-| **Data Intelligence Platform** | — | `what-is-databricks` | ✅ Data Engineer Associate |
-| **Apache Spark** | `Spark` | `what-is-databricks` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
-| **lakehouse** | — | `lakehouse-foundations` | ⚠️ Data Engineer Associate<br>🔗 Data Engineer Professional |
-| **DBU** | `Databricks Unit`, `DBUs` | `what-is-databricks` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
-| **Lakeflow** | — | `lakeflow-overview` | ⚠️ Data Engineer Associate<br>🔗 Data Engineer Professional |
-| **Lakeflow Connect** | — | `lakeflow-overview`, `lakeflow-connect` | ✅ Data Engineer Associate |
-| **Lakeflow Pipelines** | `Lakeflow Spark Declarative Pipelines`, `Lakeflow Spark Declarative Pipeline`, `Lakeflow declarative pipelines`, `Lakeflow declarative pipeline`, `Lakeflow pipeline`, `declarative pipelines`, `declarative pipeline` | `lakeflow-overview`, `lakeflow-pipelines`, `declarative-pipelines` | ✅ Data Engineer Associate<br>✅ Data Engineer Professional |
-| **Lakeflow Designer** | — | `lakeflow-overview` | ✅ Data Engineer Associate |
-| **Lakeflow Jobs** | `Lakeflow Job` | `lakeflow-overview`, `jobs-tasks-dag` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
-| **streaming table** | `streaming tables` | `gold-layer`, `lakeflow-pipelines`, `streaming-tables-vs-mvs` | ✅ Data Engineer Associate<br>⚠️ Data Engineer Professional |
-| **materialized view** | `materialized views` | `gold-layer`, `lakeflow-pipelines`, `streaming-tables-vs-mvs` | ✅ Data Engineer Associate<br>⚠️ Data Engineer Professional |
+| **Databricks** | — | `what-is-databricks-intro`, `what-is-databricks`, `what-is-databricks-analyst` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate<br>✅ Data Engineer Associate<br>🔗 Data Engineer Professional<br>❌ Generative AI Engineer Associate |
+| **Data Intelligence Platform** | — | `what-is-databricks-intro`, `what-is-databricks`, `what-is-databricks-analyst` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate<br>✅ Data Engineer Associate |
+| **Apache Spark** | `Spark` | `what-is-databricks-intro`, `what-is-databricks`, `photon` | ✅ Introduction to Data Engineering with Databricks<br>⚠️ Data Analyst Associate<br>✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **lakehouse** | — | `lakehouse-intro`, `lakehouse-foundations`, `what-is-databricks-analyst` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate<br>⚠️ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **DBU** | `Databricks Unit`, `DBUs` | `compute-intro`, `what-is-databricks`, `what-is-databricks-analyst` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate<br>✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **Lakeflow** | — | `lakeflow-intro`, `lakeflow-overview`, `platform-components` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate<br>⚠️ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **Lakeflow Connect** | — | `lakeflow-intro`, `lakeflow-overview`, `lakeflow-connect` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Engineer Associate |
+| **Lakeflow Pipelines** | `Lakeflow Spark Declarative Pipelines`, `Lakeflow Spark Declarative Pipeline`, `Lakeflow declarative pipelines`, `Lakeflow declarative pipeline`, `Lakeflow pipeline`, `declarative pipelines`, `declarative pipeline` | `lakeflow-intro`, `lakeflow-overview`, `lakeflow-pipelines`, `declarative-pipelines`, `platform-components` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate<br>✅ Data Engineer Associate<br>✅ Data Engineer Professional |
+| **Lakeflow Designer** | — | `lakeflow-intro`, `lakeflow-overview` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Engineer Associate |
+| **Lakeflow Jobs** | `Lakeflow Job` | `lakeflow-intro`, `lakeflow-overview`, `jobs-tasks-dag`, `platform-components` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate<br>✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **streaming table** | `streaming tables` | `gold-layer`, `lakeflow-pipelines`, `streaming-tables-vs-mvs`, `auto-loader` | ✅ Data Analyst Associate<br>✅ Data Engineer Associate<br>⚠️ Data Engineer Professional |
+| **materialized view** | `materialized views` | `gold-layer`, `lakeflow-pipelines`, `streaming-tables-vs-mvs`, `views-mv-streaming` | ✅ Data Analyst Associate<br>✅ Data Engineer Associate<br>⚠️ Data Engineer Professional |
 | **pipeline expectation** | `pipeline expectations` | `lakeflow-pipelines`, `declarative-pipelines` | ⚠️ Data Engineer Associate<br>✅ Data Engineer Professional |
 | **AUTO CDC** | `APPLY CHANGES` | `apply-changes-cdc` | ⚠️ Data Engineer Professional |
-| **Delta Lake** | — | `lakehouse-foundations` | ✅ Data Engineer Associate |
-| **Unity Catalog** | `UC` | `lakehouse-foundations`, `unity-namespace`, `mosaic-ai-stack` | ✅ Data Analyst Associate<br>✅ Data Engineer Associate<br>🔗 Data Engineer Professional<br>✅ Generative AI Engineer Associate |
-| **Auto Loader** | — | `auto-loader` | ⚠️ Data Engineer Associate<br>🔗 Data Engineer Professional |
-| **medallion architecture** | `medallion` | `lakehouse-foundations` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **Delta Lake** | — | `delta-lake-intro`, `lakehouse-foundations`, `platform-components`, `what-is-databricks-analyst` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate<br>✅ Data Engineer Associate |
+| **Unity Catalog** | `UC` | `unity-catalog-intro`, `lakehouse-foundations`, `unity-namespace`, `mosaic-ai-stack`, `unity-catalog-explained`, `what-is-databricks-analyst` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate<br>✅ Data Engineer Associate<br>🔗 Data Engineer Professional<br>✅ Generative AI Engineer Associate |
+| **Auto Loader** | — | `lakeflow-intro`, `auto-loader`, `ingestion-methods` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate<br>⚠️ Data Engineer Associate<br>🔗 Data Engineer Professional |
+| **medallion architecture** | `medallion` | `medallion-intro`, `lakehouse-foundations`, `medallion` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate<br>✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
 | **Databricks Asset Bundle** | `Databricks Asset Bundles`, `Asset Bundle`, `Asset Bundles`, `Declarative Automation Bundle`, `Declarative Automation Bundles`, `DAB` | `asset-bundles`, `cicd-asset-bundles` | ⚠️ Data Engineer Associate<br>⚠️ Data Engineer Professional |
 | **Git folder** | `Git folders`, `Databricks Repos` | `git-folders` | ✅ Data Engineer Associate<br>🔗 Data Engineer Professional |
-| **Liquid Clustering** | — | `liquid-clustering` | ✅ Data Engineer Associate<br>⚠️ Data Engineer Professional |
+| **Liquid Clustering** | — | `liquid-clustering` | ✅ Data Analyst Associate<br>✅ Data Engineer Associate<br>⚠️ Data Engineer Professional |
 | **predictive optimization** | — | `liquid-clustering` | ✅ Data Engineer Associate<br>✅ Data Engineer Professional |
 | **Mosaic AI Vector Search** | `Databricks AI Search`, `Vector Search` | `mosaic-ai-stack` | ⚠️ Generative AI Engineer Associate |
 | **embedding** | `embeddings` | `embeddings-vectors` | ⚠️ Generative AI Engineer Associate |
 | **RAG** | `Retrieval-Augmented Generation`, `retrieval-augmented generation` | `rag-vs-alternatives` | ⚠️ Generative AI Engineer Associate |
 | **Foundation Model APIs** | — | `mosaic-ai-stack` | ⚠️ Generative AI Engineer Associate |
-| **Mosaic AI Model Serving** | `Model Serving` | `mosaic-ai-stack` | ✅ Generative AI Engineer Associate |
-| **MLflow** | — | `mosaic-ai-stack` | ✅ Generative AI Engineer Associate |
+| **Mosaic AI Model Serving** | `Model Serving` | `analytics-ai-intro`, `mosaic-ai-stack` | ✅ Introduction to Data Engineering with Databricks<br>✅ Generative AI Engineer Associate |
+| **MLflow** | — | `analytics-ai-intro`, `mosaic-ai-stack` | ✅ Introduction to Data Engineering with Databricks<br>✅ Generative AI Engineer Associate |
+| **Databricks SQL** | — | `analytics-ai-intro`, `platform-components`, `query-profiling` | ✅ Introduction to Data Engineering with Databricks<br>⚠️ Data Analyst Associate<br>✅ Data Engineer Professional |
+| **SQL warehouse** | `SQL warehouses`, `SQL Warehouse`, `SQL Warehouses` | `compute-intro`, `compute-choices`, `sql-warehouses`, `what-is-databricks-analyst` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate<br>⚠️ Data Engineer Associate |
+| **Photon** | — | `photon`, `what-is-databricks` | ✅ Data Analyst Associate<br>✅ Data Engineer Associate |
+| **Catalog Explorer** | — | `catalog-explorer-lineage`, `access-control`, `governance-discoverability` | ✅ Data Analyst Associate<br>✅ Data Engineer Associate<br>✅ Data Engineer Professional |
+| **data lineage** | — | `unity-catalog-intro`, `catalog-explorer-lineage`, `governance-discoverability` | ✅ Introduction to Data Engineering with Databricks |
+| **dynamic view** | `dynamic views` | `row-filters-column-masks`, `views-mv-streaming` | ✅ Data Analyst Associate<br>✅ Data Engineer Professional |
+| **query profile** | `Query Profiler`, `query profiler` | `query-profiling`, `query-insights-history` | ⚠️ Data Analyst Associate<br>✅ Data Engineer Professional |
+| **Delta Sharing** | — | `delta-sharing`, `ingestion-methods`, `unity-catalog-explained` | ✅ Data Analyst Associate<br>⚠️ Data Engineer Professional |
+| **Databricks Marketplace** | `Marketplace` | `platform-components` | ✅ Data Analyst Associate |
+| **Lakehouse Federation** | `foreign catalog` | `lakehouse-federation`, `joins-and-sets` | ✅ Data Analyst Associate<br>⚠️ Data Engineer Professional |
+| **AI/BI dashboard** | `AI/BI dashboards`, `AI/BI Dashboards` | `analytics-ai-intro`, `aibi-dashboards` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate |
+| **Genie space** | `Genie spaces`, `Genie Agent`, `Genie Agents`, `AI/BI Genie` | `analytics-ai-intro`, `genie-intro` | ✅ Introduction to Data Engineering with Databricks<br>✅ Data Analyst Associate |
+| **trusted asset** | `trusted assets`, `Trusted Assets` | `genie-build-optimize`, `genie-intro` | ✅ Data Analyst Associate |
+| **Databricks Assistant** | `Genie Code` | `sql-warehouses` | ✅ Data Analyst Associate |
+| **Data Intelligence Engine** | — | `platform-components` | ✅ Data Analyst Associate |

@@ -19,6 +19,99 @@ Every topic is taught the way a good teacher would:
 5. Every interactive question ties back to an **official exam objective** and,
    where useful, a real day-at-work situation.
 
+## Writing style
+
+The philosophy above says *what* to teach. This says *how it reads*: like an
+experienced engineer explaining something to another engineer — not
+documentation read aloud. Direct, practical, technically accurate,
+conversational without being casual, confident without being verbose.
+
+**Maximum understanding per word.**
+
+### The shape of an explanation
+
+**Concept → explanation → example or analogy → certification takeaway.**
+
+Not: concept → long explanation → unnecessary background → edge cases →
+repetition.
+
+Across a lesson that usually plays out as *what it is → why it matters → how it
+works → an example or analogy where one helps → the certification takeaway*. Not
+every lesson needs every part.
+
+### Rules
+
+- Get to the point. Short paragraphs.
+- Simple, precise language over academic language.
+- Explain the important **why**, not just the definition.
+- Introduce terminology naturally, then use the correct term consistently.
+- Say it once — no restating the same idea in different words, and no closing
+  summary that repeats the card above it (that is what `recap` is for, as a
+  checklist, not a re-explanation).
+- Don't pad. Never add information to make a lesson longer.
+- Don't explain the obvious. The reader is intelligent and has a data
+  background; they are new to *this* platform's version of the idea, not to the
+  field. (See the define/assume table in `CLAUDE.md`.)
+- Avoid excessive "you", rhetorical questions, and marketing language.
+- Never write: "In today's rapidly evolving technological landscape…", "It is
+  important to note that…", "Let's dive into…".
+
+### Examples
+
+Use one when it makes the concept easier to grasp. Concrete, realistic, short,
+and directly about the concept:
+
+> Imagine a company receives millions of JSON files every day. A data lake can
+> store these files cheaply without requiring them to be transformed first.
+
+Not a long hypothetical with invented company detail.
+
+### Analogies
+
+Use one when it genuinely clarifies something abstract. It should map clearly to
+the technical concept, be familiar and short, and state the mapping explicitly
+(that is what the `mapping` field on an `analogy` card is for).
+
+Don't force an analogy into every lesson. If it becomes more complicated than
+the concept, abandon it.
+
+### Depth
+
+Prioritize, in order:
+
+1. Core concept
+2. Important distinctions
+3. Practical use
+4. Certification-relevant details
+5. Common misconceptions
+
+Deprioritize historical background, trivia, implementation detail, and edge
+cases that aren't certification-relevant. Anything that wants its own
+explanation belongs in its own lesson.
+
+### Contrast what the exam confuses
+
+Certification questions test the boundary between similar services. When two
+concepts are commonly mixed up, put them side by side — a `compare` diagram, or
+plain parallel sentences:
+
+> **Data lake:** stores raw data in many formats.
+> **Data warehouse:** stores structured, modeled data optimized for analytics.
+
+### Length
+
+Default short-to-medium: the prose in a lesson should read in **2–5 minutes**
+(`estimatedMinutes` is higher — 8–10 for a 10–15 card lesson — because it counts
+answering the checks, not just reading). Length follows the concept, never a
+target: if 300 words explains it properly, use 300; if it genuinely needs 800,
+use 800.
+
+### The final test
+
+Before writing a sentence: **if I removed this, would the reader lose
+understanding, context, or certification-relevant knowledge?** If not, leave it
+out.
+
 ## Adding a certification (checklist)
 
 1. Drop the official exam guide into `src_material/<provider>/<cert-name>`.

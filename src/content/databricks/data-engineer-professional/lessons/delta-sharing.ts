@@ -114,7 +114,7 @@ export const deltaSharingLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — the open protocol lets a non-Databricks recipient read the live share via a credential file.',
+        a: 'The open protocol lets a non-Databricks recipient read the live share via a credential file.',
         b: 'D2D requires the recipient to be on Databricks, which they are not.',
         c: 'CSV exports are stale, ungoverned, and exactly the pipeline you’re trying to avoid.',
         d: 'A deep clone copies data and needs syncing — not a live, no-copy share.',

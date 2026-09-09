@@ -81,7 +81,7 @@ export const declarativePipelinesLesson: Lesson = {
       id: 'concept-batch-stream',
       type: 'concept',
       title: 'Same pipeline, batch or streaming',
-      body: 'A **streaming table** ingests incrementally — each run processes only new data (great for continuous or frequent loads). A **materialized view** computes a full result and keeps it fresh by recomputing (or incrementally updating) when sources change — great for aggregations.\n\nOne pipeline can mix both: stream raw data into bronze/silver tables, then serve gold aggregates as materialized views.',
+      body: 'A pipeline holds two kinds of dataset: a **streaming table**, which processes only new data each run, and a **materialized view**, which maintains the result of a query over the whole source.\n\nOne pipeline mixes both — stream raw data into bronze and silver tables, then serve gold aggregates as materialized views. Which to use where is the next lesson.',
       takeaways: [
         'Streaming table = incremental, append-oriented ingestion.',
         'Materialized view = maintained query result (often aggregates).',
@@ -113,7 +113,7 @@ export const declarativePipelinesLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — streaming tables handle incremental ingest, expectations drop bad rows, and a materialized view keeps the aggregate fresh, all declaratively.',
+        a: 'Streaming tables handle incremental ingest, expectations drop bad rows, and a materialized view keeps the aggregate fresh, all declaratively.',
         b: 'That’s exactly the manual orchestration declarative pipelines remove.',
         c: 'Full overwrites don’t ingest incrementally and waste compute.',
         d: 'Hand-rolled retry logic is the maintenance burden you’re trying to avoid.',

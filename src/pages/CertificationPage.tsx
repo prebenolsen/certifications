@@ -37,7 +37,7 @@ function CertificationView({ cert }: { cert: Certification }) {
           rel="noreferrer"
           className="mt-2 inline-block text-sm font-medium text-accent hover:underline"
         >
-          Official exam guide ↗
+          {cert.examFacts ? 'Official exam guide ↗' : 'Official documentation ↗'}
         </a>
         <div className="mt-5 max-w-md">
           <div className="mb-1.5 flex justify-between text-xs text-ink-faint">

@@ -24,7 +24,7 @@ export const lakeflowOverviewLesson: Lesson = {
       title: 'The prefix nobody explained',
       body: 'You open the Databricks console and start reading. **Lakeflow Jobs.** **Lakeflow Connect.** **Lakeflow pipelines.** The docs use the word constantly and never stop to say what it means.\n\nSo you guess. And because you guessed, every one of those pages reads like a list of unrelated features instead of one product with four parts.',
       atWork:
-        'Half of "I find the Databricks docs confusing" is really "nobody told me the shape of the product." Get the shape and the docs get easy.',
+        'Half of "I find the Databricks docs confusing" is really "nobody told me the shape of the product."',
     },
     {
       id: 'analogy-suite',
@@ -41,7 +41,7 @@ export const lakeflowOverviewLesson: Lesson = {
       id: 'concept-lakeflow',
       type: 'concept',
       title: 'What Lakeflow is',
-      body: "**Lakeflow is Databricks' unified data engineering solution — one product family covering ingestion, transformation, and orchestration.**\n\nThat sentence is the whole idea. Getting data in, shaping it, and running the whole thing on a schedule used to mean three separate tools bolted together. Lakeflow is Databricks putting all three under one roof, on one governance layer.",
+      body: "**Lakeflow is Databricks' unified data engineering solution — one product family covering ingestion, transformation, and orchestration.**\n\nGetting data in, shaping it, and running the whole thing on a schedule used to mean three separate tools bolted together. Lakeflow puts all three under one roof, on one governance layer.",
       takeaways: [
         'Lakeflow = **ingestion + transformation + orchestration**, as one family.',
         'It is an umbrella name. There is no single "Lakeflow" button.',

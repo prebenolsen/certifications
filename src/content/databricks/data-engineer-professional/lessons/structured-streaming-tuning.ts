@@ -81,7 +81,7 @@ export const structuredStreamingTuningLesson: Lesson = {
       correct: ['b'],
       optionFeedback: {
         a: 'Trigger.Once processes all available data in one batch — at peak that’s the same huge, spilling batch you already have.',
-        b: 'Correct — smaller, more frequent batches carry less data each, avoiding the spill that inflates peak-hour times.',
+        b: 'Smaller, more frequent batches carry less data each, avoiding the spill that inflates peak-hour times.',
         c: 'Right change, wrong reason: batches run sequentially and never overlap, so no "idle executor picks up the next batch."',
         d: 'False premise — the trigger interval can change without a new checkpoint; more partitions don’t fix oversized batches.',
       },
@@ -148,7 +148,7 @@ export const structuredStreamingTuningLesson: Lesson = {
         'processingTime vs availableNow: always-on vs run-and-stop economics.',
         'Declarative pipelines manage the plumbing; Structured Streaming gives control.',
       ],
-      closing: 'Next: the declarative pipelines that manage all that plumbing for you. 🌊',
+      closing: 'Next: the configs and control flow that make a pipeline production-ready. ⚙️',
     },
   ],
 }

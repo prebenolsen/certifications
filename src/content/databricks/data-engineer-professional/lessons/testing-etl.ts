@@ -109,7 +109,7 @@ export const testingEtlLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — a fast unit test with assertSchemaEqual catches column/type/nullability drift in CI, before deploy.',
+        a: 'A fast unit test with assertSchemaEqual catches column/type/nullability drift in CI, before deploy.',
         b: 'Eyeballing nightly output is slow, manual, and catches problems after they ship.',
         c: 'A comment enforces nothing.',
         d: 'Row counts miss schema changes entirely (the amt→amount case).',
@@ -136,7 +136,7 @@ export const testingEtlLesson: Lesson = {
         'Integration-test the assembled pipeline on realistic data.',
         'Use the debugger to step through a failing transform.',
       ],
-      closing: 'Next module: getting every data format into the lakehouse. 📥',
+      closing: 'Next module: pipelines you declare instead of orchestrate. 🌊',
     },
   ],
 }

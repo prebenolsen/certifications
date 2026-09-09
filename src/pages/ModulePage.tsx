@@ -35,6 +35,23 @@ export function ModulePage() {
         </div>
       </header>
 
+      <div className="rounded-2xl border border-slate-200 bg-surface p-4 shadow-sm">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
+              End-of-module quiz
+            </p>
+            <h2 className="mt-1 text-lg font-bold text-ink">Check what you retained</h2>
+          </div>
+          <Link
+            to={`/cert/${certId}/module/${moduleId}/quiz`}
+            className="rounded-xl bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-strong"
+          >
+            Open quiz →
+          </Link>
+        </div>
+      </div>
+
       <ol className="space-y-3">
         {module.lessons.map((lesson, i) => (
           <LessonRow

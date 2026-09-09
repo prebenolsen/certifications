@@ -95,7 +95,7 @@ export const appendOnlyDeltaLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — a shared checkpoint (or idempotent batch writes / MERGE) guarantees exactly-once appends across both paths.',
+        a: 'A shared checkpoint (or idempotent batch writes / MERGE) guarantees exactly-once appends across both paths.',
         b: 'Overwriting loses raw history and breaks downstream streams.',
         c: 'Two tables plus query-time union still double-counts the overlapping data.',
         d: 'Disabling the checkpoint reprocesses everything and *causes* duplicates.',

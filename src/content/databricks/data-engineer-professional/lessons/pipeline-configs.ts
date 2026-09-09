@@ -95,7 +95,7 @@ export const pipelineConfigsLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — a non-idempotent append must not auto-retry, or it double-writes; surface the failure and investigate (or make it idempotent).',
+        a: 'A non-idempotent append must not auto-retry, or it double-writes; surface the failure and investigate (or make it idempotent).',
         b: 'Five retries means up to five duplicate appends.',
         c: 'Unlimited retries maximizes duplication risk.',
         d: 'A for-each loop doesn’t address idempotency and could multiply the writes.',

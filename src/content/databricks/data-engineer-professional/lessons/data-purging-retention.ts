@@ -96,7 +96,7 @@ export const dataPurgingRetentionLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — DELETE removes them from current reads; VACUUM removes the files so time travel can’t recover them.',
+        a: 'DELETE removes them from current reads; VACUUM removes the files so time travel can’t recover them.',
         b: 'DELETE alone leaves the data recoverable via time travel until VACUUM.',
         c: 'Keeping prior versions means the customer’s data is still stored and recoverable.',
         d: 'A row filter only hides rows; the data remains stored — not erasure.',

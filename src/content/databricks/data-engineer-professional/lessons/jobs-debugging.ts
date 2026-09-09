@@ -70,7 +70,7 @@ export const jobsDebuggingLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — completed tasks stay done, and a failed task can leave partial writes behind; there is no cross-task transaction.',
+        a: 'Completed tasks stay done, and a failed task can leave partial writes behind; there is no cross-task transaction.',
         b: 'There is no job-wide transaction to roll back; A and B’s work is already committed.',
         c: 'Databricks does not auto-roll-back a failed task’s partial writes.',
         d: 'Tasks commit independently as they finish, not all-or-nothing at the end.',
@@ -78,7 +78,7 @@ export const jobsDebuggingLesson: Lesson = {
       explanation:
         'Tasks are independent units. A failure skips downstream tasks but never rolls back completed siblings — and the failed task may have partially committed.',
       examObjective:
-        'Create a multi-task job with multiple dependencies (and understand partial-failure behavior).',
+        'Create a multi-task job with multiple dependencies.',
     },
     {
       id: 'concept-repair',
@@ -125,7 +125,7 @@ export const jobsDebuggingLesson: Lesson = {
       correct: ['b'],
       optionFeedback: {
         a: 'An interactive cluster stays up all hour — you pay for ~50 idle minutes every hour.',
-        b: 'Correct — a job cluster runs for the 10 minutes then terminates, meeting the hourly SLA at minimal cost.',
+        b: 'A job cluster runs for the 10 minutes then terminates, meeting the hourly SLA at minimal cost.',
         c: 'A streaming job keeps compute alive and adds complexity for a plain hourly batch need.',
         d: 'File-arrival triggering may run far more often than hourly, raising cost beyond the requirement.',
       },
@@ -151,7 +151,7 @@ export const jobsDebuggingLesson: Lesson = {
         'Parameter overrides let you correct inputs on the repair.',
         'Ephemeral job clusters beat always-on clusters for scheduled runs.',
       ],
-      closing: 'Next: securing those workspace objects with least-privilege ACLs and secrets. 🔐',
+      closing: 'Next: shipping all of this safely with Asset Bundles and Git. 🚀',
     },
   ],
 }

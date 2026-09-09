@@ -143,7 +143,7 @@ export const unityNamespaceLesson: Lesson = {
         'Use `CREATE OR REPLACE` to redefine a table while keeping grants and history.',
       ],
       closing:
-        'Next up: once you can find your data, you need to *ask questions of it* — that means aggregations. 📊',
+        'Next: the other product names on the console, and what each one is for. 🧩',
     },
   ],
 }

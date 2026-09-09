@@ -78,7 +78,7 @@ export const changeDataFeedLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — CDF exposes exactly the changed rows with types, so a MERGE applies a small incremental update quickly.',
+        a: 'CDF exposes exactly the changed rows with types, so a MERGE applies a small incremental update quickly.',
         b: 'A more frequent full scan is more expensive, not incremental, and won’t hit low latency at scale.',
         c: 'Reading a full prior snapshot still means diffing entire tables and can’t cleanly separate updates from deletes.',
         d: 'Random-hash partitioning doesn’t identify what changed and hurts skipping.',

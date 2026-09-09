@@ -59,7 +59,7 @@ export const dimensionalModelingLesson: Lesson = {
       optionFeedback: {
         a: 'post_id is unique per row — one partition per record, the tiny-file nightmare.',
         b: 'A TIMESTAMP is nearly unique too; partitioning on it explodes the partition count.',
-        c: 'Correct — a DATE is low-cardinality and the column queries filter on, enabling partition pruning.',
+        c: 'A DATE is low-cardinality and the column queries filter on, enabling partition pruning.',
         d: 'user_id has very high cardinality and skews badly (some users post far more than others).',
       },
       explanation:

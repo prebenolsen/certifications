@@ -102,7 +102,7 @@ export const libraryDependenciesLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — a notebook-scoped install of the wheel is fast, reproducible, and isolated from other jobs.',
+        a: 'A notebook-scoped install of the wheel is fast, reproducible, and isolated from other jobs.',
         b: 'Cluster scope affects every job and invites conflicts — not what’s asked.',
         c: 'Publishing an internal package to public PyPI is a security problem and unnecessary.',
         d: 'Pasting source is unmaintainable and defeats packaging.',

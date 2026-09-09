@@ -10,6 +10,7 @@ import {
 } from 'react'
 import { certifications } from '@/content/registry'
 import { useAuth } from '@/context/AuthContext'
+import type { QuizMode, ReviewRef } from '@/lib/quiz'
 import { supabase, TABLES } from '@/lib/supabase'
 
 /**
@@ -34,13 +35,51 @@ export interface LessonProgress {
   completed: boolean
 }
 
+export interface QuizResponse {
+  chosen: string[]
+  correct: boolean
+  at: string
+}
+
+export interface QuizAttempt {
+  id: string
+  mode: QuizMode
+  seed: number
+  questionIds: string[]
+  responses: Record<string, QuizResponse>
+  startedAt: string
+  finishedAt?: string
+  score?: number
+}
+
+export interface MissedRecord {
+  questionId: string
+  reviewRefs: ReviewRef[]
+  stem: string
+  correctIds: string[]
+  chosen: string[]
+  missCount: number
+  lastMissedAt: string
+  clearedAt?: string
+}
+
+export interface ModuleQuizProgress {
+  attempts: QuizAttempt[]
+  draft?: QuizAttempt
+  missed: Record<string, MissedRecord>
+  bestScore: number | null
+}
+
 interface ProgressState {
   /** `${certId}/${lessonId}` → progress */
   lessons: Record<string, LessonProgress>
+  /** `${certId}/${moduleId}` → quiz progress */
+  quizzes: Record<string, ModuleQuizProgress>
 }
 
 interface ProgressContextValue {
   getLesson: (certId: string, lessonId: string) => LessonProgress | undefined
+  getModuleQuiz: (certId: string, moduleId: string) => ModuleQuizProgress | undefined
   markCardViewed: (certId: string, lessonId: string, cardId: string) => void
   recordAnswer: (
     certId: string,
@@ -49,16 +88,33 @@ interface ProgressContextValue {
     correct: boolean,
   ) => void
   markCompleted: (certId: string, lessonId: string) => void
+  startQuizAttempt: (
+    certId: string,
+    moduleId: string,
+    input: { mode: QuizMode; seed: number; questionIds: string[] },
+  ) => string
+  recordQuizResponse: (
+    certId: string,
+    moduleId: string,
+    attemptId: string,
+    questionId: string,
+    response: QuizResponse,
+    provenance: Pick<MissedRecord, 'reviewRefs' | 'stem' | 'correctIds'>,
+  ) => void
+  finishQuizAttempt: (certId: string, moduleId: string, attemptId: string) => void
+  discardQuizAttempt: (certId: string, moduleId: string, attemptId: string) => void
+  clearMissed: (certId: string, moduleId: string, questionId: string) => void
+  resetModuleQuiz: (certId: string, moduleId: string) => void
   resetLesson: (certId: string, lessonId: string) => void
   resetAll: () => void
 }
 
 const STORAGE_KEY = 'certifications.progress.v2'
 const LEGACY_STORAGE_KEY = 'certifications.progress.v1'
-/** Sentinel for "hydrated as guest" so the cloud writer can tell it apart. */
 const GUEST = '__guest__'
 
 const progressKey = (certId: string, lessonId: string) => `${certId}/${lessonId}`
+const quizKey = (certId: string, moduleId: string) => `${certId}/${moduleId}`
 
 function splitKey(key: string): [certId: string, lessonId: string] {
   const i = key.indexOf('/')
@@ -71,36 +127,40 @@ const emptyLesson = (): LessonProgress => ({
   completed: false,
 })
 
-/**
- * v1 keyed progress by bare lessonId. Migrate by finding which certification
- * each lesson id belongs to. Ambiguous/unknown ids are dropped (safe: v1
- * shipped with a single certification).
- */
-function migrateV1(v1: ProgressState): ProgressState {
+function normalize(parsed: unknown): ProgressState {
+  const p = (parsed ?? {}) as Partial<ProgressState>
+  return {
+    lessons: p.lessons ?? {},
+    quizzes: p.quizzes ?? {},
+  }
+}
+
+function migrateV1(v1: Partial<ProgressState>): ProgressState {
   const lessons: ProgressState['lessons'] = {}
-  for (const [lessonId, progress] of Object.entries(v1.lessons)) {
+  const entries = (v1.lessons ?? {}) as Record<string, LessonProgress>
+  for (const [lessonId, progress] of Object.entries(entries)) {
     const cert = certifications.find((c) =>
       c.modules.some((m) => m.lessons.some((l) => l.id === lessonId)),
     )
     if (cert) lessons[progressKey(cert.id, lessonId)] = progress
   }
-  return { lessons }
+  return { lessons, quizzes: {} }
 }
 
 function loadLocal(): ProgressState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (raw) return JSON.parse(raw) as ProgressState
+    if (raw) return normalize(JSON.parse(raw))
     const legacy = localStorage.getItem(LEGACY_STORAGE_KEY)
     if (legacy) {
-      const migrated = migrateV1(JSON.parse(legacy) as ProgressState)
+      const migrated = migrateV1(JSON.parse(legacy) as Partial<ProgressState>)
       localStorage.removeItem(LEGACY_STORAGE_KEY)
       return migrated
     }
   } catch {
     // Corrupt or unavailable storage — start fresh rather than crashing.
   }
-  return { lessons: {} }
+  return { lessons: {}, quizzes: {} }
 }
 
 function saveLocal(state: ProgressState) {
@@ -181,30 +241,23 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
 
   const [state, setState] = useState<ProgressState>(loadLocal)
 
-  // The last state we've reconciled with the cloud, so the writer can upsert
-  // only what changed. Also gates writes until hydration for a user completes.
   const syncedRef = useRef<Record<string, LessonProgress>>({})
   const hydratedForRef = useRef<string>(GUEST)
 
-  // (Re)hydrate whenever the signed-in user changes.
   useEffect(() => {
     let cancelled = false
 
     if (!uid || !supabase) {
-      // Guest: source of truth is localStorage.
       hydratedForRef.current = GUEST
       syncedRef.current = {}
       setState(loadLocal())
       return
     }
 
-    // Signed in: mark "not ready" so the writer holds off, then load the cloud.
     hydratedForRef.current = ''
     ;(async () => {
       const { lessons: cloud, error } = await fetchCloud(uid)
       if (cancelled) return
-      // First-time sign-in on a fresh account: carry this browser's guest
-      // progress up into the cloud so nothing is lost.
       let merged = cloud
       const toPush: string[] = []
       if (!error && Object.keys(cloud).length === 0) {
@@ -212,7 +265,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         merged = { ...local }
         toPush.push(...Object.keys(local))
       }
-      setState({ lessons: merged })
+      setState({ lessons: merged, quizzes: {} })
       syncedRef.current = { ...merged }
       hydratedForRef.current = uid
       for (const key of toPush) upsertCloud(uid, key, merged[key])
@@ -223,13 +276,11 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     }
   }, [uid])
 
-  // Persist on every change to the active backend.
   useEffect(() => {
     if (!uid || !supabase) {
       saveLocal(state)
       return
     }
-    // Don't write back the guest snapshot while the cloud is still hydrating.
     if (hydratedForRef.current !== uid) return
 
     const prev = syncedRef.current
@@ -240,11 +291,17 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       if (!(key in state.lessons)) deleteCloud(uid, key)
     }
     syncedRef.current = { ...state.lessons }
+    saveLocal(state)
   }, [state, uid])
 
   const getLesson = useCallback(
     (certId: string, lessonId: string) =>
       state.lessons[progressKey(certId, lessonId)],
+    [state],
+  )
+
+  const getModuleQuiz = useCallback(
+    (certId: string, moduleId: string) => state.quizzes[quizKey(certId, moduleId)],
     [state],
   )
 
@@ -255,6 +312,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         const lesson = prev.lessons[key] ?? emptyLesson()
         if (lesson.viewedCards.includes(cardId)) return prev
         return {
+          ...prev,
           lessons: {
             ...prev.lessons,
             [key]: {
@@ -273,8 +331,9 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       const key = progressKey(certId, lessonId)
       setState((prev) => {
         const lesson = prev.lessons[key] ?? emptyLesson()
-        if (cardId in lesson.answers) return prev // first answer is final
+        if (cardId in lesson.answers) return prev
         return {
+          ...prev,
           lessons: {
             ...prev.lessons,
             [key]: {
@@ -294,10 +353,179 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       const lesson = prev.lessons[key] ?? emptyLesson()
       if (lesson.completed) return prev
       return {
+        ...prev,
         lessons: {
           ...prev.lessons,
           [key]: { ...lesson, completed: true },
         },
+      }
+    })
+  }, [])
+
+  const startQuizAttempt = useCallback(
+    (certId: string, moduleId: string, input: { mode: QuizMode; seed: number; questionIds: string[] }) => {
+      const key = quizKey(certId, moduleId)
+      const id = `${Date.now().toString(36)}-${Math.random().toString(16).slice(2, 8)}`
+      setState((prev) => {
+        const current = prev.quizzes[key] ?? { attempts: [], missed: {}, bestScore: null }
+        return {
+          ...prev,
+          quizzes: {
+            ...prev.quizzes,
+            [key]: {
+              ...current,
+              draft: {
+                id,
+                mode: input.mode,
+                seed: input.seed,
+                questionIds: input.questionIds,
+                responses: {},
+                startedAt: new Date().toISOString(),
+              },
+            },
+          },
+        }
+      })
+      return id
+    },
+    [],
+  )
+
+  const recordQuizResponse = useCallback(
+    (
+      certId: string,
+      moduleId: string,
+      attemptId: string,
+      questionId: string,
+      response: QuizResponse,
+      provenance: Pick<MissedRecord, 'reviewRefs' | 'stem' | 'correctIds'>,
+    ) => {
+      const key = quizKey(certId, moduleId)
+      setState((prev) => {
+        const current = prev.quizzes[key] ?? { attempts: [], missed: {}, bestScore: null }
+        const draft = current.draft
+        if (!draft || draft.id !== attemptId) return prev
+
+        const nextDraft = {
+          ...draft,
+          responses: { ...draft.responses, [questionId]: response },
+        }
+
+        const nextMissed = { ...current.missed }
+        const existing = nextMissed[questionId]
+        const now = new Date().toISOString()
+
+        if (!response.correct) {
+          nextMissed[questionId] = {
+            questionId,
+            reviewRefs: provenance.reviewRefs,
+            stem: provenance.stem,
+            correctIds: provenance.correctIds,
+            chosen: response.chosen,
+            missCount: (existing?.missCount ?? 0) + 1,
+            lastMissedAt: now,
+            clearedAt: existing?.clearedAt,
+          }
+        } else if (existing) {
+          nextMissed[questionId] = {
+            ...existing,
+            chosen: response.chosen,
+            clearedAt: existing.clearedAt ?? now,
+          }
+        }
+
+        return {
+          ...prev,
+          quizzes: {
+            ...prev.quizzes,
+            [key]: { ...current, draft: nextDraft, missed: nextMissed },
+          },
+        }
+      })
+    },
+    [],
+  )
+
+  const finishQuizAttempt = useCallback((certId: string, moduleId: string, attemptId: string) => {
+    const key = quizKey(certId, moduleId)
+    setState((prev) => {
+      const current = prev.quizzes[key] ?? { attempts: [], missed: {}, bestScore: null }
+      const draft = current.draft
+      if (!draft || draft.id !== attemptId) return prev
+
+      const finishedScore =
+        draft.questionIds.length > 0
+          ? Object.values(draft.responses).filter((response) => response.correct).length /
+            draft.questionIds.length
+          : 0
+
+      const finishedAttempt: QuizAttempt = {
+        ...draft,
+        finishedAt: new Date().toISOString(),
+        score: finishedScore,
+      }
+
+      const attempts = [...current.attempts, finishedAttempt].slice(-10)
+      const bestScore =
+        current.bestScore === null
+          ? finishedScore
+          : Math.max(current.bestScore, finishedScore)
+
+      return {
+        ...prev,
+        quizzes: {
+          ...prev.quizzes,
+          [key]: {
+            ...current,
+            attempts,
+            draft: undefined,
+            bestScore,
+          },
+        },
+      }
+    })
+  }, [])
+
+  const discardQuizAttempt = useCallback((certId: string, moduleId: string, attemptId: string) => {
+    const key = quizKey(certId, moduleId)
+    setState((prev) => {
+      const current = prev.quizzes[key]
+      if (!current || !current.draft || current.draft.id !== attemptId) return prev
+      return {
+        ...prev,
+        quizzes: {
+          ...prev.quizzes,
+          [key]: { ...current, draft: undefined },
+        },
+      }
+    })
+  }, [])
+
+  const clearMissed = useCallback((certId: string, moduleId: string, questionId: string) => {
+    const key = quizKey(certId, moduleId)
+    setState((prev) => {
+      const current = prev.quizzes[key]
+      if (!current) return prev
+      const nextMissed = { ...current.missed }
+      delete nextMissed[questionId]
+      return {
+        ...prev,
+        quizzes: {
+          ...prev.quizzes,
+          [key]: { ...current, missed: nextMissed },
+        },
+      }
+    })
+  }, [])
+
+  const resetModuleQuiz = useCallback((certId: string, moduleId: string) => {
+    const key = quizKey(certId, moduleId)
+    setState((prev) => {
+      const next = { ...prev.quizzes }
+      delete next[key]
+      return {
+        ...prev,
+        quizzes: next,
       }
     })
   }, [])
@@ -307,29 +535,51 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     setState((prev) => {
       const next = { ...prev.lessons }
       delete next[key]
-      return { lessons: next }
+      return { ...prev, lessons: next }
     })
   }, [])
 
-  const resetAll = useCallback(() => setState({ lessons: {} }), [])
+  const resetAll = useCallback(
+    () => setState({ lessons: {}, quizzes: {} }),
+    [],
+  )
 
   const value = useMemo(
     () => ({
       getLesson,
+      getModuleQuiz,
       markCardViewed,
       recordAnswer,
       markCompleted,
+      startQuizAttempt,
+      recordQuizResponse,
+      finishQuizAttempt,
+      discardQuizAttempt,
+      clearMissed,
+      resetModuleQuiz,
       resetLesson,
       resetAll,
     }),
-    [getLesson, markCardViewed, recordAnswer, markCompleted, resetLesson, resetAll],
+    [
+      getLesson,
+      getModuleQuiz,
+      markCardViewed,
+      recordAnswer,
+      markCompleted,
+      startQuizAttempt,
+      recordQuizResponse,
+      finishQuizAttempt,
+      discardQuizAttempt,
+      clearMissed,
+      resetModuleQuiz,
+      resetLesson,
+      resetAll,
+    ],
   )
 
   return <ProgressContext.Provider value={value}>{children}</ProgressContext.Provider>
 }
 
-// The provider and its hook are intentionally co-located; this file exports a
-// non-component (the hook) alongside the component, which is fine here.
 // eslint-disable-next-line react-refresh/only-export-components
 export function useProgress(): ProgressContextValue {
   const ctx = useContext(ProgressContext)

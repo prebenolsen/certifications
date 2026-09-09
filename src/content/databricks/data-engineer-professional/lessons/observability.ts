@@ -92,7 +92,7 @@ export const observabilityLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — billing/usage and audit system tables are the queryable source for cost attribution and access reporting.',
+        a: 'Billing/usage and audit system tables are the queryable source for cost attribution and access reporting.',
         b: 'The Spark UI dissects one job’s execution, not cross-fleet cost/audit.',
         c: 'The Query Profiler analyzes a single query’s plan, not billing or access history.',
         d: 'Event logs cover pipeline runs, not platform-wide cost and audit.',

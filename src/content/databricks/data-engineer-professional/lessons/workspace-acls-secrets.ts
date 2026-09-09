@@ -81,7 +81,7 @@ export const workspaceAclsSecretsLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — the real value is used for the connection, but printing a secret outputs [REDACTED].',
+        a: 'The real value is used for the connection, but printing a secret outputs [REDACTED].',
         b: 'Databricks masks printed secret values precisely to prevent this.',
         c: '`dbutils.secrets.get` reads from the scope non-interactively; no input box appears.',
         d: 'No prompt, and nothing is written to DBFS.',

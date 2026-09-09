@@ -91,7 +91,7 @@ export const applyChangesCdcLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — APPLY CHANGES handles out-of-order events via SEQUENCE BY, deletes via APPLY AS DELETE, and history via SCD Type 2.',
+        a: 'APPLY CHANGES handles out-of-order events via SEQUENCE BY, deletes via APPLY AS DELETE, and history via SCD Type 2.',
         b: 'A MERGE ordering by arrival time gets out-of-order updates wrong and is a maintenance burden.',
         c: 'Appending raw events pushes correctness onto every consumer and loses a clean current state.',
         d: 'Overwriting keeps no history and mishandles per-key ordering.',
@@ -118,7 +118,7 @@ export const applyChangesCdcLesson: Lesson = {
         'SCD Type 1 keeps current values; Type 2 keeps history — both managed for you.',
         'It replaces fragile hand-written MERGE logic for CDC.',
       ],
-      closing: 'Next: the configs and control flow that make a pipeline production-ready. ⚙️',
+      closing: 'Next: keeping a stream inside its SLA when the volume spikes. ⏱️',
     },
   ],
 }

@@ -91,7 +91,7 @@ export const pythonSqlUdfsLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — a Pandas UDF keeps the Python logic but processes Arrow batches, avoiding per-row overhead.',
+        a: 'A Pandas UDF keeps the Python logic but processes Arrow batches, avoiding per-row overhead.',
         b: 'A row-at-a-time Python UDF is exactly the slow path to avoid at scale.',
         c: 'Collecting a huge column to the driver will OOM and isn’t distributed.',
         d: 'A SQL UDF can’t host arbitrary Python model logic.',

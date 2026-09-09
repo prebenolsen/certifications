@@ -6,6 +6,8 @@ memorize answers.
 
 Certifications currently supported:
 
+- **Introduction to Data Engineering with Databricks** — *a short course, not a
+  certification: the high-level tour for someone new to all of it*
 - **Databricks Certified Data Analyst Associate**
 - **Databricks Certified Data Engineer Associate**
 - **Databricks Certified Data Engineer Professional**
@@ -149,6 +151,9 @@ fields: `**bold**`, `*italic*`, `` `code` ``, and newlines.
 ```
 src/content/
   databricks/
+    intro-data-engineering/
+      index.ts                ← assembles the course (4 modules, no exam)
+      lessons/*.ts            ← 10 authored lessons
     data-analyst-associate/
       index.ts                ← assembles the certification (9 modules)
       lessons/*.ts            ← fully-authored lessons (decks of cards)
@@ -193,12 +198,15 @@ The current inventory — what's built, what's planned — lives in
 
 ## How to contribute
 
-1. **Read [`docs/AUTHORING.md`](docs/AUTHORING.md)** — philosophy, templates,
-   and the lesson blueprint.
+1. **Read [`docs/AUTHORING.md`](docs/AUTHORING.md)** — philosophy, writing
+   style, templates, and the lesson blueprint.
 2. **Pick a lesson** from [`CONTENT.md`](CONTENT.md) marked *planned*.
 3. **Teach, don't list.** For each concept, answer: *What is it? Why does it
    exist? When is it used? How does it differ from similar things? What's the
    common misconception? How does it show up on the exam and at work?*
+   Write it the way an engineer explains something to another engineer:
+   *concept → explanation → example or analogy → certification takeaway*, each
+   idea said once, nothing padded. A lesson's prose should read in 2–5 minutes.
 4. Author the lesson as a typed `Lesson` object; flip its `status` to
    `complete`; run `npm run check` **and `npm run glossary`** — add any term you
    introduced to `src/content/glossary.ts`.

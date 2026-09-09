@@ -34,6 +34,7 @@ export function HomePage() {
 function CertificationCard({ cert }: { cert: Certification }) {
   const stats = useCertStats(cert)
   const moduleCount = cert.modules.length
+  const lessons = cert.modules.flatMap((m) => m.lessons)
   return (
     <Link
       to={`/cert/${cert.id}`}
@@ -48,8 +49,20 @@ function CertificationCard({ cert }: { cert: Certification }) {
           <p className="mt-2 max-w-xl text-sm text-ink-soft">{cert.summary}</p>
         </div>
         <div className="flex flex-none gap-4 text-center">
-          <Fact label="Questions" value={cert.examFacts.questions} />
-          <Fact label="Minutes" value={cert.examFacts.minutes} />
+          {cert.examFacts ? (
+            <>
+              <Fact label="Questions" value={cert.examFacts.questions} />
+              <Fact label="Minutes" value={cert.examFacts.minutes} />
+            </>
+          ) : (
+            <>
+              <Fact label="Lessons" value={lessons.length} />
+              <Fact
+                label="Minutes"
+                value={lessons.reduce((n, l) => n + l.estimatedMinutes, 0)}
+              />
+            </>
+          )}
           <Fact label="Modules" value={moduleCount} />
         </div>
       </div>

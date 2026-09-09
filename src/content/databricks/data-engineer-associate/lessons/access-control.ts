@@ -74,7 +74,8 @@ export const accessControlLesson: Lesson = {
       id: 'example-grants',
       type: 'example',
       title: 'The three verbs in SQL',
-      intro: 'Everything here also has a Catalog Explorer UI equivalent:',
+      intro:
+        'Everything here can also be done in **Catalog Explorer**, the UI for browsing and administering everything Unity Catalog governs:',
       code: {
         language: 'sql',
         content:

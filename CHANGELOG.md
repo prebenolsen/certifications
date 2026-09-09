@@ -15,6 +15,171 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
 
 ---
 
+## [1.7.0] — 2026-09-09
+
+### Added
+
+- **A course, not a certification: *Introduction to Data Engineering with
+  Databricks* — 4 modules, 10 lessons, 103 cards, ~62 minutes.** Every other
+  track here assumes a working data engineer. This one assumes nothing, and
+  answers the question the others skip: *what are all these things, and how do
+  they fit together?* It is the front door for someone who has met none of the
+  components, and the shortest path to the rest of the platform making sense.
+- **Reading order carries the teaching.** The job before the vendor (lesson 1
+  names no product at all), the problem before the product (warehouse and lake
+  before lakehouse), storage and governance before any pipeline, and a capstone
+  that traces one real request — *"how many orders shipped yesterday, by
+  region?"* — through every component in the course. No lesson names a component
+  that a later lesson is responsible for introducing.
+- **A capstone lesson type this platform did not have.** *One pipeline, end to
+  end* introduces nothing new. Its whole job is assembly: JSON files landing in
+  storage, out to a number on a dashboard, with the component doing each step
+  named — and a card on what was true the whole way through (Delta under every
+  table, Unity Catalog naming and permissioning them, DBUs on the meter).
+- **21 glossary terms now introduced by the intro course**, each in the lesson
+  that first uses it: Databricks, Apache Spark, Data Intelligence Platform,
+  lakehouse, Delta Lake, Unity Catalog, data lineage, DBU, SQL warehouse, the
+  five Lakeflow entries, Auto Loader, medallion architecture, Databricks SQL,
+  AI/BI dashboard, Genie space, MLflow and Mosaic AI Model Serving. `npm run
+  glossary` reports **21 ✅ and no ⚠️/❌** for the course.
+
+### Changed
+
+- **`Certification.examFacts` is now optional**, because a course has no exam to
+  sit and inventing "0 questions" would have put a meaningless number on the
+  home card. When it is absent the home card shows **lessons and minutes**
+  instead of questions and minutes, and the certification header links to
+  "Official documentation" rather than "Official exam guide".
+- The intro course is listed **first** in the registry, so the platform now
+  opens with the track that assumes the least.
+
+### Notes
+
+- **Scope was held deliberately.** Photon, streaming tables vs materialized
+  views, Delta Sharing, Marketplace, Lakehouse Federation, Asset Bundles and
+  privilege names are all absent: they belong to the certification tracks, and
+  putting them here would have turned a 62-minute orientation into a fifth cert.
+  The audience for this course is broader than the platform's usual reader, so
+  generic concepts (batch vs streaming, warehouse, lake) are defined inline
+  rather than added to the glossary, which stays scoped to vendor vocabulary.
+
+---
+
+## [1.6.0] — 2026-09-09
+
+### Added
+
+- **Databricks Certified Data Analyst Associate, authored in full — 30 lessons,
+  341 cards, all 10 official sample questions.** The certification had been
+  parked at 2/24 since it was scaffolded; it is now complete across all nine
+  exam sections, and the two placeholder lessons were kept and extended rather
+  than replaced.
+- **A thorough Unity Catalog breakdown, early.** *Unity Catalog: the layer
+  everything else assumes* is the second lesson of the cert: what it holds
+  (metastore ⊃ catalog ⊃ schema ⊃ object), securables and ownership, the fact that
+  reading one table takes **three** grants (`SELECT` plus `USE CATALOG` and
+  `USE SCHEMA`), inheritance to tables that do not exist yet, and the lineage,
+  audit and permission-filtered search that come for free. Unity Catalog is
+  named in five of the nine exam sections and nothing else in the certification
+  parses without it; no lesson anywhere in the platform had taught it as a
+  subject in its own right.
+- **An orientation lesson for analysts** — *What Databricks is, for an analyst*.
+  Written for someone who can already write a join: the product in one sentence,
+  the lakehouse, the vendor's names for the workspace, SQL editor and SQL
+  warehouse, and the DBU. Nothing in it is an exam question; everything in it is
+  assumed by every exam question.
+- Six lessons beyond the original scaffold, because the exam outline needed
+  them: **Where your SQL actually runs** (warehouses + the Assistant),
+  **Filtering & sorting**, **Creating tables of your own**, **Choosing a chart
+  that communicates**, **Sharing a dashboard, and keeping it fresh**, and
+  **Alerts**.
+- **Verified product naming.** Targeted documentation lookups before authoring,
+  saved to `src_material/.../research/platform-and-naming.md`: *Genie spaces* are
+  now **Genie Agents**, the *Databricks Assistant* is now **Genie Code**, and
+  materialized-view and streaming-table refreshes run on **serverless pipelines,
+  not your SQL warehouse**. Lessons teach the exam guide's name and note the
+  current one.
+- **17 new glossary terms** — Databricks SQL, SQL warehouse, Photon, Catalog
+  Explorer, data lineage, dynamic view, query profile, Delta Sharing,
+  Marketplace, Lakehouse Federation, AI/BI dashboard, Genie space, trusted
+  asset, Databricks Assistant, Data Intelligence Engine — and `introducedIn`
+  updated across the existing terms the analyst cert now teaches.
+
+### Fixed
+
+- The new terms exposed three genuine gaps in the older certifications: **Photon**
+  and **Catalog Explorer** were named but never explained in the Data Engineer
+  Associate, and **Databricks SQL** and **Catalog Explorer** in the Professional.
+  Each now carries a one-line definition at first mention.
+
+---
+
+## [1.5.2] — 2026-09-09
+
+### Changed
+
+- **Wrote down the house style.** The repo said *what* to teach and never said
+  *how it should read*. It now does: `CLAUDE.md` gains a **How it should read**
+  section and `docs/AUTHORING.md` a fuller **Writing style** one — an
+  experienced engineer explaining something to another engineer, shaped as
+  *concept → explanation → example or analogy → certification takeaway*, with
+  each idea said once and no padding.
+- Rules that come with it: get to the point, short paragraphs, the important
+  *why* over the definition, examples that are concrete and short, analogies
+  only when they genuinely clarify (and abandoned when they outgrow the
+  concept), depth prioritized core → distinctions → practical use →
+  certification detail → misconceptions, and an explicit contrast whenever two
+  concepts are commonly confused.
+- Added the sentence-level test authors should apply before writing: *if I
+  removed this, would the reader lose understanding, context, or
+  certification-relevant knowledge?* If not, it does not go in. Plus a list of
+  phrases never to write ("It is important to note that…", "Let's dive into…").
+- **Clarified lesson length.** The prose in a lesson should read in 2–5 minutes;
+  `estimatedMinutes` is higher (8–10 for 10–15 cards) because it counts
+  answering the checks. Length follows the concept, never a target.
+- The `author-lesson` skill now carries a condensed version of the style and
+  points at the full section.
+- **Editorial pass over all 27 Data Engineer Associate lessons against the new
+  style.** The corpus already largely matched it, so the pass was surgical: cut
+  meta-commentary that told the reader a point was important instead of making
+  it ("That sentence is the whole idea", "This is worth pausing on because…"),
+  removed sentences that restated the one before them, and dropped one marketing
+  phrase ("a core selling point"). No cards were removed; the count stays 272.
+- Removed the duplicated streaming-table / materialized-view definitions in
+  *Lakeflow Pipelines* — they are taught in *Gold layer* two lessons earlier, so
+  the pipelines lesson now leans on that and spends its words on the decision
+  that is actually pipeline-specific: what the **source** does, not how fresh
+  the output must be.
+- Cut the second-person density in *What Databricks actually is*, which ran far
+  above the rest of the corpus (3.9% of words vs 1.1% overall).
+- **Same pass over all 31 Data Engineer Professional lessons.** Its prose was
+  already inside the style (every lesson reads in 2–5 minutes; the banned-phrase
+  scan came back empty), so the findings were mostly consistency and correctness.
+
+### Fixed
+
+- **Ten Data Engineer Professional lessons pointed the learner at the wrong next
+  lesson.** Modules were reordered after authoring and the closing lines were
+  never resequenced — *CDC without the plumbing* promised configs and delivered
+  streaming tuning; *Making data discoverable* promised Delta Sharing, which was
+  two lessons **behind**. Every closing now matches the actual reading order.
+  One more of the same in the Associate cert: *Why the lakehouse exists* still
+  teased compute after the Lakeflow lesson was inserted between them in 1.5.0.
+- **Removed the `Correct — ` prefix from all 33 correct-answer explanations** in
+  the Professional cert. The UI already marks the option correct; the label spent
+  the first two words of every explanation restating it, and the Associate cert
+  never did this.
+- *Same table, different rows per user* quoted the **wrong exam objective** (the
+  Unity Catalog inheritance one). It now quotes the row-filter/column-mask
+  objective it actually teaches.
+- *When a task fails at 3am* had an invented clause appended to its objective —
+  "(and understand partial-failure behavior)". Objectives quote the outline.
+- *Pipelines you declare, not orchestrate* explained the streaming-table vs
+  materialized-view trade-off that the **very next lesson** is entirely about.
+  It now names the two dataset types and leaves the choice to that lesson.
+
+---
+
 ## [1.5.1] — 2026-09-09
 
 ### Changed

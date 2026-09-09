@@ -270,7 +270,12 @@ export interface Certification {
    * share a platform do not qualify — each has to stand on its own.
    */
   assumes?: string[]
-  examFacts: {
+  /**
+   * Facts about the exam. **Omitted for a non-exam course** — an introductory
+   * track has modules and lessons but nothing to sit, and inventing "0
+   * questions" would put a meaningless number on the card.
+   */
+  examFacts?: {
     questions: number
     minutes: number
     passingNote?: string

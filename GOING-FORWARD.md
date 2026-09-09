@@ -14,9 +14,9 @@ its gaps, and the decisions queued up. Prune items as they land.
 
 | | |
 |---|---|
-| Certifications registered | 5 |
-| Lessons authored | ~60 |
-| **Lessons still to write** | **59** (35 GenAI · 24 GH-300) |
+| Tracks registered | 6 (5 certifications + 1 intro course) |
+| Lessons authored | 105 of 160 |
+| **Lessons still to write** | **55** (31 GenAI · 24 GH-300) |
 | Quality gate | `npm run check` — typecheck + lint + validate, enforced in CI |
 | Authoring support | 3 skills, `docs/AUTHORING.md`, `docs/ARCHITECTURE.md`, content validator |
 
@@ -63,8 +63,8 @@ skill ever fires:
 - `CONTENT.md` / `CHANGELOG.md` / `README.md` are updated **in the same change**.
   (This rule currently lives only inside a skill someone has to remember to
   invoke.)
-- **Data Analyst Associate is parked on purpose** — 2/24 is a decision, not a
-  backlog item. Don't "helpfully" resume it.
+- **Data Analyst Associate was unparked and authored in full** (v1.6.0, 30/30).
+  The remaining authoring backlog is GH-300 and the GenAI Engineer cert.
 - Source material lives in `src_material/<provider>/`; content maps back to it.
 - Pointers to the skills, rather than restating them.
 
@@ -188,10 +188,10 @@ from it rather than from this list.
    worth a glance: some want a one-line gloss at first mention.
 3. **The glossary covers 31 terms.** That is a seed, not a sweep. Every future
    module should add its terms as it is authored (now in the loop, step 5).
-4. **Two certifications never say what *Databricks* is** — the parked Data
-   Analyst Associate and the GenAI Engineer Associate. Each certification has to
-   stand on its own, so each needs its own orientation lesson (the Data Engineer
-   Associate got one in v1.5.0). **→ Add one to GenAI when GA2 is authored.**
+4. **One certification still never says what *Databricks* is** — the GenAI Engineer
+   Associate. Each certification has to stand on its own, so each needs its own
+   orientation lesson (Data Engineer Associate got one in v1.5.0, Data Analyst
+   Associate in v1.6.0). **→ Add one to GenAI when GA2 is authored.**
 
 ### C4. `databricks_mcp.log` sits in the working tree
 
@@ -235,6 +235,10 @@ more investment; that's an independent argument for doing GenAI first.
 - ~~**C2** — normalize `src_material`~~ ✅ *done (v1.5.0).*
 - ~~**C5.1** — *Lakeflow Pipelines* for the DE Associate~~ ✅ *done (v1.5.0),
   along with the *What Databricks actually is* orientation lesson.*
+- ~~**Intro course**~~ ✅ *done (v1.7.0): *Introduction to Data Engineering with
+  Databricks*, 10 lessons. Not on the exam ladder — it is the orientation the
+  ladder assumes. It also made `examFacts` optional, so a non-exam track no
+  longer has to invent exam numbers.*
 
 Remaining:
 

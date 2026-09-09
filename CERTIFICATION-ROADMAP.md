@@ -22,11 +22,17 @@ Legend — platform build status:
 
 | Certification | Provider | Code | Build status | Lessons |
 |---|---|---|---|---|
+| *Introduction to Data Engineering with Databricks* (course, no exam) | Databricks | — | ✅ complete | 10 / 10 |
 | Data Engineer Associate | Databricks | — | ✅ complete | 27 / 27 |
 | Data Engineer Professional | Databricks | — | ✅ complete | 31 / 31 |
 | Generative AI Engineer Associate | Databricks | — | 🚧 in authoring | 4 / 35 |
 | GitHub Copilot | GitHub | GH-300 | 🚧 scaffolded | 3 / 27 (Module 1 done) |
-| Data Analyst Associate | Databricks | — | 🅿️ parked | 2 / 24 |
+| Data Analyst Associate | Databricks | — | ✅ complete | 30 / 30 |
+
+The intro course is not a certification and is not on any exam ladder. It exists
+because the ladders all start above ground: it is the orientation someone needs
+before *Data Engineer Associate* reads as one product rather than a pile of
+names. Authored in v1.7.0.
 
 **Immediate build backlog (already scaffolded, just needs authoring):**
 1. **GitHub Copilot (GH-300)** — resume at Module 2 (Data & Architecture).
@@ -44,7 +50,7 @@ Leverages existing expertise most directly; same platform this repo already cove
 | Apache Spark Developer Associate | ⬜ | Formalizes the Spark core you already use daily — an easy win. |
 | Machine Learning Associate | ⬜ | Bridges DE into MLflow, feature stores, model lifecycle. |
 | Machine Learning Professional | ⬜ | Advanced MLOps; natural follow-on to ML Associate. |
-| Data Analyst Associate | 🅿️ | Already scaffolded but parked; low priority for a DE. |
+| Data Analyst Associate | ✅ | Authored in full (v1.6.0). Its Unity Catalog, Databricks SQL and dashboard lessons double as reference material for the DE certs. |
 
 ### Track 2 — Azure data platform (the Azure-side counterpart to your DE role)
 > ⚠️ **DP-203 (Azure Data Engineer Associate) was retired in 2025.** The current

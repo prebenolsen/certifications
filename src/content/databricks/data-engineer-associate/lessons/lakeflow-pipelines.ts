@@ -26,7 +26,7 @@ export const lakeflowPipelinesLesson: Lesson = {
       title: 'The table nobody noticed had gone stale',
       body: 'You add a new silver table between bronze and gold. It works. Two weeks later someone spots that the gold dashboard has been a day behind ever since.\n\nThe cause: the new table was inserted into the job, but the *task order* was never updated, so gold kept running **before** the new silver step. Nothing failed. Nothing alerted. The numbers were just quietly wrong.',
       atWork:
-        'Hand-maintained ordering is where pipelines rot. Every new table is another chance to get the sequence subtly wrong, and wrong-but-succeeding is the worst failure mode there is.',
+        'Hand-maintained ordering is where pipelines rot: every new table is another chance to get the sequence subtly wrong, and wrong-but-succeeding is the worst failure mode there is.',
     },
     {
       id: 'analogy-gps',
@@ -83,7 +83,7 @@ export const lakeflowPipelinesLesson: Lesson = {
       id: 'concept-streaming-table',
       type: 'concept',
       title: 'Streaming table: for data that only ever arrives',
-      body: 'A **streaming table** is a managed table fed by an **append-only** source, where each incoming record is processed **exactly once**. New rows come in, get processed, and are never revisited.\n\nUse it when the source only adds: event streams, log files, new files landing in cloud storage. Because each record is handled once, work stays proportional to *what arrived*, not to the size of the table.',
+      body: 'You met streaming tables as gold objects. Inside a pipeline they are what you declare for an **append-only** source: each incoming record is processed **exactly once** and never revisited — event streams, log files, new files landing in cloud storage.\n\nBecause each record is handled once, work stays proportional to *what arrived*, not to the size of the table.',
       takeaways: [
         'Append-only sources; **exactly-once** processing per record.',
         'Cost scales with new data, not total data.',
@@ -94,7 +94,7 @@ export const lakeflowPipelinesLesson: Lesson = {
       id: 'concept-materialized-view',
       type: 'concept',
       title: 'Materialized view: for results that must stay correct',
-      body: 'A **materialized view** is a managed table defined by a query, whose results are **recomputed as needed** to reflect the current state of the source data.\n\nUse it when upstream rows can **change** — corrections, late-arriving updates, deletes — or when the query aggregates, joins, or otherwise cannot be maintained by appending. The engine keeps it consistent with the source; you do not write refresh logic.',
+      body: 'The counterpart for data that does not simply append: a table defined by a query, **recomputed as needed** to reflect the current state of its sources.\n\nUse it when upstream rows can **change** — corrections, late-arriving updates, deletes — or when the query aggregates or joins, which appending cannot express. The engine keeps it consistent; you write no refresh logic.',
       takeaways: [
         'Handles **updates and deletes** upstream; a streaming table cannot.',
         'Aggregations and joins usually want a materialized view.',

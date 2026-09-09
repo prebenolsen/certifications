@@ -110,7 +110,7 @@ export const cicdAssetBundlesLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — bundles + targets give one reviewable definition promoted identically via CLI from CI, with Git as the trigger.',
+        a: 'Bundles + targets give one reviewable definition promoted identically via CLI from CI, with Git as the trigger.',
         b: 'Manual UI recreation is exactly the drift-prone process bundles eliminate.',
         c: 'DBC import/export handles notebooks only, by hand — no jobs, pipelines, or targets.',
         d: 'One shared workspace with no environments removes the safety of staging→prod promotion.',

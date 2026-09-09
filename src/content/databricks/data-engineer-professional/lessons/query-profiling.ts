@@ -26,7 +26,7 @@ export const queryProfilingLesson: Lesson = {
       id: 'concept-profile',
       type: 'concept',
       title: 'What the query profile shows',
-      body: 'The **query profile** (in Databricks SQL / query history) visualizes the executed plan stage by stage: rows and **bytes read** per scan, the **join type** chosen, **rows shuffled**, time spent, and spill. Each node’s metrics tell you where the time and data actually went — not where you assume they did.',
+      body: 'The **query profile** (in **Databricks SQL** — the SQL editor, warehouses, dashboards and query history that analysts work in) visualizes the executed plan stage by stage: rows and **bytes read** per scan, the **join type** chosen, **rows shuffled**, time spent, and spill. Each node’s metrics tell you where the time and data actually went — not where you assume they did.',
       takeaways: [
         'Per-stage metrics: bytes read, rows, join type, shuffle, spill.',
         'Shows the *executed* plan, not the query text.',
@@ -100,7 +100,7 @@ export const queryProfilingLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — reading the whole table for a 0.5% filter means min/max pruning can’t skip; clustering on region tightens ranges so most files are skipped.',
+        a: 'Reading the whole table for a 0.5% filter means min/max pruning can’t skip; clustering on region tightens ranges so most files are skipped.',
         b: 'The symptom is scan volume, not a join shuffle.',
         c: 'More executors read the same excess bytes — the scan is the problem, not parallelism.',
         d: 'Faster disks read the unneeded data faster; they don’t make skipping work.',

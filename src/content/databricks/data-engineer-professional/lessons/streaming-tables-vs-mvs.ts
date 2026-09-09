@@ -109,7 +109,7 @@ export const streamingTablesVsMvsLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — incremental ingest suits a streaming table; an aggregate that must revise past groups suits a materialized view.',
+        a: 'Incremental ingest suits a streaming table; an aggregate that must revise past groups suits a materialized view.',
         b: 'Backwards: ingestion should be incremental (streaming table), and a join over changing rows needs a materialized view.',
         c: 'A streaming table can’t correctly maintain aggregates over changing history.',
         d: 'Materializing raw ingestion re-reads all files each run — needlessly expensive.',

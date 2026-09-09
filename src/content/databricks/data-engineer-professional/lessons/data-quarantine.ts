@@ -99,7 +99,7 @@ export const dataQuarantineLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — a valid/invalid split keeps the pipeline flowing, protects silver, and retains rejected rows for audit and re-ingest.',
+        a: 'A valid/invalid split keeps the pipeline flowing, protects silver, and retains rejected rows for audit and re-ingest.',
         b: 'FAIL UPDATE halts the pipeline on bad rows — the opposite of "keep processing."',
         c: 'DROP ROW keeps flowing but discards the rows, failing the audit/re-ingest requirement.',
         d: 'Letting bad rows into silver is exactly what quarantine prevents.',
@@ -126,7 +126,7 @@ export const dataQuarantineLesson: Lesson = {
         'Classic jobs: filter valid vs invalid; `_rescued_data` flags bad rows.',
         'Bad data stays contained and fixable.',
       ],
-      closing: 'Next module: cutting cost with managed tables and self-optimizing storage. ⚡',
+      closing: 'Next module: what a Delta table actually is underneath. 🏗️',
     },
   ],
 }

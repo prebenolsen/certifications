@@ -26,7 +26,7 @@ export const lakehouseFoundationsLesson: Lesson = {
       id: 'analogy-catalogue',
       type: 'analogy',
       title: 'A reference library, a storage unit, and a catalogued storage unit',
-      body: 'A **data warehouse** is a reference library: every item catalogued, shelved by system, findable in seconds — but a librarian decides what is allowed in, and shelf space is expensive.\n\nA **data lake** is a self-storage unit: cheap by the square metre, takes anything in any form, no questions asked — but nothing is indexed, so finding one document means opening boxes.\n\nA **lakehouse** keeps the storage unit and **installs the library’s catalogue over it**. Same cheap space, same anything-goes flexibility — but now every box has a record: what is inside, who put it there, when, and what changed since.',
+      body: 'A **data warehouse** is a reference library: everything catalogued and findable in seconds — but a librarian decides what is allowed in, and shelf space is expensive.\n\nA **data lake** is a self-storage unit: cheap by the square metre, takes anything, no questions asked — but nothing is indexed, so finding one document means opening boxes.\n\nA **lakehouse** installs the library’s catalogue over the storage unit. Same cheap space, same anything-goes flexibility — but now every box has a record: what is inside, who put it there, when, and what changed.',
       mapping: [
         { from: 'Reference library', to: 'Warehouse: findable and reliable, but gated and costly' },
         { from: 'Self-storage unit', to: 'Lake: cheap and takes anything, but unindexed' },
@@ -159,7 +159,7 @@ export const lakehouseFoundationsLesson: Lesson = {
         'Unity Catalog centralizes naming, permissions, lineage, and audit.',
         'Control plane = Databricks’ account; compute + data live in yours.',
       ],
-      closing: 'Next: the machines that do the work — and how not to overpay for them. 💸',
+      closing: 'Next: the word in front of almost everything on this platform — Lakeflow. 🌊',
     },
   ],
 }

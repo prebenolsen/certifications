@@ -26,7 +26,7 @@ export const governanceDiscoverabilityLesson: Lesson = {
       id: 'concept-metadata',
       type: 'concept',
       title: 'Describe your data so people can find it',
-      body: 'Unity Catalog lets you attach **comments** (human descriptions) and **tags** (key-value labels) to catalogs, schemas, tables, and columns. `COMMENT ON`, `ALTER TABLE … SET TAGS`, and AI-generated descriptions in Catalog Explorer make data self-documenting.\n\nGood metadata powers search, lineage, and classification (e.g. tag a column `pii=email`), so the right people find the right, trustworthy data.',
+      body: 'Unity Catalog lets you attach **comments** (human descriptions) and **tags** (key-value labels) to catalogs, schemas, tables, and columns. `COMMENT ON`, `ALTER TABLE … SET TAGS`, and AI-generated descriptions in **Catalog Explorer** — the UI for browsing everything Unity Catalog governs — make data self-documenting.\n\nGood metadata powers search, lineage, and classification (e.g. tag a column `pii=email`), so the right people find the right, trustworthy data.',
       takeaways: [
         'Comments = human-readable descriptions on any securable.',
         'Tags = key-value labels for search and classification.',
@@ -102,7 +102,7 @@ export const governanceDiscoverabilityLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — a schema-level SELECT is inherited by all present and future tables in the schema.',
+        a: 'A schema-level SELECT is inherited by all present and future tables in the schema.',
         b: 'Inheritance applies to future objects too, not just those existing at grant time.',
         c: 'Inheritance is exactly what removes the need for per-table grants.',
         d: 'No re-approval is needed; the inherited grant is effective immediately.',
@@ -129,7 +129,7 @@ export const governanceDiscoverabilityLesson: Lesson = {
         'Higher-level grants are inherited by all current and future children.',
         'Object access also requires USE CATALOG / USE SCHEMA on the parents.',
       ],
-      closing: 'Next: sharing this governed data beyond your workspace — Delta Sharing. 🔗',
+      closing: 'Next module: locking down workspace objects and the secrets they use. 🔐',
     },
   ],
 }

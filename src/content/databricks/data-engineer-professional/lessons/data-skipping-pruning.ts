@@ -102,7 +102,7 @@ export const dataSkippingPruningLesson: Lesson = {
       optionFeedback: {
         a: 'repartition() triggers a full shuffle — that *is* rearranging the data.',
         b: 'advisoryPartitionSizeInBytes only affects AQE shuffles, and coalesce can’t split large partitions to the target size.',
-        c: 'Correct — maxPartitionBytes sizes the read splits to 512 MB; narrow transforms preserve them; each becomes one ~512 MB file with no shuffle.',
+        c: 'maxPartitionBytes sizes the read splits to 512 MB; narrow transforms preserve them; each becomes one ~512 MB file with no shuffle.',
         d: 'shuffle.partitions only matters for wide ops, and sorting forces a shuffle — again rearranging data.',
       },
       explanation:

@@ -24,6 +24,9 @@ Stack: Vite · React 18 · TypeScript · Tailwind · React Router.
 - **Data Analyst Associate is parked on purpose** (2/24). That is a decision, not
   a backlog item — do not resume it unless asked.
 - **Teach, don't list.** If a card says "and also…", split it. One idea per card.
+- **Maximum understanding per word.** Direct, concrete, no padding — see *How it
+  should read*. If a sentence can be removed without costing the reader
+  understanding, it goes.
 - **Define every term the first time the learner meets it.** See below — this is
   the rule that gets broken most often and costs the most when it does.
 
@@ -127,6 +130,46 @@ Lakeflow is the worked example: an umbrella over **Lakeflow Connect**
 carries a vocabulary of its own — pipeline, flow, streaming table, materialized
 view, sink, expectation, AUTO CDC — every one of which is a term the learner
 meets and therefore a term that needs defining.
+
+## How it should read
+
+**Maximum understanding per word.** An experienced engineer explaining something
+to another engineer — not documentation read aloud, and not a textbook.
+
+The shape of an explanation: **concept → explanation → example or analogy →
+certification takeaway.** Not: concept → long explanation → background → edge
+cases → repetition.
+
+- **Get to the point.** Short paragraphs, simple precise language, correct
+  terminology introduced naturally and then used consistently.
+- **Explain the important *why*, not just the definition.**
+- **Say it once.** No restating the same idea in different words, no padding to
+  hit a length, no closing summary that repeats the card above it.
+- **Don't explain the obvious** — see the define/assume table above. The reader
+  is intelligent; they are just new to *this* platform's version of the idea.
+- **Contrast what the exam confuses.** When two things are commonly mixed up,
+  put them side by side (that is what a `compare` diagram is for).
+- **Length follows the concept.** A lesson is usually 2–5 minutes of reading. If
+  300 words does it, use 300. If it genuinely needs 800, use 800.
+
+Examples and analogies earn their place or they go. A good example is concrete,
+realistic, short, and directly about the concept ("a company receives millions
+of JSON files a day" — not a page of invented company detail). A good analogy is
+familiar, short, and its mapping is stated explicitly. Not every lesson needs
+one; if the analogy grows more complicated than the concept, drop it.
+
+Never write: "In today's rapidly evolving landscape…", "It is important to note
+that…", "Let's dive into…". Avoid marketing language, rhetorical questions, and
+piling on "you".
+
+Depth, in priority order: core concept → important distinctions → practical use
+→ certification-relevant detail → common misconceptions. Deprioritize history,
+trivia, implementation detail, and edge cases that are not on the exam; anything
+that wants its own explanation belongs in its own lesson.
+
+**The test for every sentence, before it is written:** *if I removed this, would
+the reader lose understanding, context, or certification-relevant knowledge?* If
+not, it does not go in.
 
 ## The authoring loop
 

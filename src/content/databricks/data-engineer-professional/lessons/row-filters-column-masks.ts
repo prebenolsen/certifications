@@ -71,7 +71,7 @@ export const rowFiltersColumnMasksLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — the CASE returns the literal string "REDACTED" for non-members, in the column still named email.',
+        a: 'The CASE returns the literal string "REDACTED" for non-members, in the column still named email.',
         b: 'The view selects two columns; the alias is `email`, not `REDACTED`, and values are a string, not null.',
         c: 'The ELSE branch returns the string "REDACTED", not null.',
         d: 'Only members of marketing see real emails; this analyst is not one.',
@@ -79,7 +79,7 @@ export const rowFiltersColumnMasksLesson: Lesson = {
       explanation:
         'The dynamic view returns two columns; for a non-member the `email` column holds the literal string `REDACTED` on every row.',
       examObjective:
-        'Demonstrate understanding of the Unity Catalog permission inheritance model.',
+        'Use row filters and column masks to filter and mask sensitive table data.',
     },
     {
       id: 'concept-row-filter',

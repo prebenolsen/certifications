@@ -22,15 +22,15 @@ export const whatIsDatabricksLesson: Lesson = {
       type: 'scenario',
       eyebrow: 'Start here',
       title: 'The tour that skips the introduction',
-      body: 'Most Databricks material starts at full speed: catalogs, Lakeflow, Delta, DBUs. It assumes you already know what the product **is** and what its words mean.\n\nYou know data engineering. What you may not yet know is **this vendor** — so that is all this lesson covers. None of it is an exam question on its own; all of it is assumed by every exam question.',
+      body: 'Most Databricks material starts at full speed: catalogs, Lakeflow, Delta, DBUs. It assumes you already know what the product **is**.\n\nYou know data engineering. What you may not know is **this vendor**, so that is all this lesson covers. None of it is an exam question by itself; all of it is assumed by every exam question.',
       atWork:
-        'The fastest way to feel lost in a familiar field is a vendor word nobody defined. Get these now and the next 26 lessons cost you less.',
+        'The fastest way to feel lost in a familiar field is a vendor word nobody defined.',
     },
     {
       id: 'concept-databricks',
       type: 'concept',
       title: 'Databricks, in one sentence',
-      body: '**Databricks is a cloud platform for storing and processing very large amounts of data — and for building analytics and AI on top of it.**\n\nYou do not install it. You open it in a browser, it runs on top of a cloud provider you already use (AWS, Azure, or Google Cloud), and it rents you computers by the second to do work that would not fit on one machine.',
+      body: '**Databricks is a cloud platform for storing and processing very large amounts of data — and for building analytics and AI on top of it.**\n\nThere is nothing to install. It runs in a browser, on top of a cloud provider you already use (AWS, Azure, or Google Cloud), and rents machines by the second for work that will not fit on one.',
       takeaways: [
         'A **cloud platform**, not software you install.',
         'It runs on top of AWS, Azure, or GCP — your data stays in your cloud account.',
@@ -41,7 +41,7 @@ export const whatIsDatabricksLesson: Lesson = {
       id: 'analogy-power',
       type: 'analogy',
       title: 'Metered, not owned',
-      body: 'You already know why a cluster beats one large machine. What is worth internalising early is Databricks’ **commercial** model, because it shapes almost every design decision in this certification.\n\nCompute here is metered like electricity: you describe the work, the platform starts machines, runs it, and **switches them off**. There is no idle fleet you have already paid for — which is why "just leave it running" is a cost decision, not a convenience.',
+      body: 'Compute here is metered like electricity: you describe the work, the platform starts machines, runs it, and **switches them off**. There is no idle fleet you have already paid for — which is why "just leave it running" is a cost decision, not a convenience. That commercial model shapes most of the design choices in this certification.',
       mapping: [
         { from: 'Owning a generator', to: 'A cluster you provisioned and pay for whether or not it is busy' },
         { from: 'Metered supply from the grid', to: 'Compute started on demand and auto-terminated' },
@@ -52,7 +52,7 @@ export const whatIsDatabricksLesson: Lesson = {
       id: 'concept-spark',
       type: 'concept',
       title: 'Its relationship with Apache Spark',
-      body: 'You have almost certainly met **Apache Spark**. What matters here is how closely the platform is bound to it: Databricks was **founded by Spark’s creators**, and Spark is the engine underneath essentially everything you will build in this certification.\n\nSo Databricks is not an alternative to Spark, and not a wrapper you could swap out. It is the managed platform *around* Spark — the compute, the storage governance, the orchestration, and the tuning that you would otherwise assemble yourself.',
+      body: 'You have met **Apache Spark**. What matters here is how tightly the platform is bound to it: Databricks was **founded by Spark’s creators**, and Spark is the engine underneath essentially everything you build in this certification.\n\nSo Databricks is not an alternative to Spark, and not a wrapper you could swap out. It is the managed platform *around* Spark — the compute, the storage governance, the orchestration, and the tuning that you would otherwise assemble yourself.',
       takeaways: [
         'Databricks is **managed Spark plus a platform**, not a replacement for it.',
         'Your PySpark and SQL skills transfer directly.',
@@ -63,7 +63,7 @@ export const whatIsDatabricksLesson: Lesson = {
       id: 'concept-vocabulary',
       type: 'concept',
       title: 'The local names for things you already know',
-      body: 'You know what a cluster and a notebook are. This is just the translation, plus the details that are actually Databricks-specific:\n\n• **Workspace** — the environment you log into. What matters: companies run **several** (dev, test, prod), and each one used to govern itself.\n• **Notebook** — as expected. It does nothing until a cluster is **attached**.\n• **Cluster** — as expected, but in two flavours: **all-purpose** (you create it, you share it, it lingers) and **job** (created for a scheduled run, deleted at the end, billed cheaper).',
+      body: 'Cluster and notebook mean what they usually mean. This is the translation, plus the details that are genuinely Databricks-specific:\n\n• **Workspace** — the environment you log into. What matters: companies run **several** (dev, test, prod), and each one used to govern itself.\n• **Notebook** — as expected. It does nothing until a cluster is **attached**.\n• **Cluster** — as expected, but in two flavours: **all-purpose** (created by a person, shared by a team, lingers until stopped) and **job** (created for a scheduled run, deleted at the end, billed cheaper).',
       takeaways: [
         'The all-purpose/job split is a **billing** distinction as much as a technical one.',
       ],
@@ -72,7 +72,7 @@ export const whatIsDatabricksLesson: Lesson = {
       id: 'concept-dbu',
       type: 'concept',
       title: 'DBU — the one genuinely new word',
-      body: 'A **DBU** (*Databricks Unit*) is the unit compute is metered in — roughly "how much processing did that consume". It is not a machine-hour: a bigger or more capable cluster burns DBUs faster.\n\nThis is worth pausing on because it quietly shapes the whole certification. Cluster sizing, job clusters over all-purpose, auto-termination, Photon, choosing between Auto Loader and `COPY INTO` — these are presented as technical choices and graded as **cost** choices.',
+      body: 'A **DBU** (*Databricks Unit*) is the unit compute is metered in — roughly "how much processing did that consume". Not a machine-hour: a bigger or more capable cluster burns DBUs faster.\n\nCluster sizing, job clusters over all-purpose, auto-termination, **Photon** (the vectorized C++ query engine that runs the same SQL faster), Auto Loader versus `COPY INTO` — the exam presents these as technical choices and grades them as **cost** choices.',
       takeaways: [
         'DBUs, not hours. Capability affects the burn rate.',
         'An entire exam section exists because compute decisions are cost decisions.',
@@ -116,7 +116,7 @@ export const whatIsDatabricksLesson: Lesson = {
       title: 'The most common first assumption',
       myth: '"Databricks is a database. I load my data *into* Databricks."',
       reality:
-        'You do not load data into Databricks. Your data sits in **your own cloud storage**, in open file formats, and Databricks reads it where it lies.\n\nThis matters more than it sounds. It means no vendor lock-in on the data, no giant migration to get started, and other tools can read the same files. "Databricks the database" is the wrong mental model; **"Databricks the engine and the rulebook over your storage"** is the right one.',
+        'You do not load data into Databricks. Your data sits in **your own cloud storage**, in open file formats, and Databricks reads it where it lies.\n\nThe consequences: no vendor lock-in on the data, no migration to get started, and other tools can read the same files. "Databricks the database" is the wrong mental model; **"Databricks the engine and the rulebook over your storage"** is the right one.',
     },
     {
       id: 'concept-dip',

@@ -111,7 +111,7 @@ export const liquidClusteringLesson: Lesson = {
       correct: ['b'],
       optionFeedback: {
         a: 'Partitioning on a high-cardinality column creates millions of tiny files — the classic anti-pattern.',
-        b: 'Correct — Liquid Clustering handles high cardinality, adapts as filters change, and self-maintains.',
+        b: 'Liquid Clustering handles high cardinality, adapts as filters change, and self-maintains.',
         c: 'ZORDER helps but is periodic and static; changing needs still means rewrites, and shifting filters make it stale.',
         d: 'Throwing hardware at bad layout is the expensive, non-scalable answer.',
       },
@@ -137,7 +137,7 @@ export const liquidClusteringLesson: Lesson = {
         'A table is either partitioned or Liquid-Clustered, not both.',
         'Prefer Liquid Clustering unless you have a specific big-table partitioning need.',
       ],
-      closing: 'Next: the reason well-clustered tables fly — the files Spark never reads. ⚡',
+      closing: 'Next module: the cost side — what managed tables take off your plate. ⚡',
     },
   ],
 }

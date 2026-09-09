@@ -118,7 +118,7 @@ export const lakeflowConnectLesson: Lesson = {
         'Data ingested through Lakeflow Connect managed connectors lands in Unity Catalog–governed tables.',
       answer: true,
       explanation:
-        'That is a core selling point: governance from the first byte — permissions, lineage, and auditing apply to connector-ingested data like any other table.',
+        'Governance applies from the first byte: permissions, lineage, and auditing cover connector-ingested data like any other table.',
     },
     {
       id: 'recap',

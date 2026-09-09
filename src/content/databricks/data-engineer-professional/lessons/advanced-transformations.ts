@@ -107,7 +107,7 @@ export const advancedTransformationsLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — a windowed ROW_NUMBER keeps all columns and scales, taking exactly the newest row per account.',
+        a: 'A windowed ROW_NUMBER keeps all columns and scales, taking exactly the newest row per account.',
         b: 'GROUP BY MAX() gives the timestamp but not the rest of that row’s columns.',
         c: 'A self-join is more expensive and breaks on ties without extra logic.',
         d: 'Collecting a very large table to the driver will OOM — never do this at scale.',

@@ -106,7 +106,7 @@ export const piiAnonymizationLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — a salted hash is deterministic (equal values still join) and one-way (nobody recovers the original).',
+        a: 'A salted hash is deterministic (equal values still join) and one-way (nobody recovers the original).',
         b: 'Tokenization is reversible, which violates "never recover the real value."',
         c: 'Suppression removes the id, so you can no longer count or join on it.',
         d: 'Generalizing an id to a category destroys the ability to match distinct customers.',

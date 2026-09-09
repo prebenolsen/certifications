@@ -91,7 +91,7 @@ export const lakehouseFederationLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — a small reference table queried occasionally is the ideal federation case: no copy, no pipeline, UC governance applied.',
+        a: 'A small reference table queried occasionally is the ideal federation case: no copy, no pipeline, UC governance applied.',
         b: 'A pipeline creates a copy to maintain for a table you can just query in place.',
         c: 'Daily CSV exports are stale, manual, and ungoverned.',
         d: 'Delta Sharing shares *Delta* data between share providers/recipients; it doesn’t connect to a PostgreSQL source.',
@@ -118,7 +118,7 @@ export const lakehouseFederationLesson: Lesson = {
         'Best for occasional/small reference reads — not high-scale hot data.',
         'Nothing is copied; the source system serves the query.',
       ],
-      closing: 'Next module: protecting the sensitive data itself — de-identifying PII. 🕵️',
+      closing: 'Next: making all this governed data findable — metadata and discoverability. 🔎',
     },
   ],
 }

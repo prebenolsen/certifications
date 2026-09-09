@@ -130,6 +130,49 @@ export const aggregationsGroupByLesson: Lesson = {
       back: 'On very large tables the approximate version is much faster and cheaper, trading a small, bounded error for big performance gains — ideal for dashboards where an exact distinct count is not essential.',
     },
     {
+      id: 'concept-profile',
+      type: 'concept',
+      title: 'Summary statistics before you aggregate anything',
+      body: 'Before writing a single `GROUP BY`, get the shape of the data. Running a notebook cell that returns a DataFrame gives you a **data profile** alongside the results: for every column, summary statistics — count, mean, standard deviation, min, max and quartiles for numeric columns, plus null counts — and a **histogram** of how the values are distributed.\n\nStrings and dates get profiled too, not just numbers. It is the fastest way to spot the problems that would otherwise surface as a wrong average: unexpected nulls, a suspicious maximum, a category that dominates everything.',
+      takeaways: [
+        'The notebook data profile summarises **every** column type, not only numerics.',
+        'You get distributions (histograms) as well as summary statistics.',
+        'Profile first — it catches the data-quality problems that corrupt aggregates.',
+      ],
+    },
+    {
+      id: 'mcq-profile',
+      type: 'mcq',
+      question:
+        'An analyst wants to understand a new customer dataset quickly: distributions, potential quality issues, and summary statistics. What do the data preview features in a notebook automatically provide?',
+      options: [
+        { id: 'a', text: 'Row count and column names.' },
+        {
+          id: 'b',
+          text: 'Summary statistics for numeric, string and date columns, plus histograms showing the value distribution of each column.',
+        },
+        {
+          id: 'c',
+          text: 'Data type information, null counts and standard deviation for numeric columns only.',
+        },
+        {
+          id: 'd',
+          text: 'Real-time performance metrics and query execution statistics for the dataset.',
+        },
+      ],
+      correct: ['b'],
+      optionFeedback: {
+        a: 'That is the bare schema — the profile goes considerably further.',
+        b: 'The profile covers numeric, string and date columns and visualises each distribution.',
+        c: 'Profiling is not limited to numeric columns; strings and dates are summarised too.',
+        d: 'Execution metrics describe how a query ran, not what the data contains.',
+      },
+      explanation:
+        'The data profile answers "what is in this table?" — per-column summary statistics across types, with histograms for the distributions. Execution metrics are a different tool entirely.',
+      examObjective:
+        'Perform aggregate operations such as count, approximate count distinct, mean, and summary statistics.',
+    },
+    {
       id: 'summary',
       type: 'summary',
       title: 'The mental model',
@@ -151,7 +194,8 @@ export const aggregationsGroupByLesson: Lesson = {
         'You will never again confuse ORDER BY with GROUP BY.',
         'You can filter before (WHERE) and after (HAVING) aggregation.',
       ],
-      closing: 'That trap in Question 7 has no power over you now. 💪',
+      closing:
+        'One table summarised. Next: pulling several tables together. 🤝',
     },
   ],
 }

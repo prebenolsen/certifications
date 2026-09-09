@@ -4,6 +4,9 @@ import { HomePage } from '@/pages/HomePage'
 import { CertificationPage } from '@/pages/CertificationPage'
 import { ModulePage } from '@/pages/ModulePage'
 import { LessonPage } from '@/pages/LessonPage'
+import { QuizIntroPage } from '@/pages/QuizIntroPage'
+import { QuizAttemptPage } from '@/pages/QuizAttemptPage'
+import { QuizResultsPage } from '@/pages/QuizResultsPage'
 import { NotFound } from '@/pages/NotFound'
 
 export default function App() {
@@ -29,6 +32,9 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/cert/:certId" element={<CertificationPage />} />
         <Route path="/cert/:certId/module/:moduleId" element={<ModulePage />} />
+        <Route path="/cert/:certId/module/:moduleId/quiz" element={<QuizIntroPage />} />
+        <Route path="/cert/:certId/module/:moduleId/quiz/attempt" element={<QuizAttemptPage />} />
+        <Route path="/cert/:certId/module/:moduleId/quiz/results/:attemptId" element={<QuizResultsPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>

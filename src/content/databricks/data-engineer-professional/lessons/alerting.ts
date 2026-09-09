@@ -85,7 +85,7 @@ export const alertingLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — a SQL Alert evaluates the data itself (row count/freshness) and fires even when the run succeeded.',
+        a: 'A SQL Alert evaluates the data itself (row count/freshness) and fires even when the run succeeded.',
         b: 'On-failure won’t fire — the run succeeded; the *data* is the problem.',
         c: 'Manual checks are exactly what let the weekend outage go unnoticed.',
         d: 'On-success confirms the run ran, not that the data is non-empty or fresh.',
@@ -112,7 +112,7 @@ export const alertingLesson: Lesson = {
         'Configure job alerts in the Jobs UI or via the Jobs API.',
         'Use both — run health and data quality are different failures.',
       ],
-      closing: 'Next: shipping all of this safely with Asset Bundles and Git. 🚀',
+      closing: 'Next: what to do when a run fails at 3am — debugging and repairs. 🔧',
     },
   ],
 }

@@ -10,7 +10,8 @@ A lesson is a typed `Lesson` object — an ordered `Card[]` — under
 code:** no JSX, no HTML. You are teaching, not listing.
 
 Read these first (they are the source of truth — do not restate them from memory):
-- `docs/AUTHORING.md` — philosophy, the lesson blueprint, card-type selection, templates.
+- `docs/AUTHORING.md` — philosophy, **writing style**, the lesson blueprint,
+  card-type selection, templates.
 - `src/types/content.ts` — the exact shape of every card and the `Lesson`/`Module` types.
 - An existing complete lesson as a style reference, e.g.
   `src/content/databricks/data-engineer-associate/lessons/auto-loader.ts`.
@@ -50,6 +51,18 @@ It warns under 6 cards. Diagram cards need either an inline `spec` (preferred:
 of `docs/AUTHORING.md` before adding a bespoke SVG.
 
 Text fields support only `**bold**`, `*italic*`, `` `code` ``, and `\n`. Nothing else.
+
+## How it reads
+
+An experienced engineer explaining something to another engineer — not
+documentation read aloud. Concept → explanation → example or analogy →
+certification takeaway. Short paragraphs, plain precise language, the important
+*why*, each idea said once. No padding, no restating an idea in different words,
+no "It is important to note that…". Examples are concrete and short; an analogy
+is used only when it genuinely clarifies, and its mapping is explicit. Before
+writing a sentence: *if I removed this, would the reader lose understanding,
+context, or certification-relevant knowledge?* If not, leave it out. Full rules:
+the **Writing style** section of `docs/AUTHORING.md`.
 
 ## Steps
 

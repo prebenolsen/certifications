@@ -96,7 +96,7 @@ export const ingestionFormatsLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — use the right reader per format and land everything as Delta to get types, ACID, and time travel.',
+        a: 'Use the right reader per format and land everything as Delta to get types, ACID, and time travel.',
         b: 'Querying heterogeneous raw files forever gives no ACID, evolution, or skipping.',
         c: 'CSV is the *least* typed format — converting to it throws away schema and precision.',
         d: 'In-memory only means no persistence, no time travel, and it vanishes on cluster stop.',

@@ -15,6 +15,61 @@ and whether each is defined before the learner meets it** →
 
 ---
 
+## Course: Introduction to Data Engineering with Databricks
+
+- **No exam.** This is a course, not a certification — `examFacts` is omitted on
+  purpose, and the home card shows lessons/minutes instead of questions/minutes.
+- **Audience:** someone who has met *none* of these components. Every other track
+  here assumes a working data engineer; this one assumes only general technical
+  literacy and answers the question the others skip — *what are all these things,
+  and how do they fit together?*
+- **Modules:** 4 · **Lessons authored:** 10 of 10 ✅ · **Cards:** 103 · **~62 minutes**
+- **Scope discipline:** high-level and abstract. Each lesson says what a component
+  **is** and why it exists, then stops. Left out deliberately: Photon, streaming
+  tables vs materialized views, Delta Sharing, Marketplace, Lakehouse Federation,
+  Asset Bundles, privilege names — all of it lives in the certification tracks.
+- **Reading order is the teaching:** the job before the vendor, the problem before
+  the product, storage and governance before pipelines, then a capstone that
+  assembles everything. No lesson names a component a later lesson is responsible
+  for introducing, which is why the glossary report shows **21 ✅ and no ⚠️/❌**
+  for this course.
+
+### Module 1 — The job and the platform 🧭 (Orientation) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| What data engineering is | ✅ | 10 | 1 t/f, 1 flashcard | vendor-free on purpose; the job in one sentence; ingest→transform→serve; restaurant-kitchen analogy; batch vs streaming ("how stale is too stale?"); myth "it's just SQL that moves files" |
+| What Databricks is | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | the product in one sentence; Spark as the engine; unloading-a-truck analogy; data stays in **your** cloud storage; myth "a database you load data into"; Data Intelligence Platform |
+| Warehouse, lake, lakehouse | ✅ | 9 | 1 t/f, 1 flashcard | two systems, two answers; warehouse vs lake (compare); the lakehouse as lake storage + warehouse discipline; myth "a lake with a nicer UI" |
+
+### Module 2 — The two layers everything rests on 🧱 (Foundations) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Delta Lake: files that behave like a table | ✅ | 10 | 1 t/f, 1 flashcard | the dashboard that read half a file; data files + transaction log; ledger analogy; **the log is the table**; commit flow; time travel; myth "proprietary format" |
+| Unity Catalog: names, permissions, lineage | ✅ | 11 | 1 mcq, 1 flashcard | three teams, three `customers` tables; `catalog.schema.table` + postal-address analogy; metastore⊃catalog⊃schema⊃object (layers); grants cover future tables; lineage as blast radius |
+
+### Module 3 — Building a pipeline 🔄 (Pipelines) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Where the work runs | ✅ | 10 | 1 t/f, 1 flashcard | workspace · notebook (inert until compute is attached) · all-purpose vs job cluster · SQL warehouse (compare); DBU as the meter; myth "my tables live on the cluster" |
+| Lakeflow: get it in, shape it, schedule it | ✅ | 12 | 1 mcq, 1 flashcard | the 2am pipeline; **umbrella, not a tool**; Connect/Pipelines/Jobs flow with Designer as a front door; Auto Loader glossed; order-the-dish analogy for declarative; myth "Lakeflow is one product" |
+| Bronze, silver, gold | ✅ | 10 | 1 t/f, 1 flashcard | which `customers` table is real; the three layers; refinement flow; **why keep bronze** (source systems hold state, not history); myth "a feature you enable" |
+
+### Module 4 — What the data is for 📊 (Analytics & AI) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Who uses the data, and how | ✅ | 9 | 1 t/f, 1 flashcard | Databricks SQL; AI/BI dashboard Data vs Canvas tabs; Genie runs as the asker; MLflow + Model Serving in one card; four surfaces over one copy (layers); myth "export a CSV for the data scientists" |
+| One pipeline, end to end | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | "how many orders shipped yesterday, by region?"; the full six-step flow; a card per step naming the component; what was true at every step (Delta, Unity Catalog, DBUs); lineage + bronze as the recovery story |
+
+- **Introduces 21 glossary terms**, each in the lesson that first uses it.
+- **Future ideas:** a "which component would you use?" sorting exercise; an
+  optional fifth module on cost, since every early mistake is a billing mistake.
+
+---
+
 ## Certification: Databricks Certified Generative AI Engineer Associate
 
 - **Exam:** 45 questions · 90 minutes · USD 200 · valid 2 years
@@ -363,113 +418,99 @@ and whether each is defined before the learner meets it** →
 
 - **Exam:** 45 multiple-choice questions · 90 minutes · valid 2 years
 - **Source of truth:** `src_material/databricks/databricks-certified-data-analyst-associate`
-- **Modules:** 9 (organized for learning flow, mapped back to exam sections)
-- **Lessons authored:** 2 of 24 · **Card types in use:** 11 of 11
+- **Modules:** 9 (mirroring the 9 official exam sections, ordered for learning flow)
+- **Lessons authored:** 30 of 30 ✅ · **Cards:** 341 · all 10 official sample
+  questions woven in as MCQs
+- **Two lessons the exam never lists as topics:** *What Databricks is, for an
+  analyst* and *Unity Catalog: the layer everything else assumes*. Nothing in
+  either is an exam question by itself; everything in both is assumed by every
+  exam question. Unity Catalog is named in **five of the nine** sections.
+- **Product naming:** the exam guide's names are taught first, with the current
+  ones noted — *Genie spaces* → **Genie Agents**, *Databricks Assistant* →
+  **Genie Code**, *DeltaLive tables* → **Lakeflow Pipelines**. Verified against
+  the docs in `src_material/.../research/platform-and-naming.md`.
 
-### Card-type coverage (engine)
+### Module 1 — The Platform & Unity Catalog 🏛️ (Sections 1, 9) · ✅
 
-| Card type | Implemented | Notes |
-|-----------|:-----------:|-------|
-| concept | ✅ | Title, body, optional takeaways |
-| analogy | ✅ | Body + optional "maps to" pairs |
-| diagram | ✅ | Registered SVG by id + caption |
-| example | ✅ | Intro + code block + explanation |
-| scenario | ✅ | Body + "at work" framing |
-| mistake | ✅ | Myth vs reality |
-| flashcard | ✅ | Click-to-flip; self-graded recall ("I knew this" / "I didn't"), tracked apart from quiz accuracy |
-| truefalse | ✅ | Answer + explanation |
-| mcq | ✅ | Single/multi-select, per-option feedback, exam objective |
-| summary | ✅ | Numbered key points |
-| recap | ✅ | Checklist + closing line |
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| What Databricks is, for an analyst | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | orientation from zero; lakehouse in one card; workspace/SQL editor/warehouse vocabulary; DBU; myth "Databricks is a database" |
+| Unity Catalog: the layer everything else assumes | ✅ | 15 | 1 mcq, 1 t/f, 1 flashcard | metastore→catalog→schema→object (layers); securables and owners; **`SELECT` + `USE CATALOG` + `USE SCHEMA`**; inheritance to future tables; lineage/audit/search for free |
+| Where does your data live? The 3-level namespace | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | postal-address analogy; managed vs external (diagram); `CREATE OR REPLACE` keeps grants + history (sample Q6, Q9) |
+| The pieces of the platform | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | Delta Lake · Databricks SQL · Lakeflow · Mosaic AI · Data Intelligence Engine · Marketplace; DLT renamed twice |
+| Catalog Explorer: your window on the data | ✅ | 11 | 1 mcq, 1 flashcard | Details/Permissions/Lineage tabs; table vs view (compare); certified = a steward vouches; column-level lineage |
 
-### Exercise formats
+- **Covered:** the whole of Section 1 plus the namespace half of Section 9.
+- **Future ideas:** a clickable Catalog Explorer mock; "build the full table
+  name" drag exercise.
 
-Implemented: multiple choice (single & multi-select), true/false, flashcards.
-Planned: drag-and-drop, ordering steps, "identify the mistake", build-a-SQL-query,
-interactive diagrams, prediction / "what happens next".
+### Module 2 — Managing & Cleaning Data 🧹 (Section 2) · ✅
 
----
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Finding data you can trust | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | search covers comments and is permission-filtered; the four trust signals; tags incl. `pii=email`; `APPLY TAG` |
+| Cleaning data in SQL | ✅ | 12 | 1 mcq, 1 flashcard | nulls skew `AVG`; `COALESCE`/`NULLIF`/`try_cast`; dedupe by key with `ROW_NUMBER`; clean into a view or CTAS, never the source; `= NULL` matches nothing |
 
-## Module 1 — The Platform & Unity Catalog 🏛️ (Sections 1, 9) · 🚧
+### Module 3 — Importing Data 📥 (Section 3) · ✅
 
-| Lesson | Status | Lessons | Quizzes | Diagrams | Examples | Analogies |
-|--------|:------:|:-------:|:-------:|:--------:|:--------:|:---------:|
-| Where does your data live? The 3-level namespace | ✅ | 13 cards | 1 mcq, 1 t/f, 1 flashcard | 2 (namespace, managed vs external) | 1 (CREATE OR REPLACE) | 1 (postal address) |
-| The pieces of the platform | ⬜ | — | — | — | — | — |
-| Catalog Explorer, views & lineage | ⬜ | — | — | — | — | — |
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Six ways data arrives | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | UI upload · cloud storage · Delta Sharing · API · Auto Loader · Marketplace; copy-vs-connect (compare); choose by location then frequency |
+| Auto Loader: files that keep arriving | ✅ | 10 | 1 mcq, 1 flashcard | bookmark analogy; checkpoint = exactly-once; `STREAM read_files()` in a streaming table; schema evolution + `_rescued_data` |
 
-- **Covered:** 3-level namespace (`catalog.schema.table`), schema = database,
-  managed vs external tables, `DROP TABLE` behavior, `CREATE OR REPLACE`.
-- **Missing:** platform components (Delta Lake, DLT, Lakeflow, Mosaic AI,
-  Databricks SQL), Catalog Explorer UI, views vs tables, certified tables,
-  lineage, Marketplace.
-- **Future ideas:** interactive "build the full table name" drag exercise;
-  clickable Catalog Explorer mock.
+### Module 4 — Querying with Databricks SQL 🔎 (Section 4) · ✅
 
-## Module 2 — Managing & Cleaning Data 🧹 (Section 2) · ⬜
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Where your SQL actually runs | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | warehouse = compute, not storage; size vs scaling (tills analogy); serverless + auto-stop; Assistant `/explain` (sample Q2) |
+| Filtering & sorting a table | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | `WHERE`/`ORDER BY`/`LIMIT`/`DISTINCT`; `AND` binds tighter than `OR`; **keep functions off the filtered column** so files can be skipped |
+| Asking questions of your data: GROUP BY | ✅ | 15 | 2 mcq, 1 t/f, 1 flashcard | aggregate functions incl. `approx_count_distinct`; `WHERE` vs `HAVING`; notebook data profile — stats + histograms (sample Q1); missing `GROUP BY` (sample Q7) |
+| Joins, unions & querying across systems | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | who survives each join (compare); multi-key joins and row multiplication; `UNION` vs `UNION ALL`; **federated join** via foreign catalog |
+| Creating tables of your own | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | `LOCATION` = external; CTAS from CSV + Parquet + Delta into one governed table; `DROP`+`CREATE` discards grants and history |
+| Views, materialized views & streaming tables | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | four objects compared; refresh is incremental or full; **refreshes run on serverless, not your warehouse**; dynamic = *who*, materialized = *when* (sample Q3) |
+| Delta Lake time travel | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | `DESCRIBE HISTORY` as audit trail; `VERSION`/`TIMESTAMP AS OF`; `RESTORE`; **`VACUUM` ends time travel** (sample Q4) |
 
-- **Lessons planned:** Discovering & governing certified data; Cleaning data in SQL.
-- **Missing:** discover/query/manage certified datasets, tagging a data asset,
-  viewing lineage, removing invalid data, handling missing values.
+### Module 5 — Analyzing & Optimizing Queries ⚡ (Section 5) · ✅
 
-## Module 3 — Importing Data 📥 (Section 3) · ⬜
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Photon: the engine underneath | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | vectorized C++, Spark-compatible; on by default for SQL warehouses; **no gain under ~2 s**; different DBU rate |
+| Finding and fixing a slow query | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | history filters + metrics (sample Q10, multi-select); profile symptoms → fixes (flow); result vs disk cache; the wrong-answer checklist |
+| Liquid Clustering: making filters fast | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | min/max skipping needs grouped values; `CLUSTER BY` and `CLUSTER BY AUTO`; keys change without a rewrite; replaces partitioning |
 
-- **Lessons planned:** The ingestion menu; Auto Loader explained.
-- **Missing:** S3 ingestion, Delta Sharing, API intake, Auto Loader, Marketplace,
-  UI file upload.
+### Module 6 — Dashboards & Visualizations 📊 (Section 6) · ✅
 
-## Module 4 — Querying with Databricks SQL 🔎 (Section 4) · 🚧
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Building an AI/BI dashboard | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | Data tab vs Canvas tab; one dataset feeding many widgets; pages; global/page/widget filters; draft vs published |
+| Choosing a chart that communicates | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | question → chart type; sort bars, zero baseline; pie only for 2–3 slices; charts from the SQL editor and notebooks |
+| Parameters: one query, many answers | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | `:start_date` markers; widget re-runs the query with the value in `WHERE` (sample Q8); defaults; test the empty case |
+| Sharing a dashboard, and keeping it fresh | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | CAN VIEW/EDIT/MANAGE; publisher credentials vs viewer permissions; account-level sharing and iframes; refresh schedule + subscriptions |
+| Alerts: being told, not watching | ✅ | 9 | 1 mcq, 1 t/f, 1 flashcard | query + threshold + destination + schedule (sample Q5); alert on a smoothed window; a green job ≠ good data |
 
-| Lesson | Status | Lessons | Quizzes | Diagrams | Examples | Analogies |
-|--------|:------:|:-------:|:-------:|:--------:|:--------:|:---------:|
-| Asking questions of your data: GROUP BY | ✅ | 13 cards | 1 mcq, 1 t/f, 1 flashcard | 1 (GROUP BY flow) | 1 (customers per region) | 1 (blender) |
-| Joins & set operations | ⬜ | — | — | — | — | — |
-| Views, materialized views & streaming tables | ⬜ | — | — | — | — | — |
-| Delta Lake time travel | ⬜ | — | — | — | — | — |
-| SQL Warehouses & the Assistant | ⬜ | — | — | — | — | — |
+### Module 7 — AI/BI Genie Spaces 🤖 (Section 7) · ✅
 
-- **Covered:** aggregate functions (`count`, `count(DISTINCT)`,
-  `approx_count_distinct`, `avg`/`mean`, `sum`/`min`/`max`), `GROUP BY`,
-  `WHERE` vs `HAVING`, `ORDER BY` ≠ grouping, fixing a query.
-- **Missing:** joins (inner/left/right/full, multi-key), `UNION`/`UNION ALL`,
-  materialized views vs streaming tables vs dynamic views, time travel + VACUUM,
-  SQL Warehouse role, Databricks Assistant (`/explain` etc.), cross-system/federated
-  joins, creating managed/external tables from CSV/Parquet/Delta.
-- **Future ideas:** interactive join-type visualizer; "spot the bug" query fixer.
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| What is a Genie space? | ✅ | 11 | 1 mcq, 1 t/f | briefed-colleague analogy; data + instructions + samples + trusted assets; runs with the **asker's** permissions; Genie space → Genie Agent |
+| Building & improving a Genie space | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | up to 30 tables, pro/serverless warehouse; instructions carry business rules; CAN MANAGE/EDIT/VIEW + `SELECT`; feedback and benchmarks |
 
-## Module 5 — Analyzing & Optimizing Queries ⚡ (Section 5) · ⬜
+### Module 8 — Data Modeling 🧱 (Section 8) · ✅
 
-- **Lessons planned:** Photon; Finding & fixing slow queries; Liquid Clustering.
-- **Missing:** Photon features/benefits/workloads, Query Insights & Profiler,
-  query history + caching, Liquid Clustering, Delta audit/history validation.
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Star, snowflake & data vault | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | facts vs dimensions; star = one join away; snowflake normalises; hubs/links/satellites; one consistent grain |
+| Bronze, silver, gold | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | what changes per hop; restaurant analogy; **star lives in gold, data vault in silver**; a convention, not a feature |
 
-## Module 6 — Dashboards & Visualizations 📊 (Section 6) · ⬜
+### Module 9 — Securing Data 🔒 (Section 9) · ✅
 
-- **Lessons planned:** Building AI/BI dashboards; Parameters & filters; Alerts & refresh.
-- **Missing:** AI/BI dashboards (multi-tab, multi-dataset, widgets), notebook &
-  SQL-editor visualizations, parameters, permissions/sharing/embedding, scheduled
-  refresh, alerts, choosing the right visualization type.
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| Roles, grants & sharing settings | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | users/groups/service principals; **data privileges vs object ACLs** (compare); `SHOW GRANTS`; revoke where it was granted |
+| Ownership & protecting personal data | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | own with a group; classify then protect; masks vs row filters; one masked table beats filtered copies; deletion ≠ erasure until `VACUUM` |
 
-## Module 7 — AI/BI Genie Spaces 🤖 (Section 7) · ⬜
-
-- **Lessons planned:** What is a Genie space?; Building & optimizing Genie.
-- **Missing:** purpose/features/components, creating spaces (sample questions,
-  instructions, warehouses, curated datasets, Trusted Assets), permissions &
-  distribution, optimization from feedback/benchmarks.
-
-## Module 8 — Data Modeling 🧱 (Section 8) · ⬜
-
-- **Lessons planned:** Star, snowflake & data vault; The Medallion architecture.
-- **Missing:** star/snowflake/data-vault schemas, alignment with Medallion
-  (bronze/silver/gold).
-
-## Module 9 — Securing Data 🔒 (Section 9) · ⬜
-
-- **Lessons planned:** Roles, grants & sharing; Ownership & PII protection.
-- **Missing:** Unity Catalog roles & sharing settings, 3-level namespace for
-  governance, table ownership, PII protection best practices.
-
----
+- **Future ideas:** a hands-on SQL sandbox card type; a mixed-section mock exam;
+  a clickable dashboard-builder walkthrough.
 
 ## Platform-level future ideas
 

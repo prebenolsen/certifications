@@ -101,7 +101,7 @@ export const pythonProjectStructureLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — a wheel-packaged package is importable, testable in CI, reusable, and deployable identically by a bundle.',
+        a: 'A wheel-packaged package is importable, testable in CI, reusable, and deployable identically by a bundle.',
         b: 'Copy-paste guarantees drift and can’t be unit-tested in isolation.',
         c: '%run shares globals but gives no packaging, versioning, or off-platform testing.',
         d: 'Hand-configuring each workspace is the opposite of repeatable deployment.',

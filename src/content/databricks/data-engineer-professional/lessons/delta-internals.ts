@@ -63,7 +63,7 @@ export const deltaInternalsLesson: Lesson = {
         a: 'Nothing is dropped or rewritten — a rename never touches the data files.',
         b: 'The Delta log records data changes; a catalog rename is not written to it.',
         c: 'The existing log stays exactly where it is at the unchanged LOCATION.',
-        d: 'Correct — rename only updates the metastore pointer; files and log are untouched.',
+        d: 'Rename only updates the metastore pointer; files and log are untouched.',
       },
       explanation:
         'RENAME is a **metastore** operation. The name-to-location mapping is updated; the data files and `_delta_log` at the LOCATION are unchanged.',
@@ -157,7 +157,7 @@ export const deltaInternalsLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — a view projects the approved columns, renames them with aliases, always reflects live data, and copies nothing.',
+        a: 'A view projects the approved columns, renames them with aliases, always reflects live data, and copies nothing.',
         b: 'DEEP CLONE duplicates the entire dataset and still needs re-runs to stay current — the opposite of simple.',
         c: 'CTAS + a propagation job is a whole new pipeline to build and maintain.',
         d: 'A parallel write adds fragile duplication to a production pipeline.',

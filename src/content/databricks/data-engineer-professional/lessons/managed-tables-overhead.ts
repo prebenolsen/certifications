@@ -112,7 +112,7 @@ export const managedTablesOverheadLesson: Lesson = {
       ],
       correct: ['a'],
       optionFeedback: {
-        a: 'Correct — managed tables with predictive optimization remove the need to schedule and babysit those jobs.',
+        a: 'Managed tables with predictive optimization remove the need to schedule and babysit those jobs.',
         b: 'External tables still require you to run the maintenance yourself.',
         c: 'Skipping maintenance degrades performance (small files, stale data) and can break retention/cost goals.',
         d: 'Bigger clusters run the same manual jobs faster but don’t remove the overhead.',
@@ -139,7 +139,7 @@ export const managedTablesOverheadLesson: Lesson = {
         'Automatic maintenance applies to managed, not external, tables.',
         'Still open Delta — no lock-in, just less micromanagement.',
       ],
-      closing: 'Next: when a query is still slow, the profile tells you why. 🔎',
+      closing: 'Next: the files Spark never reads — data skipping and pruning. ⏭️',
     },
   ],
 }
