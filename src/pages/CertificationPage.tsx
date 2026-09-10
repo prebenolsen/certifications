@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import {
   certContentCounts,
   certificationStatus,
+  explainersForCert,
   getCertification,
   moduleStatus,
 } from '@/content/registry'
@@ -9,6 +10,7 @@ import { useCertStats, useModuleStats } from '@/hooks/useStats'
 import { useProgress } from '@/context/ProgressContext'
 import { ProgressBar } from '@/components/layout/ProgressBar'
 import { StatusBadge } from '@/components/layout/StatusBadge'
+import { ExplainerCard } from '@/components/layout/ExplainerCard'
 import { NotFound } from './NotFound'
 import type { Certification, Module } from '@/types/content'
 
@@ -76,7 +78,34 @@ function CertificationView({ cert }: { cert: Certification }) {
           <ModuleCard key={module.id} certId={cert.id} module={module} />
         ))}
       </section>
+
+      <Explainers certId={cert.id} />
     </div>
+  )
+}
+
+/**
+ * Visual explainers attached to this track. Placed after the modules: it is a
+ * companion to the lessons, not a step in them.
+ */
+function Explainers({ certId }: { certId: string }) {
+  const found = explainersForCert(certId)
+  if (found.length === 0) return null
+  return (
+    <section className="space-y-3">
+      <div>
+        <h2 className="text-lg font-bold text-ink">
+          {found.length === 1 ? 'Visual explainer' : 'Visual explainers'}
+        </h2>
+        <p className="mt-1 max-w-2xl text-sm text-ink-soft">
+          Not part of the track — no progress, no questions. Worth twenty
+          minutes if the shape of the platform has not clicked yet.
+        </p>
+      </div>
+      {found.map((explainer) => (
+        <ExplainerCard key={explainer.id} explainer={explainer} />
+      ))}
+    </section>
   )
 }
 

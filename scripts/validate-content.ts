@@ -9,6 +9,7 @@
 import {
   availableCertifications,
   certifications,
+  explainers,
   moduleStatus,
   upcomingCertifications,
 } from '../src/content/registry'
@@ -211,6 +212,35 @@ for (const cert of certifications) {
   }
 }
 
+/*
+  Explainers are linked from the home page and from track pages, so a broken
+  one is as visible as a broken lesson. The `answers` rule is the teaching
+  bar, not a structural one: an explainer that cannot say what a learner will
+  be able to answer afterwards has not earned a link.
+*/
+checkDuplicates('root', 'explainer', explainers.map((e) => e.id))
+const knownCertIds = new Set(certifications.map((c) => c.id))
+for (const explainer of explainers) {
+  const where = `explainer ${explainer.id}`
+  if (!explainer.title.trim()) error(where, 'has no title')
+  if (!explainer.summary.trim()) error(where, 'has no summary')
+  if (!explainer.url.startsWith('https://')) {
+    error(where, `url must be absolute https (got "${explainer.url}")`)
+  }
+  if (explainer.minutes <= 0) error(where, 'minutes must be positive')
+  if (explainer.answers.length === 0) {
+    error(where, 'lists no questions it answers — say what it teaches or drop it')
+  }
+  for (const certId of explainer.certIds) {
+    if (!knownCertIds.has(certId)) {
+      error(where, `references unknown certification "${certId}"`)
+    }
+  }
+  if (explainer.certIds.length === 0) {
+    warn(where, 'is attached to no certification, so only the home page links it')
+  }
+}
+
 const lessonCount = certifications.flatMap((c) =>
   c.modules.flatMap((m) => m.lessons),
 )
@@ -231,6 +261,11 @@ console.log(
 )
 console.log(
   `Module quizzes: ${quizzable}/${quizPools.length} complete module(s) can fill one, from ${quizQuestions} question(s).`,
+)
+console.log(
+  `Visual explainers: ${explainers.length}, linked from ${
+    new Set(explainers.flatMap((e) => e.certIds)).size
+  } track(s).`,
 )
 
 if (warnings.length) {

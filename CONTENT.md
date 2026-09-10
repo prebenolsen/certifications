@@ -534,6 +534,28 @@ into *Available*.
 
 ---
 
+## Visual explainers
+
+Interactive pages that build **one mental model**, linked from the home page and
+from the tracks they support. Not part of any track: no `status`, no progress, no
+quiz draws from them, and the home-page shelves do not count them.
+
+Data lives in `src/content/explainers.ts`; `npm run validate` checks ids, the URL,
+and that every entry names the questions it answers.
+
+| Explainer | Answers | ~Min | Linked from |
+|-----------|:-------:|:----:|-------------|
+| **The Catalog and the Stacks** — where data physically sits in Azure vs. what Unity Catalog stores | 6 | 20 | Intro to DE · DE Associate · DE Professional · Data Analyst |
+
+**Why it exists as a picture rather than a lesson.** A lesson can define Unity
+Catalog and a lesson can define Azure Storage; neither shape shows the *line
+between them*, which is the thing learners actually get wrong — treating
+catalog → schema → table → file as one physical hierarchy. Three modes: a
+**guided story** that starts on an empty screen and builds the architecture in 16
+steps, the **full picture** with a detail panel behind every object, and a
+**library analogy** that swaps every label while keeping the boxes in identical
+positions, so each concept maps one-to-one.
+
 ## Quiz coverage across the platform
 
 Every `mcq` / `truefalse` card in a written lesson is automatically a question in

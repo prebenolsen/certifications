@@ -304,6 +304,48 @@ export interface Certification {
 }
 
 /* ------------------------------------------------------------------ */
+/* Visual explainers                                                   */
+/* ------------------------------------------------------------------ */
+
+/**
+ * An interactive visualisation that lives **outside** the lesson player.
+ *
+ * Some things are a picture, not a sequence of cards: how two whole systems
+ * relate to each other, or where a mental model comes from. Those are built as
+ * standalone interactive pages and linked from here, rather than stretching the
+ * card format to do a job it is bad at.
+ *
+ * An explainer is **supplementary**. It carries no exam objective, no quiz
+ * draws from it, and it has no `status` — which is why the home page shelves
+ * (`availableCertifications` / `upcomingCertifications`) never count it, and
+ * why a learner's progress is unaffected by whether they opened one.
+ */
+export interface Explainer {
+  id: string
+  title: string
+  /** One sentence: the mental model it builds. */
+  summary: RichText
+  /** Where it is hosted. Always an absolute https URL — these are external. */
+  url: string
+  /** Roughly how long to work through it, in minutes. */
+  minutes: number
+  /**
+   * Questions the learner should be able to answer afterwards. This is the
+   * contract an explainer signs: one that cannot claim any has not earned a
+   * link, and `npm run validate` treats an empty list as an error.
+   */
+  answers: string[]
+  /** Distinct ways to use it, where it offers more than one. */
+  modes?: { label: string; note: string }[]
+  /**
+   * Certifications this belongs with, by id — it is listed on those tracks'
+   * pages as well as the home page. Validated against the registry, so
+   * renaming a certification cannot silently orphan an explainer.
+   */
+  certIds: string[]
+}
+
+/* ------------------------------------------------------------------ */
 /* Glossary                                                            */
 /* ------------------------------------------------------------------ */
 

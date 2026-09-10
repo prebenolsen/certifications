@@ -3,11 +3,13 @@ import {
   availableCertifications,
   certContentCounts,
   certificationStatus,
+  explainers,
   upcomingCertifications,
 } from '@/content/registry'
 import { useCertStats } from '@/hooks/useStats'
 import { ProgressBar } from '@/components/layout/ProgressBar'
 import { StatusBadge } from '@/components/layout/StatusBadge'
+import { ExplainerCard } from '@/components/layout/ExplainerCard'
 import type { Certification } from '@/types/content'
 
 export function HomePage() {
@@ -33,6 +35,22 @@ export function HomePage() {
           <CertificationCard key={cert.id} cert={cert} />
         ))}
       </section>
+
+      {explainers.length > 0 && (
+        <section className="space-y-4">
+          <div>
+            <h2 className="text-lg font-bold text-ink">Visual explainers</h2>
+            <p className="mt-1 max-w-2xl text-sm text-ink-soft">
+              Some things are a picture, not a sequence of cards. These build
+              one mental model and are not part of any track — nothing to
+              complete, no questions to answer.
+            </p>
+          </div>
+          {explainers.map((explainer) => (
+            <ExplainerCard key={explainer.id} explainer={explainer} />
+          ))}
+        </section>
+      )}
 
       {upcomingCertifications.length > 0 && (
         <section className="space-y-4">

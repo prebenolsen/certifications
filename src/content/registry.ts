@@ -11,6 +11,8 @@ import { generativeAiEngineerAssociate } from './databricks/generative-ai-engine
 import { introDataEngineering } from './databricks/intro-data-engineering'
 import { githubCopilot } from './github/copilot'
 
+export { explainers, explainersForCert } from './explainers'
+
 /** All certifications known to the app. Add new ones here. */
 export const certifications: Certification[] = [
   introDataEngineering,

@@ -141,6 +141,7 @@ for the full picture. In short:
 | Quizzes | `src/lib/quiz.ts`, `src/pages/Quiz*.tsx` | Pool assembly from lesson checks, seeded shuffle, scoring, and targeted review |
 | Auth | `src/context/AuthContext.tsx`, `src/lib/supabase.ts` | Optional magic-link sign-in; guest by default |
 | Glossary | `src/content/glossary.ts`, `src/lib/glossary.ts` | Terms defined once; matched and underlined at render time |
+| Visual explainers | `src/content/explainers.ts` | Interactive pages linked from the home page and track pages |
 | Validation | `scripts/validate-content.ts` | Content correctness + teaching-philosophy lint |
 
 ### The extension points (how the app grows)
@@ -156,6 +157,11 @@ for the full picture. In short:
 - **New card type?** Add a variant to the `Card` union in
   `src/types/content.ts`, write a renderer in `src/components/cards/`, and
   register it in `src/components/cards/registry.tsx`. Nothing else changes.
+- **New visual explainer?** Add an `Explainer` to `src/content/explainers.ts`
+  with the certification ids it belongs to. It appears on the home page and on
+  those tracks' pages automatically. Reach for one only when the thing being
+  taught is a *relationship between whole systems* — a card sequence is better
+  at everything else.
 
 ---
 
@@ -184,6 +190,7 @@ src/content/
       index.ts                ← assembles the certification (8 modules)
       lessons/*.ts            ← 4 authored lessons (Module 1); 31 planned
   authoring.ts                ← shared helpers (planned() etc.)
+  explainers.ts               ← visual explainers (interactive, linked out)
   registry.ts                 ← lookup helpers used by the UI
 ```
 

@@ -17,6 +17,32 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
 
 ## [Unreleased]
 
+### Added
+
+- **Visual explainers — a supplementary content type for the things a card
+  sequence explains badly.** A lesson can define Unity Catalog and a lesson can
+  define Azure Storage; neither shape shows the *line between them*, which is
+  the thing learners actually get wrong. Explainers are interactive pages that
+  build one mental model, linked from a new **Visual explainers** shelf on the
+  home page and from the track pages they belong to.
+- First entry: **The Catalog and the Stacks** — physical storage in Azure
+  (account → container → directory → Parquet + `_delta_log/`) against Unity
+  Catalog's logical layer (catalog → schema → table, plus external locations,
+  credentials and grants), with a 16-step guided story that starts on an empty
+  screen, and a library analogy that swaps every label while keeping the boxes
+  in identical positions.
+- `Explainer` in `src/types/content.ts`, data in `src/content/explainers.ts`,
+  `explainersForCert(certId)` in the registry, and `ExplainerCard` for the
+  linked-out card. Deliberately no `status` and no progress: an explainer is a
+  companion to a track, not a step in one, so it can never affect a learner's
+  completion figures.
+- Validator rules for explainers — unique ids, an absolute `https` URL, positive
+  minutes, `certIds` that resolve against the registry, and a **non-empty
+  `answers` list**. That last one is the teaching bar rather than a structural
+  check: an explainer that cannot say what a learner will be able to answer
+  afterwards has not earned a link. `npm run validate` now also reports how many
+  explainers exist and how many tracks link them.
+
 ## [1.9.0] — 2026-09-10
 
 ### Added
