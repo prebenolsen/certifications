@@ -148,7 +148,7 @@ React Router drives the learning and quiz routes plus a fallback (`src/App.tsx`)
 
 | Route | Page | Purpose |
 |-------|------|---------|
-| `/` | `HomePage` | Certification catalog + overall progress |
+| `/` | `HomePage` | Certification catalog — **available** and **coming soon** shelves — plus overall progress |
 | `/cert/:certId` | `CertificationPage` | Module grid |
 | `/cert/:certId/module/:moduleId` | `ModulePage` | Lesson list |
 | `/cert/:certId/module/:moduleId/lesson/:lessonId` | `LessonPage` | Full-screen player |
@@ -166,9 +166,16 @@ cannot show the wrong thing and attempt history stays linkable.
 
 Pages look content up through [`src/content/registry.ts`](../src/content/registry.ts),
 which is also where a new certification is registered. The registry additionally
-derives **module status** from lesson statuses (so it can never drift from
-reality) and computes the **next playable lesson** for the player's
-end-of-lesson hand-off.
+derives **module status** and **certification status** from lesson statuses (so
+neither can drift from reality) and computes the **next playable lesson** for
+the player's end-of-lesson hand-off.
+
+Certification status is what splits the catalog. `availableCertifications` holds
+the fully authored tracks; `upcomingCertifications` holds everything else, shown
+on the home page under **Coming soon** with a dashed card that reports *lessons
+written* rather than the learner's progress. Nothing marks a track by hand —
+authoring the last lesson moves it across, and `npm run validate` prints the
+split so a shelf change is visible in the gate.
 
 ## Quizzes and review
 
@@ -238,7 +245,7 @@ inject markup.
 src/
   types/content.ts            # the content model (start here)
   content/                    # all learning content, as typed data
-    registry.ts               #   certification lookup, derived module status
+    registry.ts               #   certification lookup, derived module + cert status
     authoring.ts              #   shared helpers for content authors
     glossary.ts               #   every term, defined once
     databricks/

@@ -6,7 +6,12 @@
  * (unique ids, valid MCQ answers, registered diagrams) and the teaching
  * philosophy (no walls of text, lessons end with a recap, checks exist).
  */
-import { certifications, moduleStatus } from '../src/content/registry'
+import {
+  availableCertifications,
+  certifications,
+  moduleStatus,
+  upcomingCertifications,
+} from '../src/content/registry'
 import { diagramRegistry } from '../src/components/diagrams/registry'
 import { QUIZ_MIN } from '../src/lib/quiz'
 import { isInteractive, type Card, type Lesson, type Module } from '../src/types/content'
@@ -217,6 +222,12 @@ const quizQuestions = quizPools.reduce((n, size) => n + size, 0)
 
 console.log(
   `Checked ${certifications.length} certification(s), ${lessonCount.length} lessons (${complete} complete), ${cards} cards.`,
+)
+console.log(
+  `Shelves: ${availableCertifications.length} available, ${upcomingCertifications.length} coming soon` +
+    (upcomingCertifications.length
+      ? ` (${upcomingCertifications.map((c) => c.id).join(', ')}).`
+      : '.'),
 )
 console.log(
   `Module quizzes: ${quizzable}/${quizPools.length} complete module(s) can fill one, from ${quizQuestions} question(s).`,

@@ -1,5 +1,10 @@
 import { Link, useParams } from 'react-router-dom'
-import { getCertification, moduleStatus } from '@/content/registry'
+import {
+  certContentCounts,
+  certificationStatus,
+  getCertification,
+  moduleStatus,
+} from '@/content/registry'
 import { useCertStats, useModuleStats } from '@/hooks/useStats'
 import { useProgress } from '@/context/ProgressContext'
 import { ProgressBar } from '@/components/layout/ProgressBar'
@@ -16,6 +21,8 @@ export function CertificationPage() {
 
 function CertificationView({ cert }: { cert: Certification }) {
   const stats = useCertStats(cert)
+  const status = certificationStatus(cert)
+  const content = certContentCounts(cert)
   return (
     <div className="space-y-8">
       <nav className="text-sm">
@@ -25,9 +32,12 @@ function CertificationView({ cert }: { cert: Certification }) {
       </nav>
 
       <header>
-        <p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
-          {cert.provider}
-        </p>
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
+            {cert.provider}
+          </p>
+          {status !== 'complete' && <StatusBadge status={status} />}
+        </div>
         <h1 className="mt-1 text-2xl font-extrabold text-ink sm:text-3xl">
           {cert.title}
         </h1>
@@ -40,6 +50,14 @@ function CertificationView({ cert }: { cert: Certification }) {
         >
           {cert.examFacts ? 'Official exam guide ↗' : 'Official documentation ↗'}
         </a>
+        {status !== 'complete' && (
+          <p className="mt-3 max-w-2xl rounded-xl bg-warn-soft px-4 py-3 text-sm text-ink-soft">
+            This track is still being written — {content.authored} of{' '}
+            {content.total} lessons are ready. The rest arrives a module at a
+            time; everything below marked <em>Coming soon</em> is scoped but not
+            yet authored.
+          </p>
+        )}
         <div className="mt-5 max-w-md">
           <div className="mb-1.5 flex justify-between text-xs text-ink-faint">
             <span>Overall progress</span>

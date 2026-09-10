@@ -21,6 +21,49 @@ export const certifications: Certification[] = [
   githubCopilot,
 ]
 
+/**
+ * A certification's status, derived from its lessons the same way a module's
+ * is. Nothing declares "this cert is finished" by hand, so the label can never
+ * drift from the content: authoring the last lesson is what moves a track out
+ * of "Coming soon".
+ */
+export function certificationStatus(cert: Certification): ContentStatus {
+  const lessons = cert.modules.flatMap((m) => m.lessons)
+  if (lessons.length === 0) return 'planned'
+  if (lessons.every((l) => l.status === 'complete')) return 'complete'
+  if (lessons.every((l) => l.status === 'planned')) return 'planned'
+  return 'in-progress'
+}
+
+/**
+ * How much of a certification is written. Distinct from a learner's progress:
+ * this is *our* progress, and it is what the "Coming soon" shelf reports.
+ */
+export function certContentCounts(cert: Certification): {
+  authored: number
+  total: number
+} {
+  const lessons = cert.modules.flatMap((m) => m.lessons)
+  return {
+    authored: lessons.filter((l) => l.status !== 'planned').length,
+    total: lessons.length,
+  }
+}
+
+/**
+ * Fully authored tracks — what the home page actually offers. Kept apart from
+ * the half-written ones so a learner picking a certification is choosing
+ * between things that will not run out halfway through.
+ */
+export const availableCertifications: Certification[] = certifications.filter(
+  (c) => certificationStatus(c) === 'complete',
+)
+
+/** Still being written. Browsable, but shelved separately under "Coming soon". */
+export const upcomingCertifications: Certification[] = certifications.filter(
+  (c) => certificationStatus(c) !== 'complete',
+)
+
 export function getCertification(id: string): Certification | undefined {
   return certifications.find((c) => c.id === id)
 }

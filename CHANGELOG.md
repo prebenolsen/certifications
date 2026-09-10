@@ -17,6 +17,34 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
 
 ## [Unreleased]
 
+## [1.9.0] — 2026-09-10
+
+### Added
+
+- **Two shelves on the home page: *Available certifications* and *Coming
+  soon*.** A track you can finish and a track that stops after Module 1 are not
+  the same offer, and listing them together made the catalog look four times
+  larger than it is. The Generative AI Engineer Associate (4 of 35 lessons) and
+  GitHub Copilot GH-300 (3 of 27) now sit under *Coming soon*.
+- `certificationStatus(cert)` and `certContentCounts(cert)` in
+  `src/content/registry.ts`, plus the derived `availableCertifications` /
+  `upcomingCertifications` lists the home page renders from. Status is computed
+  from lesson statuses exactly as `moduleStatus()` is — nothing declares a track
+  finished by hand, so authoring the last lesson is what moves it across.
+- A *Coming soon* card reports **lessons written**, not learner progress: "3/27
+  lessons" is our backlog, and showing "0 of 3 complete" instead would read as
+  the learner's failure. If they have started it anyway, a line underneath says
+  how far they got through what exists.
+- A banner on an unfinished certification's page saying how many lessons are
+  ready, so the state is still visible after clicking through.
+- `npm run validate` prints the shelf split (`Shelves: 4 available, 2 coming
+  soon (…)`), which makes a track crossing over show up in the gate.
+
+### Changed
+
+- `CONTENT.md` is grouped by shelf — *Available tracks* then *Coming soon* —
+  rather than by the order certifications were added.
+
 ## [1.8.0] — 2026-09-09
 
 ### Added

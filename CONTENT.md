@@ -6,6 +6,10 @@ edits content.
 
 Status legend: ✅ complete · 🚧 in progress · ⬜ planned
 
+Tracks are grouped the way the app shelves them: **Available** (every lesson
+written) and **Coming soon** (still being authored). The split is derived from
+lesson statuses by `certificationStatus()`, so it is one thing, not two.
+
 Run `npm run validate` to check this content structurally; the numbers below
 can be regenerated from its summary line.
 
@@ -15,7 +19,11 @@ and whether each is defined before the learner meets it** →
 
 ---
 
-## Course: Introduction to Data Engineering with Databricks
+## Available tracks
+
+Fully authored — every lesson is written, so a learner can finish the track.
+
+### Course: Introduction to Data Engineering with Databricks
 
 - **No exam.** This is a course, not a certification — `examFacts` is omitted on
   purpose, and the home card shows lessons/minutes instead of questions/minutes.
@@ -34,7 +42,7 @@ and whether each is defined before the learner meets it** →
   for introducing, which is why the glossary report shows **21 ✅ and no ⚠️/❌**
   for this course.
 
-### Module 1 — The job and the platform 🧭 (Orientation) · ✅
+#### Module 1 — The job and the platform 🧭 (Orientation) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -42,14 +50,14 @@ and whether each is defined before the learner meets it** →
 | What Databricks is | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | the product in one sentence; Spark as the engine; unloading-a-truck analogy; data stays in **your** cloud storage; myth "a database you load data into"; Data Intelligence Platform |
 | Warehouse, lake, lakehouse | ✅ | 9 | 1 t/f, 1 flashcard | two systems, two answers; warehouse vs lake (compare); the lakehouse as lake storage + warehouse discipline; myth "a lake with a nicer UI" |
 
-### Module 2 — The two layers everything rests on 🧱 (Foundations) · ✅
+#### Module 2 — The two layers everything rests on 🧱 (Foundations) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
 | Delta Lake: files that behave like a table | ✅ | 10 | 1 t/f, 1 flashcard | the dashboard that read half a file; data files + transaction log; ledger analogy; **the log is the table**; commit flow; time travel; myth "proprietary format" |
 | Unity Catalog: names, permissions, lineage | ✅ | 11 | 1 mcq, 1 flashcard | three teams, three `customers` tables; `catalog.schema.table` + postal-address analogy; metastore⊃catalog⊃schema⊃object (layers); grants cover future tables; lineage as blast radius |
 
-### Module 3 — Building a pipeline 🔄 (Pipelines) · ✅
+#### Module 3 — Building a pipeline 🔄 (Pipelines) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -57,7 +65,7 @@ and whether each is defined before the learner meets it** →
 | Lakeflow: get it in, shape it, schedule it | ✅ | 12 | 1 mcq, 1 flashcard | the 2am pipeline; **umbrella, not a tool**; Connect/Pipelines/Jobs flow with Designer as a front door; Auto Loader glossed; order-the-dish analogy for declarative; myth "Lakeflow is one product" |
 | Bronze, silver, gold | ✅ | 10 | 1 t/f, 1 flashcard | which `customers` table is real; the three layers; refinement flow; **why keep bronze** (source systems hold state, not history); myth "a feature you enable" |
 
-### Module 4 — What the data is for 📊 (Analytics & AI) · ✅
+#### Module 4 — What the data is for 📊 (Analytics & AI) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -70,183 +78,7 @@ and whether each is defined before the learner meets it** →
 
 ---
 
-## Certification: Databricks Certified Generative AI Engineer Associate
-
-- **Exam:** 45 questions · 90 minutes · USD 200 · valid 2 years
-- **Source of truth:** `src_material/databricks/databricks-certified-generative-ai-engineer-associate`
-- **Modules:** 8 (RAG build-arc order, mapped to the 6 official exam sections)
-- **Lessons authored:** 4 of 35 · **Cards:** 48 · **Recommended:** 6+ months hands-on GenAI on Databricks
-- **Product naming:** the exam guide uses **Mosaic AI** names; current docs have
-  renamed several (Vector Search → *Databricks AI Search*). Lessons lead with the
-  **exam guide's** name and note the current one. Research + sources:
-  `src_material/databricks/databricks-certified-generative-ai-engineer-associate/research/`.
-
-### Module GA1 — GenAI Foundations on Databricks 🧠 (Design Applications) · ✅
-
-| Lesson | Status | Cards | Checks | Highlights |
-|--------|:------:|:-----:|--------|------------|
-| How large language models actually work | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | autocomplete analogy; generation-loop flow; tokens ≈ 4 chars; context window as a desk; myth "bigger window beats retrieval"; temperature ≠ truthfulness |
-| Embeddings and vector similarity | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | map-of-meaning analogy; keyword vs semantic (compare); **HNSW/L2 vs cosine needs normalizing**; one model for query + docs |
-| RAG, fine-tuning, or just prompting? | ✅ | 13 | 1 mcq, 1 t/f, 1 flashcard | new-hire analogy; retrieve-then-generate flow (simplified; GA4 completes it); RAG-vs-fine-tune (compare); myth "fine-tune on our docs" |
-| The Databricks GenAI stack (Mosaic AI) | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | stack as layers under UC; **four** index types; FM API modes; myth "the index is a copy you refresh" |
-
-### Module GA2 — Designing GenAI Applications 🎯 (Design Applications, 14%) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| From business problem to GenAI pipeline | ⬜ | Requirement → inputs/outputs/tasks |
-| Designing prompt–response pairs | ⬜ | Work backward from the needed output |
-| Choosing models, tools, and chain components | ⬜ | Model tasks, retrievers, tool access |
-| When one prompt isn’t enough | ⬜ | Multi-stage task decomposition |
-
-### Module GA3 — Preparing Data for Retrieval 📚 (Data Preparation, 14%) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| Extracting text from messy documents | ⬜ | Python extraction tools; filtering noise |
-| Chunking: size, overlap, and structure | ⬜ | Chunk trade-offs vs context/precision |
-| From chunks to embeddings | ⬜ | Embedding into a vector store; metadata |
-| Garbage in, garbage out | ⬜ | Source-data quality caps RAG quality |
-
-### Module GA4 — Building RAG Applications 🔗 (Application Development, 30%) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| The anatomy of a RAG application | ⬜ | Retrieve-then-generate loop end to end |
-| Retrieving context with Vector Search | ⬜ | Querying the index; metadata filters |
-| Orchestrating with chains | ⬜ | LangChain-style wiring of prompts/models |
-| Augmenting prompts with retrieved context | ⬜ | Inject chunks so it answers from your data |
-| Prompt engineering that works | ⬜ | Instructions, examples, templates |
-
-### Module GA5 — Guardrails, Hallucinations & Model Choice 🛡️ (Application Development, 30%) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| Guardrails: keeping the model in bounds | ⬜ | Constrain inputs/outputs for safety |
-| Reducing hallucinations | ⬜ | Grounding techniques for factual answers |
-| Defending against prompt injection | ⬜ | Malicious input hijacking a prompt |
-| Choosing the right model | ⬜ | Context window vs quality/cost/latency |
-| Agents and tools: giving the model hands | ⬜ | When to let a model call tools/act |
-
-### Module GA6 — Assembling & Deploying 🚀 (Assembling and Deploying Applications, 22%) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| Packaging a chain with MLflow | ⬜ | Log a RAG chain (pyfunc / LangChain flavor) |
-| Registering models in Unity Catalog | ⬜ | UC model registry; versions & aliases |
-| Creating and syncing a Vector Search index | ⬜ | Index over a Delta table; keep it current |
-| Serving models and endpoints | ⬜ | Mosaic AI Model Serving for real-time |
-| Foundation Model APIs and external models | ⬜ | Pay-per-token vs provisioned; external routing |
-| Deploying an end-to-end RAG app | ⬜ | Sequence index → chain → register → serve |
-
-### Module GA7 — Governance & Security 🔐 (Governance, 8%) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| Governing GenAI with Unity Catalog | ⬜ | Models, indexes, data under one model |
-| Masking and protecting sensitive data | ⬜ | PII out of prompts/logs/responses |
-| Legal, licensing, and data provenance | ⬜ | Data-source and model-license terms |
-
-### Module GA8 — Evaluation & Monitoring 📊 (Evaluation and Monitoring, 12%) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| How do you grade an LLM? | ⬜ | Faithfulness, relevance, toxicity, correctness |
-| Evaluating with MLflow and LLM-as-a-judge | ⬜ | MLflow evaluate; model scores model |
-| Monitoring GenAI in production | ⬜ | Inference tables; Lakehouse Monitoring |
-| Controlling cost and latency | ⬜ | Fast & affordable without wrecking quality |
-
-- **Weightings:** Design 14% · Data Prep 14% · **App Dev 30% (split GA4 + GA5)** ·
-  Assemble & Deploy 22% · Governance 8% · Eval & Monitoring 12%.
-- **Next step:** **Module GA2 (Designing GenAI Applications)**, authored a whole
-  module at a time following the loop in `CLAUDE.md` — research → outline →
-  review → author → sync.
-
----
-
-## Certification: GitHub Copilot (GH-300)
-
-- **Exam:** ~55–65 questions · 100 minutes · pass at 700/1000 · valid ~2 years
-- **Source of truth:** `src_material/github/gh-300-github-copilot`
-- **Modules:** 8 (learning-flow order, mapped to the 6 official skill domains)
-- **Lessons authored:** 3 of 27 · **Skills measured as of** January 2026
-
-### Module G1 — Meet GitHub Copilot 🚀 (Use GitHub Copilot features) · ✅
-
-| Lesson | Status | Cards | Checks | Highlights |
-|--------|:------:|:-----:|--------|------------|
-| What is GitHub Copilot? | ✅ | 13 | 1 mcq, 1 t/f, 1 flashcard | pair-programmer analogy; inline vs Chat (compare); generates ≠ searches; you stay the pilot |
-| Which Copilot: Free, Pro, Business, or Enterprise? | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | individual vs org families; capability ladder (flow); governance starts at Business |
-| Getting set up in your IDE | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | three ingredients (access+extension+sign-in); setup flow; seat must be assigned |
-
-### Module G2 — How Copilot Works: Data & Architecture 🧠 (Understand data and architecture) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| Where your code goes and how it is used | ⬜ | Data flow/sharing; prompt building; proxy filtering; post-processing |
-| The life of a code suggestion | ⬜ | Suggestion request lifecycle |
-| What LLMs (and Copilot) can and cannot do | ⬜ | LLM/Copilot limitations |
-
-### Module G3 — Using Copilot Responsibly ⚖️ (Use GitHub Copilot responsibly) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| Risks and limitations of generative AI | ⬜ | Hallucination, bias, IP, over-reliance |
-| Ethical and responsible AI use | ⬜ | Potential harms + mitigation strategies |
-| Trust, but verify: validating AI output | ⬜ | Why/how to validate; operate responsibly |
-
-### Module G4 — Prompt Engineering & Context 💬 (Apply prompt engineering and context crafting) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| Anatomy of a good prompt | ⬜ | Prompt structure and context |
-| How Copilot builds context | ⬜ | Open files, selection, neighboring tabs |
-| Zero-shot and few-shot prompting | ⬜ | When to show examples |
-| Prompt-crafting best practices | ⬜ | Principles; process flow; chat-history use |
-
-### Module G5 — Copilot Features in Depth 🛠️ (Use GitHub Copilot features) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| Inline suggestions, Chat, and Plan Mode | ⬜ | Triggers; Chat limits/options/feedback/commands |
-| GitHub Copilot in the command line | ⬜ | CLI install, commands, sessions, scripts |
-| Agent Mode, Edit Mode, and MCP | ⬜ | Autonomous work; sub-agents/sessions; MCP |
-| Code review, Spaces, Spark, and PR summaries | ⬜ | Review, PR summaries, Spaces, instructions files |
-
-### Module G6 — Boosting Developer Productivity 📈 (Improve developer productivity) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| Generating, refactoring, and documenting code | ⬜ | Everyday SDLC wins |
-| Learning faster and modernizing legacy code | ⬜ | Context switching; sample data; modernization |
-| Writing tests with Copilot | ⬜ | Unit/integration tests; edge cases; assertions |
-| Security and performance improvements | ⬜ | Security fixes; performance optimizations |
-
-### Module G7 — Privacy, Exclusions & Safeguards 🔒 (Configure privacy, content exclusions, and safeguards) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| Content exclusions and editor settings | ⬜ | What Copilot can/can't see |
-| Who owns Copilot’s output? | ⬜ | Output ownership + limitations |
-| Duplication detection and security warnings | ⬜ | Safeguards + troubleshooting |
-
-### Module G8 — Administration & Governance 🏢 (Use GitHub Copilot features) · ⬜
-
-| Lesson | Status | Notes |
-|--------|:------:|-------|
-| Organization-wide policies and settings | ⬜ | Policies; Code Review policy; feature availability |
-| Auditing Copilot with audit-log events | ⬜ | Audit-log events |
-| Managing subscriptions with the REST API | ⬜ | Seat/subscription management via REST API |
-
-- **Domain weightings:** Responsible (15–20%) · Features (25–30%, split across G5 + G8) ·
-  Data & architecture (10–15%) · Prompt engineering (10–15%) · Productivity (10–15%) ·
-  Privacy & safeguards (10–15%).
-- **Next step:** author lessons one at a time with the `author-lesson` skill,
-  flipping each ⬜ to ✅.
-
----
-
-## Certification: Databricks Certified Data Engineer Professional
+### Certification: Databricks Certified Data Engineer Professional
 
 - **Exam:** 59 multiple-choice questions · 120 minutes · USD 200 · valid 2 years
 - **Source of truth:** `src_material/databricks/databricks-certified-data-engineer-professional`
@@ -254,7 +86,7 @@ and whether each is defined before the learner meets it** →
 - **Lessons authored:** 31 of 31 ✅ · **Cards:** 283 · **all 9 official sample
   questions woven in as MCQs**
 
-### Module P1 — Advanced Development in Python & SQL 🐍 (Section 1) · ✅
+#### Module P1 — Advanced Development in Python & SQL 🐍 (Section 1) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -263,7 +95,7 @@ and whether each is defined before the learner meets it** →
 | When you need a UDF | ✅ | 9 | 1 mcq | built-in > SQL > Pandas > Python UDF ladder |
 | Testing an ETL pipeline | ✅ | 10 | 1 mcq, 1 t/f | DataFrame.transform; assertDataFrameEqual/assertSchemaEqual |
 
-### Module P2 — Declarative Pipelines & Streaming 🌊 (Section 1) · ✅
+#### Module P2 — Declarative Pipelines & Streaming 🌊 (Section 1) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -273,21 +105,21 @@ and whether each is defined before the learner meets it** →
 | Keeping a stream under its SLA | ✅ | 9 | 1 mcq | micro-batch model; trigger interval; **sample Q2** |
 | Configs, environments & control flow | ✅ | 9 | 1 mcq, 1 t/f | if/else & for-each; high-memory; disallow retries |
 
-### Module P3 — Ingestion & Acquisition 📥 (Section 2) · ✅
+#### Module P3 — Ingestion & Acquisition 📥 (Section 2) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
 | Every format, one landing zone | ✅ | 9 | 1 mcq, 1 t/f | self-describing vs text; binaryFile; land as Delta |
 | One append-only table, batch or stream | ✅ | 9 | 1 mcq | checkpoints; idempotent batch (txnAppId / MERGE) |
 
-### Module P4 — Transformation, Cleansing & Quality 🔄 (Section 3) · ✅
+#### Module P4 — Transformation, Cleansing & Quality 🔄 (Section 3) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
 | Windows, joins & aggregations at scale | ✅ | 10 | 1 mcq, 1 t/f | ROW_NUMBER top-N; broadcast vs shuffle; skew |
 | Quarantining bad data | ✅ | 9 | 1 mcq, 1 t/f | valid/inverse split; `_rescued_data`; DROP ROW ≠ retain |
 
-### Module P5 — Data Modelling with Delta 🏗️ (Section 10) · ✅
+#### Module P5 — Data Modelling with Delta 🏗️ (Section 10) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -295,7 +127,7 @@ and whether each is defined before the learner meets it** →
 | Modelling for the questions you ask | ✅ | 10 | 1 mcq, 1 t/f | partition cardinality; star schema; **sample Q3** |
 | Liquid Clustering beats partitioning | ✅ | 9 | 1 mcq | CLUSTER BY (AUTO); vs partitioning/ZORDER |
 
-### Module P6 — Cost & Performance Optimization ⚡ (Section 6) · ✅
+#### Module P6 — Cost & Performance Optimization ⚡ (Section 6) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -304,7 +136,7 @@ and whether each is defined before the learner meets it** →
 | Reading only what changed: CDF | ✅ | 8 | 1 mcq | table_changes; streaming-table limits |
 | Finding the bottleneck in a query | ✅ | 9 | 1 mcq | profile: bad skipping / wrong join / shuffle+spill |
 
-### Module P7 — Sharing, Federation & Governance 🔗 (Sections 4 + 8) · ✅
+#### Module P7 — Sharing, Federation & Governance 🔗 (Sections 4 + 8) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -312,7 +144,7 @@ and whether each is defined before the learner meets it** →
 | Querying data you never ingested | ✅ | 9 | 1 mcq, 1 t/f | Lakehouse Federation; connection + foreign catalog |
 | Making data discoverable & governed | ✅ | 9 | 1 mcq | comments/tags; **UC permission inheritance (sample Q4 theme)** |
 
-### Module P8 — Security & Compliance 🔐 (Section 7) · ✅
+#### Module P8 — Security & Compliance 🔐 (Section 7) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -321,7 +153,7 @@ and whether each is defined before the learner meets it** →
 | De-identifying PII the right way | ✅ | 9 | 1 mcq | hashing vs tokenization; suppression; generalization |
 | Actually deleting data on request | ✅ | 9 | 1 mcq, 1 t/f | DELETE + VACUUM; retention window; erasure ≠ hide |
 
-### Module P9 — Monitoring, Debugging & CI/CD 🔍 (Sections 5 + 9) · ✅
+#### Module P9 — Monitoring, Debugging & CI/CD 🔍 (Sections 5 + 9) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -339,7 +171,7 @@ and whether each is defined before the learner meets it** →
 
 ---
 
-## Certification: Databricks Certified Data Engineer Associate
+### Certification: Databricks Certified Data Engineer Associate
 
 - **Exam:** 45 multiple-choice questions · 90 minutes · USD 200 · valid 2 years
 - **Source of truth:** `src_material/databricks/databricks-certified-data-engineer-associate`
@@ -347,7 +179,7 @@ and whether each is defined before the learner meets it** →
 - **Lessons authored:** 27 of 27 ✅ · **Cards:** 272 · all 5 official sample
   questions woven in as MCQs
 
-### Module E1 — The Data Intelligence Platform 🧠 (Section 1, 6%) · ✅
+#### Module E1 — The Data Intelligence Platform 🧠 (Section 1, 6%) · ✅
 
 | Lesson | Status | Cards | Checks | Diagrams | Highlights |
 |--------|:------:|:-----:|--------|----------|------------|
@@ -356,7 +188,7 @@ and whether each is defined before the learner meets it** →
 | Lakeflow: the word in front of everything | ✅ | 14 | 1 mcq, 1 t/f, 1 flashcard | the four members (flow) | Connect/Pipelines/Designer/Jobs; DLT→Lakeflow renames; Jobs vs Pipelines |
 | Picking the right compute | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | compute menu (compare) | DBU cost model; sample Q4 |
 
-### Module E2 — Ingesting Data 📥 (Section 2, 21%) · ✅
+#### Module E2 — Ingesting Data 📥 (Section 2, 21%) · ✅
 
 | Lesson | Status | Cards | Checks | Diagrams | Highlights |
 |--------|:------:|:-----:|--------|----------|------------|
@@ -365,7 +197,7 @@ and whether each is defined before the learner meets it** →
 | Auto Loader | ✅ | 11 | 1 mcq, 1 flashcard | pipeline (flow) | mail-carrier analogy; schema evolution; `_rescued_data`; availableNow |
 | Lakeflow Connect & choosing a method | ✅ | 10 | 1 mcq, 1 t/f | sources (flow) | managed vs standard connectors; JDBC/REST; nested JSON; decision guide |
 
-### Module E3 — Transforming with PySpark 🔄 (Section 3, 22%) · ✅
+#### Module E3 — Transforming with PySpark 🔄 (Section 3, 22%) · ✅
 
 | Lesson | Status | Cards | Checks | Diagrams | Highlights |
 |--------|:------:|:-----:|--------|----------|------------|
@@ -376,7 +208,7 @@ and whether each is defined before the learner meets it** →
 | Gold layer objects | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | freshness vs speed (compare) | table vs view vs MV vs streaming table |
 | Lakeflow Pipelines | ✅ | 15 | 1 mcq, 1 t/f, 1 flashcard | one pipeline, several tables (flow) | satnav analogy; streaming table vs MV by *source behaviour*; **`ON VIOLATION` defaults to warn** |
 
-### Module E4 — Orchestrating with Lakeflow Jobs 🗓️ (Section 4, 16%) · ✅
+#### Module E4 — Orchestrating with Lakeflow Jobs 🗓️ (Section 4, 16%) · ✅
 
 | Lesson | Status | Cards | Checks | Diagrams | Highlights |
 |--------|:------:|:-----:|--------|----------|------------|
@@ -384,14 +216,14 @@ and whether each is defined before the learner meets it** →
 | Control flow | ✅ | 9 | 1 mcq, 1 t/f | resilient pipeline (flow) | retries + idempotency; if/else; run-if; for-each |
 | Triggers | ✅ | 8 | 1 mcq, 1 flashcard | time vs data-driven (compare) | cron vs file-arrival vs table-update |
 
-### Module E5 — CI/CD & Asset Bundles 🚀 (Section 5, 10%) · ✅
+#### Module E5 — CI/CD & Asset Bundles 🚀 (Section 5, 10%) · ✅
 
 | Lesson | Status | Cards | Checks | Diagrams | Highlights |
 |--------|:------:|:-----:|--------|----------|------------|
 | Git folders | ✅ | 8 | 1 mcq, 1 t/f | idea→merged (flow) | PRs live in the provider; branch workflow |
 | Asset Bundles | ✅ | 11 | 1 mcq, 1 flashcard | promotion path (flow) | container analogy; databricks.yml; targets/variables; CLI verbs; sample Q5 |
 
-### Module E6 — Optimization & Troubleshooting 🔬 (Sections 3 + 6) · ✅
+#### Module E6 — Optimization & Troubleshooting 🔬 (Sections 3 + 6) · ✅
 
 | Lesson | Status | Cards | Checks | Diagrams | Highlights |
 |--------|:------:|:-----:|--------|----------|------------|
@@ -401,7 +233,7 @@ and whether each is defined before the learner meets it** →
 | Liquid Clustering & predictive optimization | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | — | supermarket analogy; CLUSTER BY AUTO; auto-maintenance |
 | Cluster triage | ✅ | 9 | 1 mcq, 1 flashcard | triage map (flow) | startup/capacity; library scoping; driver vs executor OOM |
 
-### Module E7 — Governance & Security 🔐 (Section 7, 15%) · ✅
+#### Module E7 — Governance & Security 🔐 (Section 7, 15%) · ✅
 
 | Lesson | Status | Cards | Checks | Diagrams | Highlights |
 |--------|:------:|:-----:|--------|----------|------------|
@@ -414,7 +246,7 @@ and whether each is defined before the learner meets it** →
 
 ---
 
-## Certification: Databricks Certified Data Analyst Associate
+### Certification: Databricks Certified Data Analyst Associate
 
 - **Exam:** 45 multiple-choice questions · 90 minutes · valid 2 years
 - **Source of truth:** `src_material/databricks/databricks-certified-data-analyst-associate`
@@ -430,7 +262,7 @@ and whether each is defined before the learner meets it** →
   **Genie Code**, *DeltaLive tables* → **Lakeflow Pipelines**. Verified against
   the docs in `src_material/.../research/platform-and-naming.md`.
 
-### Module 1 — The Platform & Unity Catalog 🏛️ (Sections 1, 9) · ✅
+#### Module 1 — The Platform & Unity Catalog 🏛️ (Sections 1, 9) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -444,21 +276,21 @@ and whether each is defined before the learner meets it** →
 - **Future ideas:** a clickable Catalog Explorer mock; "build the full table
   name" drag exercise.
 
-### Module 2 — Managing & Cleaning Data 🧹 (Section 2) · ✅
+#### Module 2 — Managing & Cleaning Data 🧹 (Section 2) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
 | Finding data you can trust | ✅ | 10 | 1 mcq, 1 t/f, 1 flashcard | search covers comments and is permission-filtered; the four trust signals; tags incl. `pii=email`; `APPLY TAG` |
 | Cleaning data in SQL | ✅ | 12 | 1 mcq, 1 flashcard | nulls skew `AVG`; `COALESCE`/`NULLIF`/`try_cast`; dedupe by key with `ROW_NUMBER`; clean into a view or CTAS, never the source; `= NULL` matches nothing |
 
-### Module 3 — Importing Data 📥 (Section 3) · ✅
+#### Module 3 — Importing Data 📥 (Section 3) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
 | Six ways data arrives | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | UI upload · cloud storage · Delta Sharing · API · Auto Loader · Marketplace; copy-vs-connect (compare); choose by location then frequency |
 | Auto Loader: files that keep arriving | ✅ | 10 | 1 mcq, 1 flashcard | bookmark analogy; checkpoint = exactly-once; `STREAM read_files()` in a streaming table; schema evolution + `_rescued_data` |
 
-### Module 4 — Querying with Databricks SQL 🔎 (Section 4) · ✅
+#### Module 4 — Querying with Databricks SQL 🔎 (Section 4) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -470,7 +302,7 @@ and whether each is defined before the learner meets it** →
 | Views, materialized views & streaming tables | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | four objects compared; refresh is incremental or full; **refreshes run on serverless, not your warehouse**; dynamic = *who*, materialized = *when* (sample Q3) |
 | Delta Lake time travel | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | `DESCRIBE HISTORY` as audit trail; `VERSION`/`TIMESTAMP AS OF`; `RESTORE`; **`VACUUM` ends time travel** (sample Q4) |
 
-### Module 5 — Analyzing & Optimizing Queries ⚡ (Section 5) · ✅
+#### Module 5 — Analyzing & Optimizing Queries ⚡ (Section 5) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -478,7 +310,7 @@ and whether each is defined before the learner meets it** →
 | Finding and fixing a slow query | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | history filters + metrics (sample Q10, multi-select); profile symptoms → fixes (flow); result vs disk cache; the wrong-answer checklist |
 | Liquid Clustering: making filters fast | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | min/max skipping needs grouped values; `CLUSTER BY` and `CLUSTER BY AUTO`; keys change without a rewrite; replaces partitioning |
 
-### Module 6 — Dashboards & Visualizations 📊 (Section 6) · ✅
+#### Module 6 — Dashboards & Visualizations 📊 (Section 6) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -488,21 +320,21 @@ and whether each is defined before the learner meets it** →
 | Sharing a dashboard, and keeping it fresh | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | CAN VIEW/EDIT/MANAGE; publisher credentials vs viewer permissions; account-level sharing and iframes; refresh schedule + subscriptions |
 | Alerts: being told, not watching | ✅ | 9 | 1 mcq, 1 t/f, 1 flashcard | query + threshold + destination + schedule (sample Q5); alert on a smoothed window; a green job ≠ good data |
 
-### Module 7 — AI/BI Genie Spaces 🤖 (Section 7) · ✅
+#### Module 7 — AI/BI Genie Spaces 🤖 (Section 7) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
 | What is a Genie space? | ✅ | 11 | 1 mcq, 1 t/f | briefed-colleague analogy; data + instructions + samples + trusted assets; runs with the **asker's** permissions; Genie space → Genie Agent |
 | Building & improving a Genie space | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | up to 30 tables, pro/serverless warehouse; instructions carry business rules; CAN MANAGE/EDIT/VIEW + `SELECT`; feedback and benchmarks |
 
-### Module 8 — Data Modeling 🧱 (Section 8) · ✅
+#### Module 8 — Data Modeling 🧱 (Section 8) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
 | Star, snowflake & data vault | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | facts vs dimensions; star = one join away; snowflake normalises; hubs/links/satellites; one consistent grain |
 | Bronze, silver, gold | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | what changes per hop; restaurant analogy; **star lives in gold, data vault in silver**; a convention, not a feature |
 
-### Module 9 — Securing Data 🔒 (Section 9) · ✅
+#### Module 9 — Securing Data 🔒 (Section 9) · ✅
 
 | Lesson | Status | Cards | Checks | Highlights |
 |--------|:------:|:-----:|--------|------------|
@@ -514,6 +346,193 @@ and whether each is defined before the learner meets it** →
 - **Quiz coverage:** all 30 lessons contain at least one interactive check (58
   MCQ/true-false cards total), so all 9 modules support practice mode, exam mode
   and the targeted struggle-review queue.
+
+---
+
+## Coming soon
+
+Scoped and partly written. These are shelved separately in the app: the home
+page lists them under **Coming soon** and reports *lessons written* rather than
+the learner's progress, so a track that stops after Module 1 is never presented
+as one you can finish. Nothing marks the shelf by hand — `certificationStatus()`
+derives it from lesson statuses, and authoring the last lesson moves the track up
+into *Available*.
+
+### Certification: Databricks Certified Generative AI Engineer Associate
+
+- **Exam:** 45 questions · 90 minutes · USD 200 · valid 2 years
+- **Source of truth:** `src_material/databricks/databricks-certified-generative-ai-engineer-associate`
+- **Modules:** 8 (RAG build-arc order, mapped to the 6 official exam sections)
+- **Lessons authored:** 4 of 35 · **Cards:** 48 · **Recommended:** 6+ months hands-on GenAI on Databricks
+- **Product naming:** the exam guide uses **Mosaic AI** names; current docs have
+  renamed several (Vector Search → *Databricks AI Search*). Lessons lead with the
+  **exam guide's** name and note the current one. Research + sources:
+  `src_material/databricks/databricks-certified-generative-ai-engineer-associate/research/`.
+
+#### Module GA1 — GenAI Foundations on Databricks 🧠 (Design Applications) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| How large language models actually work | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | autocomplete analogy; generation-loop flow; tokens ≈ 4 chars; context window as a desk; myth "bigger window beats retrieval"; temperature ≠ truthfulness |
+| Embeddings and vector similarity | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | map-of-meaning analogy; keyword vs semantic (compare); **HNSW/L2 vs cosine needs normalizing**; one model for query + docs |
+| RAG, fine-tuning, or just prompting? | ✅ | 13 | 1 mcq, 1 t/f, 1 flashcard | new-hire analogy; retrieve-then-generate flow (simplified; GA4 completes it); RAG-vs-fine-tune (compare); myth "fine-tune on our docs" |
+| The Databricks GenAI stack (Mosaic AI) | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | stack as layers under UC; **four** index types; FM API modes; myth "the index is a copy you refresh" |
+
+#### Module GA2 — Designing GenAI Applications 🎯 (Design Applications, 14%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| From business problem to GenAI pipeline | ⬜ | Requirement → inputs/outputs/tasks |
+| Designing prompt–response pairs | ⬜ | Work backward from the needed output |
+| Choosing models, tools, and chain components | ⬜ | Model tasks, retrievers, tool access |
+| When one prompt isn’t enough | ⬜ | Multi-stage task decomposition |
+
+#### Module GA3 — Preparing Data for Retrieval 📚 (Data Preparation, 14%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Extracting text from messy documents | ⬜ | Python extraction tools; filtering noise |
+| Chunking: size, overlap, and structure | ⬜ | Chunk trade-offs vs context/precision |
+| From chunks to embeddings | ⬜ | Embedding into a vector store; metadata |
+| Garbage in, garbage out | ⬜ | Source-data quality caps RAG quality |
+
+#### Module GA4 — Building RAG Applications 🔗 (Application Development, 30%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| The anatomy of a RAG application | ⬜ | Retrieve-then-generate loop end to end |
+| Retrieving context with Vector Search | ⬜ | Querying the index; metadata filters |
+| Orchestrating with chains | ⬜ | LangChain-style wiring of prompts/models |
+| Augmenting prompts with retrieved context | ⬜ | Inject chunks so it answers from your data |
+| Prompt engineering that works | ⬜ | Instructions, examples, templates |
+
+#### Module GA5 — Guardrails, Hallucinations & Model Choice 🛡️ (Application Development, 30%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Guardrails: keeping the model in bounds | ⬜ | Constrain inputs/outputs for safety |
+| Reducing hallucinations | ⬜ | Grounding techniques for factual answers |
+| Defending against prompt injection | ⬜ | Malicious input hijacking a prompt |
+| Choosing the right model | ⬜ | Context window vs quality/cost/latency |
+| Agents and tools: giving the model hands | ⬜ | When to let a model call tools/act |
+
+#### Module GA6 — Assembling & Deploying 🚀 (Assembling and Deploying Applications, 22%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Packaging a chain with MLflow | ⬜ | Log a RAG chain (pyfunc / LangChain flavor) |
+| Registering models in Unity Catalog | ⬜ | UC model registry; versions & aliases |
+| Creating and syncing a Vector Search index | ⬜ | Index over a Delta table; keep it current |
+| Serving models and endpoints | ⬜ | Mosaic AI Model Serving for real-time |
+| Foundation Model APIs and external models | ⬜ | Pay-per-token vs provisioned; external routing |
+| Deploying an end-to-end RAG app | ⬜ | Sequence index → chain → register → serve |
+
+#### Module GA7 — Governance & Security 🔐 (Governance, 8%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Governing GenAI with Unity Catalog | ⬜ | Models, indexes, data under one model |
+| Masking and protecting sensitive data | ⬜ | PII out of prompts/logs/responses |
+| Legal, licensing, and data provenance | ⬜ | Data-source and model-license terms |
+
+#### Module GA8 — Evaluation & Monitoring 📊 (Evaluation and Monitoring, 12%) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| How do you grade an LLM? | ⬜ | Faithfulness, relevance, toxicity, correctness |
+| Evaluating with MLflow and LLM-as-a-judge | ⬜ | MLflow evaluate; model scores model |
+| Monitoring GenAI in production | ⬜ | Inference tables; Lakehouse Monitoring |
+| Controlling cost and latency | ⬜ | Fast & affordable without wrecking quality |
+
+- **Weightings:** Design 14% · Data Prep 14% · **App Dev 30% (split GA4 + GA5)** ·
+  Assemble & Deploy 22% · Governance 8% · Eval & Monitoring 12%.
+- **Next step:** **Module GA2 (Designing GenAI Applications)**, authored a whole
+  module at a time following the loop in `CLAUDE.md` — research → outline →
+  review → author → sync.
+
+---
+
+### Certification: GitHub Copilot (GH-300)
+
+- **Exam:** ~55–65 questions · 100 minutes · pass at 700/1000 · valid ~2 years
+- **Source of truth:** `src_material/github/gh-300-github-copilot`
+- **Modules:** 8 (learning-flow order, mapped to the 6 official skill domains)
+- **Lessons authored:** 3 of 27 · **Skills measured as of** January 2026
+
+#### Module G1 — Meet GitHub Copilot 🚀 (Use GitHub Copilot features) · ✅
+
+| Lesson | Status | Cards | Checks | Highlights |
+|--------|:------:|:-----:|--------|------------|
+| What is GitHub Copilot? | ✅ | 13 | 1 mcq, 1 t/f, 1 flashcard | pair-programmer analogy; inline vs Chat (compare); generates ≠ searches; you stay the pilot |
+| Which Copilot: Free, Pro, Business, or Enterprise? | ✅ | 12 | 1 mcq, 1 t/f, 1 flashcard | individual vs org families; capability ladder (flow); governance starts at Business |
+| Getting set up in your IDE | ✅ | 11 | 1 mcq, 1 t/f, 1 flashcard | three ingredients (access+extension+sign-in); setup flow; seat must be assigned |
+
+#### Module G2 — How Copilot Works: Data & Architecture 🧠 (Understand data and architecture) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Where your code goes and how it is used | ⬜ | Data flow/sharing; prompt building; proxy filtering; post-processing |
+| The life of a code suggestion | ⬜ | Suggestion request lifecycle |
+| What LLMs (and Copilot) can and cannot do | ⬜ | LLM/Copilot limitations |
+
+#### Module G3 — Using Copilot Responsibly ⚖️ (Use GitHub Copilot responsibly) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Risks and limitations of generative AI | ⬜ | Hallucination, bias, IP, over-reliance |
+| Ethical and responsible AI use | ⬜ | Potential harms + mitigation strategies |
+| Trust, but verify: validating AI output | ⬜ | Why/how to validate; operate responsibly |
+
+#### Module G4 — Prompt Engineering & Context 💬 (Apply prompt engineering and context crafting) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Anatomy of a good prompt | ⬜ | Prompt structure and context |
+| How Copilot builds context | ⬜ | Open files, selection, neighboring tabs |
+| Zero-shot and few-shot prompting | ⬜ | When to show examples |
+| Prompt-crafting best practices | ⬜ | Principles; process flow; chat-history use |
+
+#### Module G5 — Copilot Features in Depth 🛠️ (Use GitHub Copilot features) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Inline suggestions, Chat, and Plan Mode | ⬜ | Triggers; Chat limits/options/feedback/commands |
+| GitHub Copilot in the command line | ⬜ | CLI install, commands, sessions, scripts |
+| Agent Mode, Edit Mode, and MCP | ⬜ | Autonomous work; sub-agents/sessions; MCP |
+| Code review, Spaces, Spark, and PR summaries | ⬜ | Review, PR summaries, Spaces, instructions files |
+
+#### Module G6 — Boosting Developer Productivity 📈 (Improve developer productivity) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Generating, refactoring, and documenting code | ⬜ | Everyday SDLC wins |
+| Learning faster and modernizing legacy code | ⬜ | Context switching; sample data; modernization |
+| Writing tests with Copilot | ⬜ | Unit/integration tests; edge cases; assertions |
+| Security and performance improvements | ⬜ | Security fixes; performance optimizations |
+
+#### Module G7 — Privacy, Exclusions & Safeguards 🔒 (Configure privacy, content exclusions, and safeguards) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Content exclusions and editor settings | ⬜ | What Copilot can/can't see |
+| Who owns Copilot’s output? | ⬜ | Output ownership + limitations |
+| Duplication detection and security warnings | ⬜ | Safeguards + troubleshooting |
+
+#### Module G8 — Administration & Governance 🏢 (Use GitHub Copilot features) · ⬜
+
+| Lesson | Status | Notes |
+|--------|:------:|-------|
+| Organization-wide policies and settings | ⬜ | Policies; Code Review policy; feature availability |
+| Auditing Copilot with audit-log events | ⬜ | Audit-log events |
+| Managing subscriptions with the REST API | ⬜ | Seat/subscription management via REST API |
+
+- **Domain weightings:** Responsible (15–20%) · Features (25–30%, split across G5 + G8) ·
+  Data & architecture (10–15%) · Prompt engineering (10–15%) · Productivity (10–15%) ·
+  Privacy & safeguards (10–15%).
+- **Next step:** author lessons one at a time with the `author-lesson` skill,
+  flipping each ⬜ to ✅.
+
+---
 
 ## Quiz coverage across the platform
 

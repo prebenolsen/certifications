@@ -4,15 +4,19 @@ An interactive learning platform for professional certifications, built around a
 single principle: **learners should understand *why* something works**, not just
 memorize answers.
 
-Certifications currently supported:
+Fully authored and available:
 
 - **Introduction to Data Engineering with Databricks** — *a short course, not a
   certification: the high-level tour for someone new to all of it*
 - **Databricks Certified Data Analyst Associate**
 - **Databricks Certified Data Engineer Associate**
 - **Databricks Certified Data Engineer Professional**
-- **Databricks Certified Generative AI Engineer Associate** — *in authoring (Module 1 complete)*
-- **GitHub Copilot (GH-300)** — *scaffolded; lessons in authoring*
+
+Coming soon — shelved separately in the app, because a track you can finish and
+a track that stops after Module 1 are not the same offer:
+
+- **Databricks Certified Generative AI Engineer Associate** — *4 of 35 lessons*
+- **GitHub Copilot (GH-300)** — *3 of 27 lessons*
 
 ---
 
@@ -36,7 +40,7 @@ topic is taught the way a good teacher would:
 ### What it looks like
 
 ```
-Home (certifications)
+Home (available certifications · coming soon)
   └─ Certification   (modules, overall progress)
        └─ Module     (list of lessons, per-module progress)
             ├─ Lesson → full-screen Card Player
