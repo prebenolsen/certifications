@@ -127,7 +127,7 @@ export const assetBundlesLesson: Lesson = {
       explanation:
         'The keywords — *deploy, version, orchestrate, CI/CD, repeatability* — collectively describe what Asset Bundles were created for.',
       examObjective:
-        'Deploy Asset Bundles to package, configure, and promote Lakeflow Jobs, pipelines, and workspace assets across dev, test, and prod environments.',
+        'Deploy Declarative Automation Bundles (formerly Databricks Asset Bundles) to package, configure, and promote Lakeflow Jobs, Lakeflow Spark Declarative Pipelines, and other workspace assets across dev, test, and prod environments.',
     },
     {
       id: 'flash-cli',

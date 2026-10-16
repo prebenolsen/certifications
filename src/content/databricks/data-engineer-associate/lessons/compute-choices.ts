@@ -116,7 +116,7 @@ export const computeChoicesLesson: Lesson = {
       explanation:
         'Match the workload’s shape: **many users + SQL + all day** → concurrency-oriented SQL compute (a SQL warehouse) with autoscaling. The other options optimize for a different shape of work.',
       examObjective:
-        'Understand the platform’s compute services, including characteristics, limitations, and cost models, and select the most suitable option for each workload use case.',
+        'Understand Databricks Data Intelligence Platform’s compute services, including their characteristics, limitations, and cost models, and select the most suitable option for each workload use case.',
     },
     {
       id: 'tf-jobcluster',

@@ -102,7 +102,7 @@ export const lakehouseFoundationsLesson: Lesson = {
           sublabel: 'runs in *your* cloud account',
           tone: 'accent',
           items: [
-            'Clusters & SQL warehouses doing the work',
+            'Clusters doing the work',
             'Your data files (S3 / ADLS / GCS)',
             'Serverless compute runs in Databricks’ account instead',
           ],

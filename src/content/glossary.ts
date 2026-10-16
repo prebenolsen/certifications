@@ -85,6 +85,7 @@ export const glossary: GlossaryTerm[] = [
     seeAlso: ['delta-lake', 'unity-catalog', 'data-intelligence-platform'],
     introducedIn: [
       'lakehouse-intro',
+      'what-is-databricks',
       'lakehouse-foundations',
       'what-is-databricks-analyst',
     ],
@@ -121,6 +122,7 @@ export const glossary: GlossaryTerm[] = [
     ],
     introducedIn: [
       'lakeflow-intro',
+      'what-is-databricks',
       'lakeflow-overview',
       'platform-components',
     ],
@@ -230,7 +232,7 @@ export const glossary: GlossaryTerm[] = [
       'A declarative data-quality rule attached to a dataset in a Lakeflow pipeline: a SQL boolean condition plus what to do when a row fails it — **warn** (count it), **drop** it, or **fail** the run.',
     note: 'The point is that quality becomes *measurable per run*, not just enforced. Table `CHECK` constraints reject bad writes; expectations report on them.',
     seeAlso: ['lakeflow-pipelines'],
-    introducedIn: ['lakeflow-pipelines', 'declarative-pipelines'],
+    introducedIn: ['bronze-to-silver', 'lakeflow-pipelines', 'declarative-pipelines'],
     source: 'https://docs.databricks.com/aws/en/ldp/concepts',
   },
   {
@@ -285,7 +287,12 @@ export const glossary: GlossaryTerm[] = [
       'Incremental file ingestion at scale: it discovers new files as they land in cloud storage and loads only those, tracking what it has already seen so re-runs never double-load.',
     note: 'Invoked as `cloudFiles` in Spark. Reach for it over `COPY INTO` when files arrive continuously or number in the millions.',
     seeAlso: ['lakeflow-connect'],
-    introducedIn: ['lakeflow-intro', 'auto-loader', 'ingestion-methods'],
+    introducedIn: [
+      'lakeflow-intro',
+      'what-is-databricks',
+      'auto-loader',
+      'ingestion-methods',
+    ],
   },
   {
     id: 'medallion',
@@ -311,7 +318,7 @@ export const glossary: GlossaryTerm[] = [
       'A project folder that describes your Databricks resources as code — a `databricks.yml` manifest naming the jobs, pipelines and dashboards, plus the notebooks and source files themselves — so a workspace becomes the *product of a deployment* rather than something hand-edited.',
     note: 'Being renamed **Declarative Automation Bundles**; the exam guide uses both names.',
     seeAlso: ['lakeflow-jobs', 'git-folder'],
-    introducedIn: ['asset-bundles', 'cicd-asset-bundles'],
+    introducedIn: ['lakeflow-pipelines', 'asset-bundles', 'cicd-asset-bundles'],
   },
   {
     id: 'git-folder',

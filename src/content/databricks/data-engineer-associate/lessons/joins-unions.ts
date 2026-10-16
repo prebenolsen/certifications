@@ -125,7 +125,7 @@ export const joinsUnionsLesson: Lesson = {
       explanation:
         'When one join side fits in memory, broadcasting it eliminates the shuffle of the big side — usually the single biggest join speedup available.',
       examObjective:
-        'Combine DataFrames with operations such as inner join, left join, broadcast join, multiple keys, cross join, union, and union all.',
+        'Combine DataFrames with operations such as Inner join, left join, broadcast join, multiple keys, cross join, union, and union all.',
     },
     {
       id: 'tf-left',

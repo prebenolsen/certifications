@@ -43,6 +43,28 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
   afterwards has not earned a link. `npm run validate` now also reports how many
   explainers exist and how many tracks link them.
 
+### Fixed
+
+- **Data Engineer Associate — full QA pass**, since it's the first certification
+  on the learner's own study plan. Cleared all 6 glossary `⚠️` warnings for this
+  cert (`npm run glossary`) by glossing **lakehouse**, **Lakeflow**, **Auto
+  Loader**, **Databricks Asset Bundle**, and **pipeline expectation** at their
+  true first mention instead of only at their dedicated lesson, and by moving
+  one bare "SQL warehouses" diagram label so it no longer pre-empts
+  `compute-choices`.
+- **13 `mcq.examObjective` fields corrected to quote the exam guide verbatim.**
+  Two (`monitoring-jobs`, `triggers-scheduling`) spliced two separate guide
+  bullets into one invented sentence; `asset-bundles` hadn't picked up the
+  guide's **Declarative Automation Bundles** rename; the rest were
+  paraphrases or mid-clause truncations. `AUTHORING.md`'s "quote the official
+  outline, don't invent one" rule had no enforcement yet — these were found by
+  a manual pass, not the validator.
+- Verified two claims a review pass flagged as possibly stale against current
+  Databricks docs — both hold up: `ALTER TABLE ... SET MANAGED` (converting an
+  external table to managed) is real, current syntax, and Unity Catalog ABAC
+  row filters/column masks are GA (only metastore-level policies and `DENY`
+  policies remain Beta, which this lesson never claims).
+
 ## [1.9.0] — 2026-09-10
 
 ### Added

@@ -113,7 +113,7 @@ export const accessControlLesson: Lesson = {
       explanation:
         'Grant at the level matching the sentence: “everything in this schema” → schema-level SELECT, plus the USE privileges to get there. To a **group**.',
       examObjective:
-        'Configure access controls using the UI and SQL by applying GRANT, REVOKE, and DENY privileges to principals (users, groups, service principals) at appropriate levels of the security hierarchy.',
+        'Configure access controls using the UI and SQL by applying GRANT, REVOKE, and DENY privileges to principals (users, groups, and service principals) at appropriate levels of the security hierarchy.',
     },
     {
       id: 'tf-inherit',

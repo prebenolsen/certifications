@@ -97,7 +97,7 @@ export const ingestionPatternsLesson: Lesson = {
       explanation:
         'The lesson behind the trivia: **verify the delivery contract** (format, latency, mutability) before choosing an ingestion pattern.',
       examObjective:
-        'Enable and detail data ingestion patterns, including batch, streaming, and incremental loading.',
+        'Enable and detail data ingestion patterns, including batch, streaming, and incremental loading, and import data from sources such as local files, Lakeflow Connect standard connectors, and Lakeflow Connect managed connectors.',
     },
     {
       id: 'tf-incremental',

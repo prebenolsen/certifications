@@ -109,7 +109,7 @@ export const lakeflowConnectLesson: Lesson = {
       explanation:
         'The source’s location and shape picks the tool: connectors for systems, Auto Loader for files at scale, custom code (orchestrated by Jobs) for the long tail.',
       examObjective:
-        'Prioritize between Auto Loader, Lakeflow Connect (standard and managed connectors), partner connectors, and other ingestion methods based on technical requirements.',
+        'Prioritize between Auto Loader, Lakeflow Connect (standard and managed connectors), partner connectors, and other ingestion methods based on technical requirements such as data volume, ingestion frequency, data types, and governance needs with Unity Catalog.',
     },
     {
       id: 'tf-governance',

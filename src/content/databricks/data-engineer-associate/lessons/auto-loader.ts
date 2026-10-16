@@ -123,7 +123,7 @@ export const autoLoaderLesson: Lesson = {
       explanation:
         'Schema evolution grows the table when new columns appear; `_rescued_data` catches values that don’t match existing column types. Together: nothing is silently lost.',
       examObjective:
-        'Use Auto Loader with schema enforcement and schema evolution in batch modes (directory listing or file notification) to land data into Unity Catalog–governed tables.',
+        'Use Auto Loader with schema enforcement and schema evolution in batch modes (for example, directory listing or file notification) to land data into Unity Catalog–governed tables.',
     },
     {
       id: 'flash-checkpoint',

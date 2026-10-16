@@ -90,7 +90,7 @@ export const gitFoldersLesson: Lesson = {
       explanation:
         'Isolation comes from the **branch**, safety from the **review**, and the division of labor is: workspace for editing/committing, provider for the PR.',
       examObjective:
-        'Manage your code development workflow within the workspace UI, including creating and switching branches in Databricks Git Folders, committing and pushing changes, and creating pull requests using Git integration.',
+        'Manage your code development workflow within the Databricks workspace UI, including creating and switching between branches in Databricks Git Folders (formerly Databricks Repos), committing and pushing changes, and creating pull requests using Databricks Git integration.',
     },
     {
       id: 'tf-branch',

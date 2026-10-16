@@ -156,7 +156,7 @@ GROUP BY 1;`,
       id: 'concept-running',
       type: 'concept',
       title: 'How a pipeline gets run, and shipped',
-      body: 'A pipeline is not its own scheduler. Two things connect it to the rest of what you have learned:\n\n• **Lakeflow Jobs** runs it — a job can contain a **pipeline task** that triggers the pipeline, alongside notebook, SQL, and dashboard tasks. Pipelines answer *what*; jobs answer *when*.\n• **Asset Bundles** ship it — a pipeline is a resource declared in `databricks.yml`, promoted through dev, test, and prod like any other.',
+      body: 'A pipeline is not its own scheduler. Two things connect it to the rest of what you have learned:\n\n• **Lakeflow Jobs** runs it — a job can contain a **pipeline task** that triggers the pipeline, alongside notebook, SQL, and dashboard tasks. Pipelines answer *what*; jobs answer *when*.\n• **Databricks Asset Bundles** ship it — a `databricks.yml` project that declares a pipeline (and other resources) as code, promoted through dev, test, and prod like any other.',
       takeaways: [
         'Pipeline task in a job = how a pipeline is scheduled.',
         'Bundles = how a pipeline moves between environments.',

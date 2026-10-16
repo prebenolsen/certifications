@@ -89,7 +89,7 @@ export const monitoringJobsLesson: Lesson = {
       explanation:
         '“Abnormal” only means something relative to a baseline — and the run history view is the baseline, built in.',
       examObjective:
-        'Identify trends in job performance using the run history view; monitor pipeline health by interpreting job statuses and DAG task graphs to spot upstream blockers.',
+        'Identify trends in job performance using the Lakeflow Jobs run history view to compare current execution times against historical baselines.',
     },
     {
       id: 'flash-repair',

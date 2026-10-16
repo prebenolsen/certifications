@@ -115,7 +115,7 @@ export const managedExternalTablesLesson: Lesson = {
       explanation:
         'Files surviving a DROP in customer-owned storage = external table. The catalog entry was the only thing Databricks owned.',
       examObjective:
-        'Differentiate between managed and external tables in Unity Catalog and perform basic operations (create, modify, delete, and convert between them).',
+        'Differentiate between managed and external tables in Unity Catalog and perform basic operations (create, modify, delete, and convert between managed and external tables) on them.',
     },
     {
       id: 'flash-managed',

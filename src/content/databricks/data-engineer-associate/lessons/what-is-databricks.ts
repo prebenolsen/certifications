@@ -22,7 +22,7 @@ export const whatIsDatabricksLesson: Lesson = {
       type: 'scenario',
       eyebrow: 'Start here',
       title: 'The tour that skips the introduction',
-      body: 'Most Databricks material starts at full speed: catalogs, Lakeflow, Delta, DBUs. It assumes you already know what the product **is**.\n\nYou know data engineering. What you may not know is **this vendor**, so that is all this lesson covers. None of it is an exam question by itself; all of it is assumed by every exam question.',
+      body: 'Most Databricks material starts at full speed: catalogs, **Lakeflow** (its data-engineering product family), Delta, DBUs. It assumes you already know what the product **is**.\n\nYou know data engineering. What you may not know is **this vendor**, so that is all this lesson covers. None of it is an exam question by itself; all of it is assumed by every exam question.',
       atWork:
         'The fastest way to feel lost in a familiar field is a vendor word nobody defined.',
     },
@@ -72,7 +72,7 @@ export const whatIsDatabricksLesson: Lesson = {
       id: 'concept-dbu',
       type: 'concept',
       title: 'DBU — the one genuinely new word',
-      body: 'A **DBU** (*Databricks Unit*) is the unit compute is metered in — roughly "how much processing did that consume". Not a machine-hour: a bigger or more capable cluster burns DBUs faster.\n\nCluster sizing, job clusters over all-purpose, auto-termination, **Photon** (the vectorized C++ query engine that runs the same SQL faster), Auto Loader versus `COPY INTO` — the exam presents these as technical choices and grades them as **cost** choices.',
+      body: 'A **DBU** (*Databricks Unit*) is the unit compute is metered in — roughly "how much processing did that consume". Not a machine-hour: a bigger or more capable cluster burns DBUs faster.\n\nCluster sizing, job clusters over all-purpose, auto-termination, **Photon** (the vectorized C++ query engine that runs the same SQL faster), **Auto Loader** (incremental file ingestion that tracks what it has already loaded) versus `COPY INTO` — the exam presents these as technical choices and grades them as **cost** choices.',
       takeaways: [
         'DBUs, not hours. Capability affects the burn rate.',
         'An entire exam section exists because compute decisions are cost decisions.',
@@ -190,7 +190,7 @@ export const whatIsDatabricksLesson: Lesson = {
         '**Data Intelligence Platform** is the name for the whole thing.',
       ],
       closing:
-        'That is the ground floor. Next: the idea the whole platform is built on — the lakehouse. 🏠',
+        'That is the ground floor. Next: the idea the whole platform is built on — the **lakehouse**, storage as cheap as a data lake with the trust of a data warehouse. 🏠',
     },
   ],
 }

@@ -115,7 +115,7 @@ export const goldLayerLesson: Lesson = {
       explanation:
         'Heavy aggregation + many readers + relaxed freshness = **materialized view**. The compute happens once per refresh instead of once per reader.',
       examObjective:
-        'Understand the difference between, and how to build, gold layer objects such as materialized views, views, streaming tables, and tables in Unity Catalog.',
+        'Understand the difference between, and how to build, Gold layer objects such as materialized views, views, streaming tables, and tables for BI and analytics teams in Unity Catalog.',
     },
     {
       id: 'tf-mv',

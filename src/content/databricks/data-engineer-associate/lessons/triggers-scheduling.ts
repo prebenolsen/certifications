@@ -100,7 +100,7 @@ export const triggersSchedulingLesson: Lesson = {
       explanation:
         'Read the requirement’s shape: a **time** in it → scheduled; an **event** in it (“when files land”, “when the table changes”) → the matching data-driven trigger.',
       examObjective:
-        'Implement job schedules with an understanding of trigger types (scheduled, file arrival, and table update); choose between time-based and data-driven triggers.',
+        'Implement job schedules using Lakeflow Jobs with an understanding of trigger types (scheduled, file arrival, and table update).',
     },
     {
       id: 'flash-triggers',
