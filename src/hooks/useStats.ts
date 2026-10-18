@@ -45,7 +45,10 @@ export function useLessonStats(certId: string, lesson: Lesson): LessonStats {
 }
 
 /** Aggregates lesson completion into module-level stats. */
-export function useModuleStats(certId: string, module: Module): ModuleStats {
+export function useModuleStats(
+  certId: string,
+  module: Pick<Module, 'lessons'>,
+): ModuleStats {
   const { getLesson } = useProgress()
   const playable = module.lessons.filter((l) => l.status !== 'planned')
   const completed = playable.filter(

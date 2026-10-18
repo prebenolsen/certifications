@@ -47,7 +47,9 @@ Home (available certifications · coming soon)
             │            · vertical, one card at a time
             │            · progress bar + keyboard nav (↑/↓, Esc)
             │            · interactive cards record answers
-            │            · "Next lesson" hand-off at the end
+            │            · module progress shown throughout
+            │            · "Next lesson" within a module, "Finish module"
+            │              at its last lesson, back-to-module always on hand
             └─ Module quiz → practice | exam
                         · one question at a time, shuffled
                         · results reveal what you picked and why

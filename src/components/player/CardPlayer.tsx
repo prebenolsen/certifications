@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { Card, Lesson } from '@/types/content'
 import { CardView } from '@/components/cards/registry'
 import { useProgress } from '@/context/ProgressContext'
+import { ProgressBar } from '@/components/layout/ProgressBar'
 
 /**
  * The vertical, one-card-at-a-time player — our "learning flow".
@@ -13,14 +14,20 @@ import { useProgress } from '@/context/ProgressContext'
 export function CardPlayer({
   certId,
   lesson,
+  moduleTitle,
+  moduleStats,
   onExit,
   next,
 }: {
   certId: string
   lesson: Lesson
+  /** Title of the module this lesson belongs to, for the progress readout. */
+  moduleTitle: string
+  /** How much of the current module is done, independent of this lesson. */
+  moduleStats: { completed: number; total: number }
   onExit: () => void
   /** The lesson to continue with after this one, if any. */
-  next?: { title: string; onGo: () => void }
+  next?: { title: string; sameModule: boolean; onGo: () => void }
 }) {
   const { markCardViewed, recordAnswer, markCompleted } = useProgress()
   const scrollerRef = useRef<HTMLDivElement>(null)
@@ -136,6 +143,10 @@ export function CardPlayer({
         </button>
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-semibold text-ink">{lesson.title}</p>
+          <p className="truncate text-[11px] text-ink-faint">
+            {moduleTitle} · {moduleStats.completed}/{moduleStats.total} lessons
+            complete
+          </p>
           <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
             <div
               className="h-full rounded-full bg-brand transition-all duration-300"
@@ -178,28 +189,62 @@ export function CardPlayer({
         >
           ↑ Previous
         </button>
-        <span className="hidden text-xs text-ink-faint sm:block">
-          Use <span className="kbd">↑</span> <span className="kbd">↓</span> to navigate
-        </span>
         {isLast ? (
-          next ? (
-            <button
-              type="button"
-              onClick={next.onGo}
-              title={next.title}
-              className="rounded-xl bg-good px-5 py-2 text-sm font-semibold text-white transition hover:brightness-95"
-            >
-              Next lesson →
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={onExit}
-              className="rounded-xl bg-good px-5 py-2 text-sm font-semibold text-white transition hover:brightness-95"
-            >
-              Finish ✓
-            </button>
-          )
+          <div className="hidden flex-1 flex-col items-center gap-1 px-2 sm:flex">
+            <span className="text-[11px] text-ink-faint">
+              {moduleStats.completed}/{moduleStats.total} lessons complete in{' '}
+              <span className="font-semibold text-ink-soft">{moduleTitle}</span>
+            </span>
+            <ProgressBar
+              value={moduleStats.total ? moduleStats.completed / moduleStats.total : 0}
+              tone={moduleStats.completed >= moduleStats.total ? 'good' : 'brand'}
+              className="max-w-[12rem]"
+            />
+          </div>
+        ) : (
+          <span className="hidden text-xs text-ink-faint sm:block">
+            Use <span className="kbd">↑</span> <span className="kbd">↓</span> to navigate
+          </span>
+        )}
+        {isLast ? (
+          <div className="flex flex-none items-center gap-2">
+            {next?.sameModule ? (
+              <button
+                type="button"
+                onClick={onExit}
+                className="rounded-xl px-4 py-2 text-sm font-medium text-ink-soft transition hover:bg-slate-100"
+              >
+                Back to module
+              </button>
+            ) : next ? (
+              <button
+                type="button"
+                onClick={next.onGo}
+                title={next.title}
+                className="rounded-xl px-4 py-2 text-sm font-medium text-ink-soft transition hover:bg-slate-100"
+              >
+                Next module →
+              </button>
+            ) : null}
+            {next?.sameModule ? (
+              <button
+                type="button"
+                onClick={next.onGo}
+                title={next.title}
+                className="rounded-xl bg-good px-5 py-2 text-sm font-semibold text-white transition hover:brightness-95"
+              >
+                Next lesson →
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={onExit}
+                className="rounded-xl bg-good px-5 py-2 text-sm font-semibold text-white transition hover:brightness-95"
+              >
+                {next ? 'Finish module ✓' : 'Finish ✓'}
+              </button>
+            )}
+          </div>
         ) : (
           <button
             type="button"

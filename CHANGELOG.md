@@ -17,6 +17,21 @@ project adheres to [Semantic Versioning](https://semver.org/) (`Major.Minor.Patc
 
 ## [Unreleased]
 
+### Changed
+
+- **The card player now shows where you are in the module, not just the
+  lesson.** A learner clicking through lessons back-to-back had no sense of
+  how much of the module was left — the header now carries a persistent
+  "Module · X/Y lessons complete" line, and the end-of-lesson screen repeats
+  it alongside a progress bar. The hand-off button is now module-aware: **Next
+  lesson →** while more of the module remains, **Finish module ✓** (with a
+  secondary **Next module →**) at the module's last lesson, and a **Back to
+  module** link offered wherever the player would otherwise have silently
+  carried the learner past the module boundary.
+- `useModuleStats` now accepts anything with a `lessons` array rather than a
+  full `Module`, so the card player can compute module progress without first
+  confirming the lesson route resolved.
+
 ### Added
 
 - **Visual explainers — a supplementary content type for the things a card
