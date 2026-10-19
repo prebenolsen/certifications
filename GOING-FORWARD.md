@@ -104,6 +104,43 @@ can't catch today matters specifically because this is *exam-prep* content:
 - **Card-type diversity:** a lesson of 10 straight `concept` cards passes today —
   which is precisely what the teaching philosophy forbids.
 
+### B4.5. Calibrate each authored module against representative exam questions
+
+The Data Engineer Associate content maps well to the official outline and the
+five retired official sample questions. A review of CertSafari's 35 free
+exam-style questions found the same result at the level that matters most:
+learners can derive the answer to the dominant scenario questions — selecting
+compute, ingestion methods, Delta/Unity Catalog architecture, transformations,
+Lakeflow Jobs, CI/CD, troubleshooting, and governance.
+
+It also found a repeatable blind spot. Third-party banks test narrow,
+version-sensitive operational details that an otherwise sound mental model
+cannot derive: `COPY INTO` pattern filtering, Auto Loader schema hints, JDBC
+`fetchsize`, aggregation salting, trigger overwrite/cooldown behavior, DAB
+variable precedence, and specific Lakeflow Jobs/Pipelines semantics. Some are
+in the official objectives; others are reasonable product-detail variants of
+them.
+
+**Do:** after authoring a module and before its docs are synced, compare a small,
+representative set of current official and third-party questions with its cards.
+For every question, record one outcome:
+
+1. **Reasoning covered** — the lesson lets a learner derive the answer.
+2. **Fact covered** — the answer needs precise recall and the lesson teaches the
+   verified fact.
+3. **Gap** — neither the reasoning nor the fact appears in the module.
+
+Close a genuine gap with the smallest fitting teaching artifact: a scenario or
+MCQ for a decision, and a source-backed flashcard or explicitly labelled
+"exam-detail" card for an arbitrary operational fact. Save the source and date
+in the module's research notes so the claim can be refreshed when Databricks
+changes it. Do not turn lessons into a copied question bank.
+
+**Why it matters:** this preserves the understanding-first product while making
+exam readiness auditable. We can responsibly describe the course as a complete
+preparation path only after this calibration pass; never promise a pass, because
+live exams, product behavior, and a learner's hands-on experience vary.
+
 ### B5. Lesson scaffold generator (minor)
 
 `npm run new-lesson <cert> <module> <id>` — writes the template file *and* swaps
